@@ -23,7 +23,7 @@ public class PromotionViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<List<PromotionModel>> call, Throwable t) {
-                throw new UnknownError("Internet may be missing!");
+                //throw new UnknownError("Internet may be missing!"); // to work here
             }
         });
     }
