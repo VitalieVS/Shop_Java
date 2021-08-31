@@ -3,6 +3,10 @@ package com.example.shop_java;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,12 +18,18 @@ import com.example.shop_java.menu_fragments.HomeFragment;
 import com.example.shop_java.menu_fragments.LoginFragment;
 import com.example.shop_java.menu_fragments.ReviewsFragment;
 import com.example.shop_java.menu_fragments.SearchFragment;
+import com.example.shop_java.promotion.model.PromotionModel;
+import com.example.shop_java.promotion.ui.PromotionViewModel;
+import com.example.shop_java.promotion.ui.PromotionsAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private boolean check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         selectedFragment = new HomeFragment();
+                        check = true;
                         break;
                     case R.id.search:
                         selectedFragment = new SearchFragment();
@@ -68,5 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        if (check) {
+
+        }
+
+
     }
 }
