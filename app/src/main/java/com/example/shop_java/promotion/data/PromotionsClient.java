@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PromotionsClient {
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private static final String BASE_URL = "http://10.0.2.2:4546"; //http://10.0.2.2:4546/
     private PromotionInterface promotionInterface;
     private static PromotionsClient INSTANCE;
 

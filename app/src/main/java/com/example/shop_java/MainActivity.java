@@ -27,9 +27,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-
-    private boolean check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         selectedFragment = new HomeFragment();
-                        check = true;
                         break;
                     case R.id.search:
                         selectedFragment = new SearchFragment();
@@ -79,11 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        if (check) {
-
-        }
-
 
     }
 }

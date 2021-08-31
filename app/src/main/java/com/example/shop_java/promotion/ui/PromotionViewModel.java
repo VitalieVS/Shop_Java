@@ -19,12 +19,14 @@ public class PromotionViewModel extends ViewModel {
         PromotionsClient.getInstance().getPromotions().enqueue(new Callback<List<PromotionModel>>() {
             @Override
             public void onResponse(Call<List<PromotionModel>> call, Response<List<PromotionModel>> response) {
+                System.out.println("RESPONSE:");
+                System.out.println(response);
                 promotionsMutableLiveData.setValue(response.body());
             }
 
             @Override
             public void onFailure(Call<List<PromotionModel>> call, Throwable t) {
-                posts.setValue("error");
+                posts.setValue("EROR IN PULA MEA");
             }
         });
     }
