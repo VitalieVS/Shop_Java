@@ -34,12 +34,12 @@ public class HomeFragment extends Fragment {
         promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel.class);
 
         promotionViewModel.getPromotions();
-        RecyclerView recyclerView = getView().findViewById(R.id.recycler);
+        RecyclerView recyclerView = requireView().findViewById(R.id.recycler);
         final PromotionsAdapter adapter = new PromotionsAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        promotionViewModel.promotionsMutableLiveData.observe(getActivity(), new Observer<List<PromotionModel>>() {
+        promotionViewModel.promotionsMutableLiveData.observe(requireActivity(), new Observer<List<PromotionModel>>() {
             @Override
             public void onChanged(List<PromotionModel> promotionModels) {
                 adapter.setList(promotionModels);

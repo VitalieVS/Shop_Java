@@ -1,5 +1,9 @@
 package com.example.shop_java.promotion.ui;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,12 +21,15 @@ public class PromotionViewModel extends ViewModel {
     public void getPromotions() {
         PromotionsClient.getInstance().getPromotions().enqueue(new Callback<List<PromotionModel>>() {
             @Override
-            public void onResponse(Call<List<PromotionModel>> call, Response<List<PromotionModel>> response) {
+            public void onResponse(@NonNull Call<List<PromotionModel>> call,
+                                   @NonNull Response<List<PromotionModel>> response) {
                 promotionsMutableLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<PromotionModel>> call, Throwable t) {
+            public void onFailure(@Nullable Call<List<PromotionModel>> call,
+                                  @Nullable Throwable t) {
+                Log.d("FAILED", "FAILED");
                 //throw new UnknownError("Internet may be missing!"); // to work here
             }
         });
