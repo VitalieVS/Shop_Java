@@ -1,6 +1,5 @@
 package com.example.shop_java.promotion.model;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.ImageView;
@@ -13,7 +12,6 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 public class PromotionModel {
@@ -21,6 +19,47 @@ public class PromotionModel {
     private String title;
     private String body;
     private String image;
+    private int price;
+    private String foodType;
+
+    @BindingAdapter("android:background")
+    public static void loadImage(final ImageView imageView, String imageUrl) {
+        Glide.with(imageView)
+                .load(imageUrl).into(new CustomTarget<Drawable>() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                imageView.setBackground(resource);
+            }
+
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+                //Nothing yet
+            }
+        });
+
+
+    }
+
+    public void setPromotionId(int promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getFoodType() {
+        return foodType;
+    }
 
     public int getPromotionId() {
         return promotionId;
@@ -47,22 +86,7 @@ public class PromotionModel {
         return image;
     }
 
-    @BindingAdapter("android:background")
-    public static void loadImage(final RelativeLayout relativeLayout, String imageUrl) {
-        Glide.with(relativeLayout)
-                .load(imageUrl).into(new CustomTarget<Drawable>() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                relativeLayout.setBackground(resource);
-            }
-
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
-
-            }
-        });
-
-
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
     }
 }
