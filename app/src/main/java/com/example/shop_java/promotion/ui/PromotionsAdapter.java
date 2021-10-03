@@ -15,8 +15,6 @@ import com.example.shop_java.PromotionItemActivity;
 import com.example.shop_java.databinding.PromotionItemBinding;
 import com.example.shop_java.promotion.model.PromotionModel;
 import com.example.shop_java.promotion.ui.adapter_interface.SelectedPromotion;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
