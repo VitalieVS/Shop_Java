@@ -19,7 +19,7 @@ public class PromotionViewModel extends ViewModel {
     public static final MutableLiveData<List<PromotionModel>> promotionsMutableLiveData =
             new MutableLiveData<>();
 
-    private static final ArrayList EMPTY_LIST = new ArrayList();
+    private static final ArrayList<PromotionModel> EMPTY_LIST = new ArrayList<>();
 
     public void getPromotions() {
         PromotionsClient.getInstance().getPromotions().enqueue(new Callback<List<PromotionModel>>() {
