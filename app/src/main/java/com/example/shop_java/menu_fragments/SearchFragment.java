@@ -43,7 +43,6 @@ public class SearchFragment extends Fragment {
 
         RecyclerView recyclerView = requireView().findViewById(R.id.personListRecyclerView);
         final CategoriesAdapter adapter = new CategoriesAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         CategoryViewModel.categoriesMutableLiveData.observe(requireActivity(), new Observer<List<CategoryModel>>() {
