@@ -37,8 +37,6 @@ public class PromotionModel {
                 //Nothing yet
             }
         });
-
-
     }
 
     public void setPromotionId(int promotionId) {
