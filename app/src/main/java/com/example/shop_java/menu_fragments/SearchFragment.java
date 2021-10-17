@@ -1,17 +1,19 @@
 package com.example.shop_java.menu_fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
@@ -19,15 +21,14 @@ import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.category.ui.CategoriesAdapter;
 import com.example.shop_java.category.ui.CategoryViewModel;
 import com.example.shop_java.connection_fragments.NoInternetFragment;
-import com.example.shop_java.promotion.model.PromotionModel;
-import com.example.shop_java.promotion.ui.PromotionViewModel;
-import com.example.shop_java.promotion.ui.PromotionsAdapter;
 
 import java.util.List;
 
 public class SearchFragment extends Fragment {
 
     CategoryViewModel categoryViewModel;
+
+    EditText searchView;
 
     @Nullable
     @Override
@@ -41,9 +42,28 @@ public class SearchFragment extends Fragment {
 
         categoryViewModel.getCategories();
 
-        RecyclerView recyclerView = requireView().findViewById(R.id.personListRecyclerView);
+        final RecyclerView recyclerView = requireView().findViewById(R.id.personListRecyclerView);
         final CategoriesAdapter adapter = new CategoriesAdapter();
         recyclerView.setAdapter(adapter);
+
+        searchView = requireView().findViewById(R.id.categoriesSearchView);
+
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                adapter.getFilter().filter(s);
+            }
+        });
 
         CategoryViewModel.categoriesMutableLiveData.observe(requireActivity(), new Observer<List<CategoryModel>>() {
             @Override

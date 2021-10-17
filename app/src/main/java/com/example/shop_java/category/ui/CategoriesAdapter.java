@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,12 +22,15 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         implements SelectedCategory {
 
     private List<CategoryModel> categoryList = new ArrayList<>();
+    private List<CategoryModel> filteredCategoryList = new ArrayList<>();
     private Context context;
 
     @NonNull
     @Override
     public CategoriesAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                    int viewType) {
+
+
         context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         CategoryItemBinding categoryItemBinding =
@@ -38,7 +42,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull CategoriesAdapter.CategoryViewHolder holder,
                                  int position) {
-        final CategoryModel category = categoryList.get(position);
+
+
+        final CategoryModel category = filteredCategoryList.get(position);
         holder.categoryItemBinding.setViewModel(category);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,16 +56,19 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+
+        return filteredCategoryList.size();
     }
 
     public void setList(List<CategoryModel> categoryList) {
         this.categoryList = categoryList;
+        this.filteredCategoryList = categoryList;
         notifyDataSetChanged();
     }
 
     @Override
     public void selectedCategory(CategoryModel categoryModel) {
+
         Intent intent = new Intent(context, PromotionItemActivity.class);
         intent.putExtra("categoryID", categoryModel.getCategoryId());
         context.startActivity(intent);
@@ -73,4 +82,45 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             this.categoryItemBinding = categoryItemBinding;
         }
     }
+
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String key = constraint.toString();
+
+                if (key.isEmpty()) {
+                    filteredCategoryList = categoryList;
+                } else {
+
+                    List<CategoryModel> filteredList = new ArrayList<>();
+
+
+                    for (CategoryModel category : categoryList) {
+                        if (category.getName().toLowerCase().contains(key.toLowerCase())) {
+                            filteredList.add(category);
+                        }
+                    }
+
+                    filteredCategoryList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredCategoryList;
+
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredCategoryList = (List<CategoryModel>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
+    }
+
+
 }

@@ -2,7 +2,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.shop_java.category.model.CategoryModel" />
@@ -13,9 +12,14 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.name}" />
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/box"
+            android:gravity="center"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingConstraints"></TextView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

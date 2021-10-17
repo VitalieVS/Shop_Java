@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E">
+    android:background="@color/mainColor"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/categoriesSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/search_bg"
+        android:drawableEnd="@drawable/search"
+        android:ems="15"
+        android:hint="Search"
+        android:inputType="textPersonName"
+        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorYellow"
+        android:textStyle="bold" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/personListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="649dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,4 +38,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:spanCount="2" />
 
-</RelativeLayout>
+
+</LinearLayout>
