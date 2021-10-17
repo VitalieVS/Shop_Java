@@ -2,6 +2,7 @@ package com.example.shop_java.category.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void selectedCategory(CategoryModel categoryModel) {
 
-        Intent intent = new Intent(context, PromotionItemActivity.class);
-        intent.putExtra("categoryID", categoryModel.getCategoryId());
-        context.startActivity(intent);
+        context.startActivity(new Intent(context, PromotionItemActivity.class)
+                .putExtra("TaskData", categoryModel));
+
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {

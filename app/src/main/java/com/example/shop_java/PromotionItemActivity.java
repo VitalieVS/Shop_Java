@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.shop_java.category.model.CategoryModel;
+
 import java.util.Objects;
 
 public class PromotionItemActivity extends AppCompatActivity {
@@ -25,14 +27,12 @@ public class PromotionItemActivity extends AppCompatActivity {
         getPromotionID();
     }
 
-    private int getPromotionID() {
-        int promotionID;
+    private CategoryModel getPromotionID() {
+        CategoryModel promotionID;
 
-        promotionID = getIntent().getIntExtra("promotionID", 0);
+        promotionID = (CategoryModel) getIntent().getSerializableExtra("TaskData");
 
-        if (promotionID == 0) {
-            throw new Error("Promotion ID cannot be 0");
-        }
+
         return promotionID;
     }
 }

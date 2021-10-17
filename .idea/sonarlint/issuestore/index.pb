@@ -7,8 +7,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 {
 Kapp/src/main/java/com/example/shop_java/menu_fragments/ReviewsFragment.java,3\1\31ef351c7a097a3d8da09d8a54f6715894c96b29
-r
-Bapp/src/main/java/com/example/shop_java/PromotionItemActivity.java,b\1\b18294153ea47f26dbbb4be83b8caa0ab891c5f5
 Ñ
 Tapp/src/main/java/com/example/shop_java/connection_fragments/NoInternetFragment.java,5\c\5c4d651297700d358de9991be61e555c3f290b9f
 ç
@@ -35,7 +33,5 @@ y
 Iapp/src/main/java/com/example/shop_java/category/data/CategoryClient.java,c\c\cc2579bb9b9689e6e424949a176bb18d453d91a7
 |
 Lapp/src/main/java/com/example/shop_java/category/data/CategoryInterface.java,1\9\195db9ef3ac5ae397a288a6b7a90fac65a9cd634
-y
-Iapp/src/main/java/com/example/shop_java/category/model/CategoryModel.java,e\8\e822bed947bb90efd19d563705bfc2d12d57884a
 z
 Japp/src/main/java/com/example/shop_java/category/ui/CategoryViewModel.java,b\4\b463f713a1a45ddc713e31072aff74533d9fef9e
