@@ -21,15 +21,18 @@ public class CategoryViewModel extends ViewModel {
     private static final ArrayList<CategoryModel> EMPTY_LIST = new ArrayList<>();
 
     public void getCategories() {
+
         CategoryClient.getInstance().getCategories().enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<CategoryModel>> call,
                                    @NonNull Response<List<CategoryModel>> response) {
+
                 categoriesMutableLiveData.setValue(response.body());
             }
 
             @Override
             public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+
                 categoriesMutableLiveData.setValue(EMPTY_LIST);
             }
 

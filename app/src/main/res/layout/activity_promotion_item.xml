@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300sp"
                 android:layout_below="@id/promotion_name"
-                android:background="@drawable/food_img1" />
+                android:background="@{viewModel.image}" />
         </RelativeLayout>
 
         <TextView
@@ -89,7 +89,7 @@
             android:drawablePadding="5dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="@{String.valueOf(viewModel.price)}"
+            android:text="@{String.valueOf(viewModel.price) + `MDL`}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
     </LinearLayout>

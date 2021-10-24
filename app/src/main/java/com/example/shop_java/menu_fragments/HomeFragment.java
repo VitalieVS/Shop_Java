@@ -23,6 +23,7 @@ import com.example.shop_java.promotion.ui.PromotionsAdapter;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+
     PromotionViewModel promotionViewModel;
     @Nullable
     @Override
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel.class);
 
         promotionViewModel.getPromotions();

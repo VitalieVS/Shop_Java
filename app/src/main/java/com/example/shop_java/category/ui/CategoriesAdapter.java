@@ -30,7 +30,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     public CategoriesAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                    int viewType) {
 
-
         context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         CategoryItemBinding categoryItemBinding =
@@ -42,7 +41,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull CategoriesAdapter.CategoryViewHolder holder,
                                  int position) {
-
 
         final CategoryModel category = filteredCategoryList.get(position);
         holder.categoryItemBinding.setViewModel(category);
@@ -61,6 +59,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     }
 
     public void setList(List<CategoryModel> categoryList) {
+
         this.categoryList = categoryList;
         this.filteredCategoryList = categoryList;
         notifyDataSetChanged();
@@ -71,16 +70,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
         context.startActivity(new Intent(context, PromotionItemActivity.class)
                 .putExtra("TaskData", categoryModel));
-
-    }
-
-    public static class CategoryViewHolder extends RecyclerView.ViewHolder {
-        CategoryItemBinding categoryItemBinding;
-
-        public CategoryViewHolder(@NonNull CategoryItemBinding categoryItemBinding) {
-            super(categoryItemBinding.getRoot());
-            this.categoryItemBinding = categoryItemBinding;
-        }
     }
 
     public Filter getFilter() {
@@ -88,6 +77,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
+
                 String key = constraint.toString();
 
                 if (key.isEmpty()) {
@@ -115,11 +105,21 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
+
                 filteredCategoryList = (List<CategoryModel>) results.values;
                 notifyDataSetChanged();
-
             }
         };
+    }
+
+    public static class CategoryViewHolder extends RecyclerView.ViewHolder {
+
+        CategoryItemBinding categoryItemBinding;
+
+        public CategoryViewHolder(@NonNull CategoryItemBinding categoryItemBinding) {
+            super(categoryItemBinding.getRoot());
+            this.categoryItemBinding = categoryItemBinding;
+        }
     }
 
 

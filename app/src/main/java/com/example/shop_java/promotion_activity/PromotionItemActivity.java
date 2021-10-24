@@ -2,7 +2,6 @@ package com.example.shop_java.promotion_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -10,10 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.shop_java.R;
-import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
 import com.example.shop_java.promotion.model.PromotionModel;
-import com.example.shop_java.promotion.ui.PromotionViewModel;
 import com.example.shop_java.promotion_activity.view_model.SinglePromotionViewModel;
 
 import java.util.Objects;
@@ -26,6 +23,7 @@ public class PromotionItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -39,17 +37,12 @@ public class PromotionItemActivity extends AppCompatActivity {
         PromotionModel promotionModel =
                 (PromotionModel) getIntent().getSerializableExtra("SelectedPromotion");
 
-        //System.out.println(promotionModel.getImage());
-
-
-        // singlePromotionViewModel.setItem(promotionModel);
-
+        singlePromotionViewModel.setItem(promotionModel); // future feature
 
         ActivityPromotionItemBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setViewModel(promotionModel);
-
 
     }
 

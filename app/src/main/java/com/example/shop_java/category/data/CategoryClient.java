@@ -10,11 +10,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CategoryClient {
+
     private static final String BASE_URL = "http://10.0.2.2:4546";  //
     private static CategoryClient INSTANCE;
     private CategoryInterface categoryInterface;
 
     public CategoryClient() {
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -23,6 +25,7 @@ public class CategoryClient {
     }
 
     public static CategoryClient getInstance() {
+
         if (null == INSTANCE) {
             INSTANCE = new CategoryClient();
         }
@@ -30,6 +33,7 @@ public class CategoryClient {
     }
 
     public Call<List<CategoryModel>> getCategories() {
+
         return categoryInterface.getPromotions();
     }
 }

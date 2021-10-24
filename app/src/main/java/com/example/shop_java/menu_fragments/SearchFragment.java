@@ -32,12 +32,15 @@ public class SearchFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
 
         categoryViewModel.getCategories();
@@ -51,12 +54,12 @@ public class SearchFragment extends Fragment {
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                // this method is empty because we only use afterTextChanged
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // this method is empty because we only use afterTextChanged
             }
 
             @Override
@@ -65,14 +68,17 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        CategoryViewModel.categoriesMutableLiveData.observe(requireActivity(), new Observer<List<CategoryModel>>() {
-            @Override
-            public void onChanged(List<CategoryModel> categoryModels) {
-                adapter.setList(categoryModels);
-                if (categoryModels.isEmpty() && isAdded()) {
-                    requireActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, new NoInternetFragment()).commit();
+        CategoryViewModel.categoriesMutableLiveData.observe(requireActivity(),
+                new Observer<List<CategoryModel>>() {
+
+                    @Override
+                    public void onChanged(List<CategoryModel> categoryModels) {
+
+                        adapter.setList(categoryModels);
+                        if (categoryModels.isEmpty() && isAdded()) {
+                            requireActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_container, new NoInternetFragment()).commit();
 
                 }
             }

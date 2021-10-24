@@ -23,16 +23,19 @@ public class PromotionViewModel extends ViewModel {
     private static final ArrayList<PromotionModel> EMPTY_LIST = new ArrayList<>();
 
     public void getPromotions() {
-        PromotionsClient.getInstance().getPromotions().enqueue(new Callback<List<PromotionModel>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<PromotionModel>> call,
-                                   @NonNull Response<List<PromotionModel>> response) {
-                promotionMutableLiveData.setValue(response.body());
-            }
 
-            @Override
-            public void onFailure(Call<List<PromotionModel>> call, Throwable t) {
-                promotionMutableLiveData.setValue(EMPTY_LIST);
+        PromotionsClient.getInstance().getPromotions()
+                .enqueue(new Callback<List<PromotionModel>>() {
+
+                    @Override
+                    public void onResponse(@NonNull Call<List<PromotionModel>> call,
+                                           @NonNull Response<List<PromotionModel>> response) {
+                        promotionMutableLiveData.setValue(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<PromotionModel>> call, Throwable t) {
+                        promotionMutableLiveData.setValue(EMPTY_LIST);
             }
 
         });

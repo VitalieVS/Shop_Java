@@ -16,6 +16,7 @@ import com.bumptech.glide.request.transition.Transition;
 import java.io.Serializable;
 
 public class PromotionModel implements Serializable {
+
     private int promotionId;
     private String title;
     private String body;
@@ -25,8 +26,9 @@ public class PromotionModel implements Serializable {
 
     @BindingAdapter("android:background")
     public static void loadImage(final ImageView imageView, String imageUrl) {
-        Glide.with(imageView)
-                .load(imageUrl).into(new CustomTarget<Drawable>() {
+
+        Glide.with(imageView).load(imageUrl).into(new CustomTarget<Drawable>() {
+
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
@@ -35,7 +37,7 @@ public class PromotionModel implements Serializable {
 
             @Override
             public void onLoadCleared(@Nullable Drawable placeholder) {
-                //Nothing yet
+                //We don't need to use this implementation
             }
         });
     }

@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import com.example.shop_java.R;
 
 public class CartFragment extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 }
