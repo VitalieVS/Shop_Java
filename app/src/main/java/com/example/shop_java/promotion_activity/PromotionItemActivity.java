@@ -5,16 +5,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
-import com.example.shop_java.global_models.Product;
 import com.example.shop_java.promotion.model.PromotionModel;
 import com.example.shop_java.promotion_activity.view_model.SinglePromotionViewModel;
 
