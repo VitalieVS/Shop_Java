@@ -69,7 +69,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     public void selectedCategory(CategoryModel categoryModel) {
 
         context.startActivity(new Intent(context, PromotionItemActivity.class)
-                .putExtra("TaskData", categoryModel));
+                .putExtra("CategoryData", categoryModel));
     }
 
     public Filter getFilter() {
