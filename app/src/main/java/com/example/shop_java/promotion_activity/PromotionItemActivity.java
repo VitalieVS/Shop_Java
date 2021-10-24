@@ -32,7 +32,6 @@ public class PromotionItemActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-
         singlePromotionViewModel =
                 ViewModelProviders.of(this).get(SinglePromotionViewModel.class);
 
@@ -45,8 +44,8 @@ public class PromotionItemActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setViewModel(promotionModel);
-
         ImageView backView = findViewById(R.id.back_button);
+
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
