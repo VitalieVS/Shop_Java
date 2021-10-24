@@ -1,27 +1,3 @@
 
-y
-Iapp/src/main/java/com/example/shop_java/menu_fragments/LoginFragment.java,4\c\4cc42733ddf469b6a8ec6d5f3844e720f9e8a69b
-i
-9app/src/main/java/com/example/shop_java/MainActivity.java,9\1\91e6510427cae5713ec4b4fefb76b63e69997dbf
-{
-Kapp/src/main/java/com/example/shop_java/menu_fragments/ReviewsFragment.java,3\1\31ef351c7a097a3d8da09d8a54f6715894c96b29
-„
-Tapp/src/main/java/com/example/shop_java/connection_fragments/NoInternetFragment.java,5\c\5c4d651297700d358de9991be61e555c3f290b9f
-‹
-[app/src/main/java/com/example/shop_java/category/ui/adapter_interface/SelectedCategory.java,5\3\53748fd5746d2335b79f4f47e49fa2ca00554cf5
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-x
-Happ/src/main/java/com/example/shop_java/menu_fragments/HomeFragment.java,1\f\1f14b18dcfc3042437fd0aaa63cf45e4bb4be793
-x
-Happ/src/main/java/com/example/shop_java/menu_fragments/CartFragment.java,e\6\e63ee12c6886921318d975e65f030e4fc05cecf3
-y
-Iapp/src/main/java/com/example/shop_java/category/data/CategoryClient.java,c\c\cc2579bb9b9689e6e424949a176bb18d453d91a7
-|
-Lapp/src/main/java/com/example/shop_java/category/data/CategoryInterface.java,1\9\195db9ef3ac5ae397a288a6b7a90fac65a9cd634
-z
-Japp/src/main/java/com/example/shop_java/category/ui/CategoryViewModel.java,b\4\b463f713a1a45ddc713e31072aff74533d9fef9e
-y
-Iapp/src/main/java/com/example/shop_java/category/model/CategoryModel.java,e\8\e822bed947bb90efd19d563705bfc2d12d57884a
-z
-Japp/src/main/java/com/example/shop_java/menu_fragments/SearchFragment.java,5\6\56fd41b2266bb7a150bb537f6c52ad150dc5d851

@@ -5,8 +5,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.example.shop_java.R;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
@@ -43,6 +45,14 @@ public class PromotionItemActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setViewModel(promotionModel);
+
+        ImageView backView = findViewById(R.id.back_button);
+        backView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
