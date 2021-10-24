@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/mainColor"
-    tools:context=".PromotionItemActivity">
+
+    tools:context=".promotion_activity.PromotionItemActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.shop_java.promotion.model.PromotionModel" />
+    </data>
 
 
     <LinearLayout
+        android:background="@color/mainColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -42,7 +47,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="30dp"
-                android:text="The Burger KingWhopper"
+                android:text="@{viewModel.title}"
                 android:textColor="@color/colorWhite"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -61,7 +66,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="Non vegetarian - Eggs"
+            android:text="@{viewModel.foodType}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
 
@@ -71,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="80dp"
-            android:text="THIS IS A VERY LONG DESCRIPTION OF THE PROMOTION PLEASE BE GOOD AND TAKE IT"
+            android:text="@{viewModel.body}"
             android:textColor="@color/colorWhite" />
 
         <Button
@@ -84,8 +89,8 @@
             android:drawablePadding="5dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="Add to cart"
+            android:text="@{String.valueOf(viewModel.price)}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
     </LinearLayout>
-</LinearLayout>
+</layout>

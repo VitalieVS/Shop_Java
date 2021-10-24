@@ -2,7 +2,6 @@ package com.example.shop_java.category.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.Filter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop_java.PromotionItemActivity;
+import com.example.shop_java.promotion_activity.PromotionItemActivity;
 import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;

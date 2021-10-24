@@ -3,28 +3,14 @@ y
 Iapp/src/main/java/com/example/shop_java/menu_fragments/LoginFragment.java,4\c\4cc42733ddf469b6a8ec6d5f3844e720f9e8a69b
 i
 9app/src/main/java/com/example/shop_java/MainActivity.java,9\1\91e6510427cae5713ec4b4fefb76b63e69997dbf
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 {
 Kapp/src/main/java/com/example/shop_java/menu_fragments/ReviewsFragment.java,3\1\31ef351c7a097a3d8da09d8a54f6715894c96b29
 Ñ
 Tapp/src/main/java/com/example/shop_java/connection_fragments/NoInternetFragment.java,5\c\5c4d651297700d358de9991be61e555c3f290b9f
-ç
-]app/src/main/java/com/example/shop_java/promotion/ui/adapter_interface/SelectedPromotion.java,8\9\890fb4822ebc7b22d29ac1239907dbd68caa668c
-|
-Lapp/src/main/java/com/example/shop_java/promotion/data/PromotionsClient.java,3\a\3a83c9eb64f4c46a10849eeea93a0d5b056dc39b
-~
-Napp/src/main/java/com/example/shop_java/promotion/data/PromotionInterface.java,9\2\92a735b98a2760d864664d290dbeab3c74d414d9
 ã
 [app/src/main/java/com/example/shop_java/category/ui/adapter_interface/SelectedCategory.java,5\3\53748fd5746d2335b79f4f47e49fa2ca00554cf5
-{
-Kapp/src/main/java/com/example/shop_java/promotion/model/PromotionModel.java,f\c\fcaa78cf6f48cbfa44478d52212e525d419de92f
-{
-Kapp/src/main/java/com/example/shop_java/promotion/ui/PromotionsAdapter.java,e\e\ee9fa50468826191bf6cc9c6e76421f97f8947fe
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-|
-Lapp/src/main/java/com/example/shop_java/promotion/ui/PromotionViewModel.java,d\3\d36fcdd850ce99cc6420578ea7f27a2707699e3b
 x
 Happ/src/main/java/com/example/shop_java/menu_fragments/HomeFragment.java,1\f\1f14b18dcfc3042437fd0aaa63cf45e4bb4be793
 x
@@ -35,3 +21,7 @@ Iapp/src/main/java/com/example/shop_java/category/data/CategoryClient.java,c\c\
 Lapp/src/main/java/com/example/shop_java/category/data/CategoryInterface.java,1\9\195db9ef3ac5ae397a288a6b7a90fac65a9cd634
 z
 Japp/src/main/java/com/example/shop_java/category/ui/CategoryViewModel.java,b\4\b463f713a1a45ddc713e31072aff74533d9fef9e
+y
+Iapp/src/main/java/com/example/shop_java/category/model/CategoryModel.java,e\8\e822bed947bb90efd19d563705bfc2d12d57884a
+z
+Japp/src/main/java/com/example/shop_java/menu_fragments/SearchFragment.java,5\6\56fd41b2266bb7a150bb537f6c52ad150dc5d851

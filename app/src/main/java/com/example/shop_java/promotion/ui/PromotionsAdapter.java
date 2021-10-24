@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop_java.PromotionItemActivity;
+import com.example.shop_java.promotion_activity.PromotionItemActivity;
 import com.example.shop_java.databinding.PromotionItemBinding;
 import com.example.shop_java.promotion.model.PromotionModel;
 import com.example.shop_java.promotion.ui.adapter_interface.SelectedPromotion;
@@ -59,9 +59,8 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.Pr
 
     @Override
     public void selectedPromotion(PromotionModel promotionModel) {
-        Intent intent = new Intent(context, PromotionItemActivity.class);
-        intent.putExtra("promotionID", promotionModel.getPromotionId());
-        context.startActivity(intent);
+        context.startActivity(new Intent(context, PromotionItemActivity.class)
+                .putExtra("SelectedPromotion", promotionModel));
     }
 
     public static class PromotionViewHolder extends RecyclerView.ViewHolder {

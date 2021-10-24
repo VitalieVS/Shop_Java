@@ -3,7 +3,6 @@ package com.example.shop_java.promotion.model;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +13,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-public class PromotionModel {
+import java.io.Serializable;
+
+public class PromotionModel implements Serializable {
     private int promotionId;
     private String title;
     private String body;
@@ -62,7 +63,6 @@ public class PromotionModel {
     public int getPromotionId() {
         return promotionId;
     }
-
 
     public String getTitle() {
         return title;
