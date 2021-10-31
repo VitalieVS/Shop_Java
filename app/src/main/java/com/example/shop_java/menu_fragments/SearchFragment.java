@@ -3,7 +3,6 @@ package com.example.shop_java.menu_fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,8 @@ public class SearchFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_search, container, false);
@@ -78,8 +78,8 @@ public class SearchFragment extends Fragment {
                         if (categoryModels.isEmpty() && isAdded()) {
                             requireActivity().getSupportFragmentManager()
                                     .beginTransaction()
-                                    .replace(R.id.fragment_container, new NoInternetFragment()).commit();
-
+                                    .replace(R.id.fragment_container,
+                                            new NoInternetFragment()).commit();
                 }
             }
         });

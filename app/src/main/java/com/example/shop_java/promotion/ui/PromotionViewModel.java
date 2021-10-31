@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.shop_java.category.data.CategoryClient;
 import com.example.shop_java.promotion.data.PromotionsClient;
 import com.example.shop_java.promotion.model.PromotionModel;
 

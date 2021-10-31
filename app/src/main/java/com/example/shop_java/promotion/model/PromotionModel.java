@@ -31,7 +31,8 @@ public class PromotionModel implements Serializable {
 
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
-            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+            public void onResourceReady(@NonNull Drawable resource,
+                                        @Nullable Transition<? super Drawable> transition) {
                 imageView.setBackground(resource);
             }
 
