@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.shop_java.global_models.Product" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@{viewModel.imageURL}" />
+
+        <RelativeLayout
+            android:layout_width="316dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/ht"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{viewModel.title}"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="120dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/ht"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/rating_orange_small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv1"
+                android:layout_marginTop="5dp"
+                android:text="Non Vegetarian - Egg"
+                android:textColor="#C3C3C3"
+                android:textSize="14dp" />
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button"
+                android:text="@{`Order now` + viewModel.price + `MDL`}"
+                android:textColor="#fff"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

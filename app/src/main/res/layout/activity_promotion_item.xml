@@ -5,7 +5,6 @@
     tools:context=".promotion_activity.PromotionItemActivity">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.shop_java.promotion.model.PromotionModel" />

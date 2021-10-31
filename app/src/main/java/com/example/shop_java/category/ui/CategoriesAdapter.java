@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop_java.promotion_activity.PromotionItemActivity;
+import com.example.shop_java.ProductActivity;
+import com.example.shop_java.R;
 import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;
@@ -68,7 +70,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void selectedCategory(CategoryModel categoryModel) {
 
-        context.startActivity(new Intent(context, PromotionItemActivity.class)
+        context.startActivity(new Intent(context, ProductActivity.class)
                 .putExtra("CategoryData", categoryModel));
     }
 
