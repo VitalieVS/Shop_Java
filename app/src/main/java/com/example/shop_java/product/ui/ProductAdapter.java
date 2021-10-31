@@ -17,8 +17,6 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
-    // private Context context;
-
 
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
@@ -29,8 +27,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public ProductAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                int viewType) {
-
-        //context = parent.getContext();
 
         ProductItemBinding productItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
