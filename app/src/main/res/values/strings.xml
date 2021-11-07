@@ -2,4 +2,7 @@
     <string name="app_name">Shop_Java</string>
     <string name="our_best_promotions">Our best promotions!</string>
     <string name="promotion_item">Promotion item</string>
+    <string name="stars">stars</string>
+    <string name="only_fresh_products">Only fresh products</string>
+    <string name="image">image</string>
 </resources>

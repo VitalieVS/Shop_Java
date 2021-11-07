@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,9 +17,10 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:background="@{viewModel.imageURL}" />
+            android:background="@{viewModel.imageURL}"
+            android:contentDescription="@string/image" />
 
         <RelativeLayout
             android:layout_width="316dp"
@@ -33,7 +35,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@{viewModel.title}"
                 android:textColor="#fff"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -42,6 +44,7 @@
                 android:layout_height="18dp"
                 android:layout_below="@id/ht"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/stars"
                 android:src="@drawable/rating_orange_small" />
 
             <TextView
@@ -49,21 +52,22 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv1"
                 android:layout_marginTop="5dp"
-                android:text="Non Vegetarian - Egg"
+                android:text="@string/only_fresh_products"
                 android:textColor="#C3C3C3"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:layout_width="110dp"
                 android:layout_height="35dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/button"
-                android:text="@{`Order now` + viewModel.price + `MDL`}"
+                android:text="@{viewModel.price + `MDL`}"
                 android:textColor="#fff"
-                android:textSize="11dp"
-                android:textStyle="bold" />
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
 
         </RelativeLayout>
 
