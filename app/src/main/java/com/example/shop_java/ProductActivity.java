@@ -5,8 +5,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.databinding.ActivityProductBinding;
@@ -40,5 +42,14 @@ public class ProductActivity extends AppCompatActivity {
         assert categoryModel != null;
         productAdapter = new ProductAdapter(categoryModel.getProductList());
         activityProductBinding.productListRecycler.setAdapter(productAdapter);
+
+        ImageView backView = findViewById(R.id.back_button);
+
+        backView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

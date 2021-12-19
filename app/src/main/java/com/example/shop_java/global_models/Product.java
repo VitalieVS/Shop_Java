@@ -2,6 +2,7 @@ package com.example.shop_java.global_models;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -56,18 +57,22 @@ public class Product extends BaseObservable implements Serializable {
         if (quantity + 1 < 100) {
             this.quantity = this.quantity + 1;
             this.price = this.priceCopy * this.quantity;
+            Log.d("DEBUG", "my price:" + this.price + "price copy:" + this.priceCopy);
+            notifyPropertyChanged(BR.quantity);
+            notifyPropertyChanged(BR.price);
         }
-        notifyPropertyChanged(BR.quantity);
-        notifyPropertyChanged(BR.price);
+
     }
 
     public void decreaseQuantity() {
         if (quantity - 1 > 0) {
             this.quantity = this.quantity - 1;
             this.price = this.priceCopy * this.quantity;
+            Log.d("DEBUG", "my price:" + this.price + "price copy:" + this.priceCopy);
+            notifyPropertyChanged(BR.quantity);
+
         }
-        notifyPropertyChanged(BR.quantity);
-        notifyPropertyChanged(BR.price);
+
     }
 
     public List<Ingredient> getIngredients() {
@@ -100,6 +105,10 @@ public class Product extends BaseObservable implements Serializable {
 
     public void setPriceCopy(int priceCopy) {
         this.priceCopy = priceCopy;
+    }
+
+    public int getPriceCopy() {
+        return this.priceCopy;
     }
 
 }

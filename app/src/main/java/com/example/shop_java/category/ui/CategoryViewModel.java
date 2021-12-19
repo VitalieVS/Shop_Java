@@ -1,5 +1,7 @@
 package com.example.shop_java.category.ui;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,7 +18,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryViewModel extends ViewModel {
-    public static final MutableLiveData<List<CategoryModel>> categoriesMutableLiveData =
+    public static MutableLiveData<List<CategoryModel>> categoriesMutableLiveData =
             new MutableLiveData<>();
 
     private static final ArrayList<CategoryModel> EMPTY_LIST = new ArrayList<>();
@@ -27,13 +29,6 @@ public class CategoryViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<List<CategoryModel>> call,
                                    @NonNull Response<List<CategoryModel>> response) {
-
-                List<CategoryModel> listResult = response.body();
-
-                for (int i = 0; i < Objects.requireNonNull(listResult).size(); i++) {
-                    listResult.get(i).getProductList().get(i).setPriceCopy(
-                            listResult.get(i).getProductList().get(i).getPrice());
-                }
 
                 categoriesMutableLiveData.setValue(response.body());
             }
