@@ -23,5 +23,4 @@
             app:labelVisibilityMode="unlabeled"
             android:layout_alignParentBottom="true"/>
 
-
 </RelativeLayout>
