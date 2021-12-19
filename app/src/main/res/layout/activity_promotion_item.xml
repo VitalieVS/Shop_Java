@@ -7,8 +7,10 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="promotionModel"
             type="com.example.shop_java.promotion.model.PromotionModel" />
+
+        <import type="com.example.shop_java.cart.CartViewModel" />
     </data>
 
 
@@ -49,7 +51,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="30dp"
-                android:text="@{viewModel.title}"
+                android:text="@{promotionModel.title}"
                 android:textColor="@color/colorWhite"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -58,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300sp"
                 android:layout_below="@id/promotion_name"
-                android:background="@{viewModel.image}" />
+                android:background="@{promotionModel.image}" />
         </RelativeLayout>
 
         <TextView
@@ -68,7 +70,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="@{viewModel.foodType}"
+            android:text="@{promotionModel.foodType}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
 
@@ -78,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="80dp"
-            android:text="@{viewModel.body}"
+            android:text="@{promotionModel.body}"
             android:textColor="@color/colorWhite" />
 
         <Button
@@ -91,7 +93,8 @@
             android:drawablePadding="5dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="@{String.valueOf(viewModel.price) + `MDL`}"
+            android:onClick="@{(view) -> CartViewModel.addToPromotionsCart(view, promotionModel)}"
+            android:text="@{String.valueOf(promotionModel.price) + `MDL`}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
     </LinearLayout>
