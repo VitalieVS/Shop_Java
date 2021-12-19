@@ -88,7 +88,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
                     List<CategoryModel> filteredList = new ArrayList<>();
 
-
                     for (CategoryModel category : categoryList) {
                         if (category.getName().toLowerCase().contains(key.toLowerCase())) {
                             filteredList.add(category);

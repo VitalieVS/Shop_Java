@@ -27,13 +27,16 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="25dp"
         android:id="@+id/personListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="649dp"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:spanCount="2" />

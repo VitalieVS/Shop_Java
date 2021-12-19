@@ -11,6 +11,7 @@
         android:layout_centerHorizontal="true"
         android:text="Error occured!"
         android:textColor="@color/colorWhite"
+        android:layout_marginTop="20dp"
         android:textSize="30dp" />
 
     <TextView
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/error"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:text="No internet connection or unknown error occured!"
         android:textColor="@color/colorWhite"
         android:textSize="20dp" />
@@ -29,7 +31,7 @@
         android:layout_height="200dp"
         android:layout_below="@id/description"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/no_internet" />
 
 

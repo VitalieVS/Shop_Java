@@ -9,6 +9,7 @@ import com.example.shop_java.category.model.CategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,11 +28,18 @@ public class CategoryViewModel extends ViewModel {
             public void onResponse(@NonNull Call<List<CategoryModel>> call,
                                    @NonNull Response<List<CategoryModel>> response) {
 
+                List<CategoryModel> listResult = response.body();
+
+                for (int i = 0; i < Objects.requireNonNull(listResult).size(); i++) {
+                    listResult.get(i).getProductList().get(i).setPriceCopy(
+                            listResult.get(i).getProductList().get(i).getPrice());
+                }
+
                 categoriesMutableLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<CategoryModel>> call, @NonNull Throwable t) {
 
                 categoriesMutableLiveData.setValue(EMPTY_LIST);
             }

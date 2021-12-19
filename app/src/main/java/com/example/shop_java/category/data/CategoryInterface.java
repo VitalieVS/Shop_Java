@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface CategoryInterface {
 
     @GET("categories")
-    Call<List<CategoryModel>> getPromotions();
+    Call<List<CategoryModel>> getCategories();
 }

@@ -34,6 +34,6 @@ public class CategoryClient {
 
     public Call<List<CategoryModel>> getCategories() {
 
-        return categoryInterface.getPromotions();
+        return categoryInterface.getCategories();
     }
 }
