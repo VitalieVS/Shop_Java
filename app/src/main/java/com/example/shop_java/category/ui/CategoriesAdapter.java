@@ -8,17 +8,16 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.ProductActivity;
-import com.example.shop_java.R;
 import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>
         implements SelectedCategory {
@@ -86,20 +85,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                     filteredCategoryList = categoryList;
                 } else {
 
-                    List<CategoryModel> filteredList = new ArrayList<>();
-
-                    for (CategoryModel category : categoryList) {
-                        if (category.getName().toLowerCase().contains(key.toLowerCase())) {
-                            filteredList.add(category);
-                        }
-                    }
-
-                    filteredCategoryList = filteredList;
+                    filteredCategoryList = filterCategories(key);
                 }
 
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredCategoryList;
-
 
                 return filterResults;
             }
@@ -113,15 +103,24 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         };
     }
 
+    private List<CategoryModel> filterCategories(final String key) {
+
+        return categoryList.stream().filter(
+                item -> item.getName().toLowerCase()
+                        .contains(key.toLowerCase()))
+                .collect(Collectors.toList());
+
+    }
+
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         CategoryItemBinding categoryItemBinding;
 
         public CategoryViewHolder(@NonNull CategoryItemBinding categoryItemBinding) {
+
             super(categoryItemBinding.getRoot());
             this.categoryItemBinding = categoryItemBinding;
         }
     }
-
 
 }

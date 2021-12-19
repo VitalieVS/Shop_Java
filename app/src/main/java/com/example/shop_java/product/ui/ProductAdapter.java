@@ -1,7 +1,6 @@
 package com.example.shop_java.product.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +28,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         this.productList = productList;
 
-        for (int i = 0; i < productList.size(); i++) {
-            Log.d("DEBUG", "price: " + productList.get(i).getPrice());
-        }
         notifyDataSetChanged();
     }
 
@@ -71,7 +67,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 product.setPriceCopy(product.getPrice());
 
                 bindingSheet.setProduct(product);
-
 
 
                 bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
