@@ -16,6 +16,7 @@ import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,8 +85,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                 if (key.isEmpty()) {
                     filteredCategoryList = categoryList;
                 } else {
-
-                    filteredCategoryList = filterCategories(key);
+                    filteredCategoryList = removeDuplicates(filterByProduct(key),
+                            filterCategories(key));
                 }
 
                 FilterResults filterResults = new FilterResults();
@@ -109,7 +110,21 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                 item -> item.getName().toLowerCase()
                         .contains(key.toLowerCase()))
                 .collect(Collectors.toList());
+    }
 
+    private List<CategoryModel> filterByProduct(final String key) {
+
+        return categoryList.stream().filter(item -> item.getProductList().stream().anyMatch(
+                product -> product.getTitle().toLowerCase().contains(key.toLowerCase())))
+                .collect(Collectors.toList());
+    }
+
+    public List<CategoryModel> removeDuplicates(List<CategoryModel> first,
+                                                List<CategoryModel> second) {
+        ArrayList<CategoryModel> list = new ArrayList<>(first);
+        list.addAll(second);
+
+        return new ArrayList<>(new LinkedHashSet<>(list));
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
