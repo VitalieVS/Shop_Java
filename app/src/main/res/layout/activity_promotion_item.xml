@@ -14,9 +14,8 @@
     <LinearLayout
         android:background="@color/mainColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <ImageView
             android:id="@+id/back_button"
@@ -24,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_baseline_arrow_back_24" />
+            android:background="@drawable/ic_baseline_arrow_back_24"
+            android:contentDescription="@string/promotion_item" />
 
         <TextView
             android:layout_width="wrap_content"
