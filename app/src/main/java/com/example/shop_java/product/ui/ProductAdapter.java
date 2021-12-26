@@ -61,7 +61,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.productItemBinding.setProduct(product);
 
-
         holder.productItemBinding.setCartViewModel(cartViewModel);
 
         holder.itemView.setOnClickListener(v -> {
@@ -75,6 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             product.setPriceCopy(product.getPrice());
 
             bindingSheet.setProduct(product);
+            bindingSheet.setCartViewModel(cartViewModel);
 
 
             bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);

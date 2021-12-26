@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="product"
             type="com.example.shop_java.global_models.Product" />
+
+        <variable
+            name="cartViewModel"
+            type="com.example.shop_java.cart.CartViewModel" />
     </data>
 
 
@@ -145,6 +150,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantityField"
+            android:onClick="@{() -> cartViewModel.addToProductCart(product)}"
             app:srcCompat="@drawable/ic_group_1675" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

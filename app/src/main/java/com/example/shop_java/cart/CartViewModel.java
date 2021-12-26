@@ -1,6 +1,5 @@
 package com.example.shop_java.cart;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,7 +31,6 @@ public class CartViewModel extends ViewModel {
         } else {
             productCart.add(product);
             productMutableLiveData.setValue(productCart);
-            Log.d("HERE", "added:" + product.getTitle());
         }
 
     }
@@ -46,8 +44,6 @@ public class CartViewModel extends ViewModel {
         }
         promotionCart.add(promotionModel);
         promotionMutableLiveData.setValue(promotionCart);
-
-        Log.d("HERE", "added:" + promotionModel.getTitle());
     }
 
     private boolean promotionExists(Promotion promotionModel) {
@@ -63,25 +59,9 @@ public class CartViewModel extends ViewModel {
 
     private void increaseProductQuantity(Product product) {
 
-//        for (int i = 0; i < productCart.size(); i++) {
-//            if (productCart.get(i).getId() == product.getId()) {
-//                productCart.get(i).setQuantity(product.getQuantity() + 1);
-//            }
-//        }
-
         Objects.requireNonNull(productCart.stream()
                 .filter(i -> i.getId() == product.getId())
                 .findFirst().orElse(null)).setQuantity(product.getQuantity() + 1);
-
-
-        System.out.println("CART");
-
-        for (Product product1 : productCart) {
-            System.out.println(product1.getTitle());
-            System.out.println(product1.getQuantity());
-        }
     }
-
-
 }
 
