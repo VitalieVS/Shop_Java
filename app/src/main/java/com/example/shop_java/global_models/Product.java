@@ -54,6 +54,7 @@ public class Product extends BaseObservable implements Serializable {
     }
 
     public void increaseQuantity() {
+
         if (quantity + 1 < 100) {
             this.quantity = this.quantity + 1;
             this.price = this.priceCopy * this.quantity;
@@ -61,16 +62,22 @@ public class Product extends BaseObservable implements Serializable {
             notifyPropertyChanged(BR.quantity);
             notifyPropertyChanged(BR.price);
         }
+    }
 
+    public void setQuantity(int quantity) {
+
+        if (quantity + 1 < 100) {
+            this.quantity = quantity;
+        }
     }
 
     public void decreaseQuantity() {
+
         if (quantity - 1 > 0) {
             this.quantity = this.quantity - 1;
             this.price = this.priceCopy * this.quantity;
             Log.d("DEBUG", "my price:" + this.price + "price copy:" + this.priceCopy);
             notifyPropertyChanged(BR.quantity);
-
         }
 
     }
@@ -81,7 +88,6 @@ public class Product extends BaseObservable implements Serializable {
 
     @BindingAdapter("android:background")
     public static void loadImage(final ImageView imageView, String imageUrl) {
-
 
         Glide.with(imageView).load(imageUrl).into(new CustomTarget<Drawable>() {
 

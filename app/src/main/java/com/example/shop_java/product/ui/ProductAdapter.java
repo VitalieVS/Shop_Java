@@ -2,14 +2,16 @@ package com.example.shop_java.product.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
+import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.databinding.BottomSheetItemBinding;
 import com.example.shop_java.databinding.ProductItemBinding;
 import com.example.shop_java.global_models.Product;
@@ -23,6 +25,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private List<Product> productList;
     private BottomSheetItemBinding bindingSheet;
     private BottomSheetDialog bottomSheetDialog;
+    private CartViewModel cartViewModel;
 
     public ProductAdapter(List<Product> productList) {
 
@@ -37,6 +40,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                                                                int viewType) {
 
         context = parent.getContext();
+
+        cartViewModel =
+                ViewModelProviders.of((FragmentActivity) parent.getContext()).get(CartViewModel.class);
+
         ProductItemBinding productItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.product_item, parent, false);
@@ -52,35 +59,30 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         final Product product = productList.get(position);
 
-        holder.productItemBinding.setViewModel(product);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                bindingSheet = DataBindingUtil.inflate(
-                        LayoutInflater.from(context),
-                        R.layout.bottom_sheet_item,
-                        null,
-                        false);
-                // possible temporary fix
-                product.setPriceCopy(product.getPrice());
-
-                bindingSheet.setProduct(product);
+        holder.productItemBinding.setProduct(product);
 
 
-                bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
+        holder.productItemBinding.setCartViewModel(cartViewModel);
 
-                bottomSheetDialog.show();
+        holder.itemView.setOnClickListener(v -> {
 
-                bindingSheet.bottomSheetProductContainer.findViewById(R.id.closeView)
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                bottomSheetDialog.dismiss();
-                            }
-                        });
-            }
+            bindingSheet = DataBindingUtil.inflate(
+                    LayoutInflater.from(context),
+                    R.layout.bottom_sheet_item,
+                    null,
+                    false);
+            // possible temporary fix
+            product.setPriceCopy(product.getPrice());
+
+            bindingSheet.setProduct(product);
+
+
+            bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
+
+            bottomSheetDialog.show();
+
+            bindingSheet.bottomSheetProductContainer.findViewById(R.id.closeView)
+                    .setOnClickListener(view -> bottomSheetDialog.dismiss());
         });
     }
 

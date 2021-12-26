@@ -10,16 +10,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.shop_java.R;
+import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
-import com.example.shop_java.promotion.model.PromotionModel;
-import com.example.shop_java.promotion_activity.view_model.SinglePromotionViewModel;
+import com.example.shop_java.promotion.model.Promotion;
+import com.example.shop_java.promotion_activity.view_model.PromotionViewModel;
 
 import java.util.Objects;
 
 public class PromotionItemActivity extends AppCompatActivity {
 
-    private SinglePromotionViewModel singlePromotionViewModel;
+    private PromotionViewModel promotionViewModel;
     private static final String TAG = "PromotionItemActivity";
+    private CartViewModel cartViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +32,23 @@ public class PromotionItemActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        singlePromotionViewModel =
-                ViewModelProviders.of(this).get(SinglePromotionViewModel.class);
+        promotionViewModel =
+                ViewModelProviders.of(this).get(PromotionViewModel.class);
 
-        PromotionModel promotionModel =
-                (PromotionModel) getIntent().getSerializableExtra("SelectedPromotion");
+        cartViewModel =
+                ViewModelProviders.of(this).get(CartViewModel.class);
 
-        singlePromotionViewModel.setItem(promotionModel); // future feature
+        Promotion promotionModel =
+                (Promotion) getIntent().getSerializableExtra("SelectedPromotion");
+
+        promotionViewModel.setItem(promotionModel); // future feature
+
 
         ActivityPromotionItemBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setPromotionModel(promotionModel);
+        binding.setCartViewModel(cartViewModel);
 
 
         ImageView backView = findViewById(R.id.back_button);

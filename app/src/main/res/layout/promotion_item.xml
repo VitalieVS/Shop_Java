@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.shop_java.promotion.model.PromotionModel" />
+            type="com.example.shop_java.promotion.model.Promotion" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

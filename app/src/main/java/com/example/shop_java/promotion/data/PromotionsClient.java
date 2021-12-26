@@ -1,6 +1,6 @@
 package com.example.shop_java.promotion.data;
 
-import com.example.shop_java.promotion.model.PromotionModel;
+import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PromotionsClient {
 
     private static final String BASE_URL = "http://10.0.2.2:4546";  // This IP address is used only on EMULATOR
-    private PromotionInterface promotionInterface;
+    private final PromotionInterface promotionInterface;
     private static PromotionsClient INSTANCE;
 
     public PromotionsClient() {
@@ -31,7 +31,7 @@ public class PromotionsClient {
         return INSTANCE;
     }
 
-    public Call<List<PromotionModel>> getPromotions() {
+    public Call<List<Promotion>> getPromotions() {
         return promotionInterface.getPromotions();
     }
 }

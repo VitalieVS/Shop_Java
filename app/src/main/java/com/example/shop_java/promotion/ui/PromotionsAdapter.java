@@ -9,17 +9,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop_java.promotion_activity.PromotionItemActivity;
 import com.example.shop_java.databinding.PromotionItemBinding;
-import com.example.shop_java.promotion.model.PromotionModel;
+import com.example.shop_java.promotion.model.Promotion;
 import com.example.shop_java.promotion.ui.adapter_interface.SelectedPromotion;
+import com.example.shop_java.promotion_activity.PromotionItemActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.PromotionViewHolder>
         implements SelectedPromotion {
 
-    private List<PromotionModel> promotionList = new ArrayList<>();
+    private List<Promotion> promotionList = new ArrayList<>();
     private Context context;
 
     @NonNull
@@ -39,7 +40,7 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.Pr
     public void onBindViewHolder(@NonNull PromotionsAdapter.PromotionViewHolder holder,
                                  int position) {
 
-        final PromotionModel promotion = promotionList.get(position);
+        final Promotion promotion = promotionList.get(position);
         holder.promotionItemBinding.setViewModel(promotion);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,14 +55,14 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.Pr
         return promotionList.size();
     }
 
-    public void setList(List<PromotionModel> promotionList) {
+    public void setList(List<Promotion> promotionList) {
 
         this.promotionList = promotionList;
         notifyDataSetChanged();
     }
 
     @Override
-    public void selectedPromotion(PromotionModel promotionModel) {
+    public void selectedPromotion(Promotion promotionModel) {
 
         context.startActivity(new Intent(context, PromotionItemActivity.class)
                 .putExtra("SelectedPromotion", promotionModel));

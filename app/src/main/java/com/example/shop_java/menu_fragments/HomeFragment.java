@@ -8,19 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
 import com.example.shop_java.connection_fragments.NoInternetFragment;
-import com.example.shop_java.promotion.model.PromotionModel;
 import com.example.shop_java.promotion.ui.PromotionViewModel;
 import com.example.shop_java.promotion.ui.PromotionsAdapter;
-
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -46,16 +41,13 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        PromotionViewModel.promotionMutableLiveData.observe(requireActivity(), new Observer<List<PromotionModel>>() {
-            @Override
-            public void onChanged(List<PromotionModel> promotionModels) {
-                adapter.setList(promotionModels);
-                if (promotionModels.isEmpty() && isAdded()) {
-                    requireActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, new NoInternetFragment()).commit();
+        PromotionViewModel.promotionMutableLiveData.observe(requireActivity(), promotionModels -> {
+            adapter.setList(promotionModels);
+            if (promotionModels.isEmpty() && isAdded()) {
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new NoInternetFragment()).commit();
 
-                }
             }
         });
     }

@@ -6,11 +6,14 @@
     tools:context=".promotion_activity.PromotionItemActivity">
 
     <data>
+
         <variable
             name="promotionModel"
-            type="com.example.shop_java.promotion.model.PromotionModel" />
+            type="com.example.shop_java.promotion.model.Promotion" />
 
-        <import type="com.example.shop_java.cart.CartViewModel" />
+        <variable
+            name="cartViewModel"
+            type="com.example.shop_java.cart.CartViewModel" />
     </data>
 
 
@@ -93,7 +96,7 @@
             android:drawablePadding="5dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:onClick="@{(view) -> CartViewModel.addToPromotionsCart(view, promotionModel)}"
+            android:onClick="@{(view) -> cartViewModel.addToPromotionsCart(view, promotionModel)}"
             android:text="@{String.valueOf(promotionModel.price) + `MDL`}"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />

@@ -11,23 +11,15 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.category.model.CategoryModel;
 import com.example.shop_java.category.ui.CategoriesAdapter;
 import com.example.shop_java.category.ui.CategoryViewModel;
 import com.example.shop_java.connection_fragments.NoInternetFragment;
 
-import java.util.List;
-
 public class SearchFragment extends Fragment {
-
-    CategoryViewModel categoryViewModel;
-
-    EditText searchView;
 
     @Nullable
     @Override
@@ -41,7 +33,9 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+
+        CategoryViewModel categoryViewModel =
+                ViewModelProviders.of(this).get(CategoryViewModel.class);
 
         categoryViewModel.getCategories();
 
@@ -49,7 +43,7 @@ public class SearchFragment extends Fragment {
         final CategoriesAdapter adapter = new CategoriesAdapter();
         recyclerView.setAdapter(adapter);
 
-        searchView = requireView().findViewById(R.id.categoriesSearchView);
+        EditText searchView = requireView().findViewById(R.id.categoriesSearchView);
 
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -69,20 +63,16 @@ public class SearchFragment extends Fragment {
         });
 
         CategoryViewModel.categoriesMutableLiveData.observe(requireActivity(),
-                new Observer<List<CategoryModel>>() {
+                categoryModels -> {
 
-                    @Override
-                    public void onChanged(List<CategoryModel> categoryModels) {
-
-                        adapter.setList(categoryModels);
-                        if (categoryModels.isEmpty() && isAdded()) {
-                            requireActivity().getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.fragment_container,
-                                            new NoInternetFragment()).commit();
-                }
-            }
-        });
+                    adapter.setList(categoryModels);
+                    if (categoryModels.isEmpty() && isAdded()) {
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container,
+                                        new NoInternetFragment()).commit();
+                    }
+                });
     }
 
 

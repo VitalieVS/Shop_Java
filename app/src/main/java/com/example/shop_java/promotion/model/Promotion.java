@@ -15,7 +15,7 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.io.Serializable;
 
-public class PromotionModel implements Serializable {
+public class Promotion implements Serializable {
 
     private int promotionId;
     private String title;

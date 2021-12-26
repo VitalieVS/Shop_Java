@@ -1,8 +1,8 @@
 package com.example.shop_java.promotion.ui.adapter_interface;
 
-import com.example.shop_java.promotion.model.PromotionModel;
+import com.example.shop_java.promotion.model.Promotion;
 
 public interface SelectedPromotion {
 
-    void selectedPromotion(PromotionModel promotionModel);
+    void selectedPromotion(Promotion promotionModel);
 }
