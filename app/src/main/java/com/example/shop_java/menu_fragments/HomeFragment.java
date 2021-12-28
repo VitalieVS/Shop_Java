@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.connection_fragments.NoInternetFragment;
+import com.example.shop_java.connection.NoInternetFragment;
 import com.example.shop_java.promotion.ui.PromotionViewModel;
 import com.example.shop_java.promotion.ui.PromotionsAdapter;
 
 public class HomeFragment extends Fragment {
 
     PromotionViewModel promotionViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

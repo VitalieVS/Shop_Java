@@ -1,26 +1,22 @@
 package com.example.shop_java;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.example.shop_java.category.model.CategoryModel;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.shop_java.category.model.Category;
 import com.example.shop_java.databinding.ActivityProductBinding;
 import com.example.shop_java.product.ui.ProductAdapter;
-import com.example.shop_java.product.ui.ProductViewModel;
 
 import java.util.Objects;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProductActivity";
-    private ProductViewModel productViewModel;
     private ActivityProductBinding activityProductBinding;
     private ProductAdapter productAdapter;
 
@@ -33,8 +29,8 @@ public class ProductActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        CategoryModel categoryModel =
-                (CategoryModel) getIntent().getSerializableExtra("CategoryData");
+        Category categoryModel =
+                (Category) getIntent().getSerializableExtra("CategoryData");
 
         activityProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         activityProductBinding.productListRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -43,13 +39,8 @@ public class ProductActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(categoryModel.getProductList());
         activityProductBinding.productListRecycler.setAdapter(productAdapter);
 
-        ImageView backView = findViewById(R.id.back_button);
+        ImageView backView = findViewById(R.id.backButton);
 
-        backView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backView.setOnClickListener(v -> finish());
     }
 }

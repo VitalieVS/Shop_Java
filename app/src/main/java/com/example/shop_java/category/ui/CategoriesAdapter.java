@@ -3,7 +3,6 @@ package com.example.shop_java.category.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.ProductActivity;
-import com.example.shop_java.category.model.CategoryModel;
+import com.example.shop_java.category.model.Category;
 import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;
 
@@ -23,8 +22,8 @@ import java.util.stream.Collectors;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>
         implements SelectedCategory {
 
-    private List<CategoryModel> categoryList = new ArrayList<>();
-    private List<CategoryModel> filteredCategoryList = new ArrayList<>();
+    private List<Category> categoryList = new ArrayList<>();
+    private List<Category> filteredCategoryList = new ArrayList<>();
     private Context context;
 
     @NonNull
@@ -44,14 +43,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     public void onBindViewHolder(@NonNull CategoriesAdapter.CategoryViewHolder holder,
                                  int position) {
 
-        final CategoryModel category = filteredCategoryList.get(position);
+        final Category category = filteredCategoryList.get(position);
         holder.categoryItemBinding.setViewModel(category);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedCategory(category);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> selectedCategory(category));
     }
 
     @Override
@@ -60,7 +54,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         return filteredCategoryList.size();
     }
 
-    public void setList(List<CategoryModel> categoryList) {
+    public void setList(List<Category> categoryList) {
 
         this.categoryList = categoryList;
         this.filteredCategoryList = categoryList;
@@ -68,7 +62,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     }
 
     @Override
-    public void selectedCategory(CategoryModel categoryModel) {
+    public void selectedCategory(Category categoryModel) {
 
         context.startActivity(new Intent(context, ProductActivity.class)
                 .putExtra("CategoryData", categoryModel));
@@ -98,13 +92,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                filteredCategoryList = (List<CategoryModel>) results.values;
+                filteredCategoryList = (List<Category>) results.values;
                 notifyDataSetChanged();
             }
         };
     }
 
-    private List<CategoryModel> filterCategories(final String key) {
+    private List<Category> filterCategories(final String key) {
 
         return categoryList.stream().filter(
                 item -> item.getName().toLowerCase()
@@ -112,16 +106,16 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                 .collect(Collectors.toList());
     }
 
-    private List<CategoryModel> filterByProduct(final String key) {
+    private List<Category> filterByProduct(final String key) {
 
         return categoryList.stream().filter(item -> item.getProductList().stream().anyMatch(
                 product -> product.getTitle().toLowerCase().contains(key.toLowerCase())))
                 .collect(Collectors.toList());
     }
 
-    public List<CategoryModel> removeDuplicates(List<CategoryModel> first,
-                                                List<CategoryModel> second) {
-        ArrayList<CategoryModel> list = new ArrayList<>(first);
+    public List<Category> removeDuplicates(List<Category> first,
+                                           List<Category> second) {
+        ArrayList<Category> list = new ArrayList<>(first);
         list.addAll(second);
 
         return new ArrayList<>(new LinkedHashSet<>(list));

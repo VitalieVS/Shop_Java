@@ -1,4 +1,4 @@
-package com.example.shop_java.promotion_activity;
+package com.example.shop_java.promotion;
 
 import android.os.Bundle;
 import android.view.Window;
@@ -13,7 +13,7 @@ import com.example.shop_java.R;
 import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
 import com.example.shop_java.promotion.model.Promotion;
-import com.example.shop_java.promotion_activity.view_model.PromotionViewModel;
+import com.example.shop_java.promotion.ui.PromotionViewModel;
 
 import java.util.Objects;
 
@@ -41,17 +41,13 @@ public class PromotionItemActivity extends AppCompatActivity {
         Promotion promotionModel =
                 (Promotion) getIntent().getSerializableExtra("SelectedPromotion");
 
-        promotionViewModel.setItem(promotionModel); // future feature
-
-
         ActivityPromotionItemBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setPromotionModel(promotionModel);
         binding.setCartViewModel(cartViewModel);
 
-
-        ImageView backView = findViewById(R.id.back_button);
+        ImageView backView = findViewById(R.id.backButton);
 
         backView.setOnClickListener(v -> finish());
 

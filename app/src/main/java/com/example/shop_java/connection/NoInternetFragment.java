@@ -1,4 +1,4 @@
-package com.example.shop_java.connection_fragments;
+package com.example.shop_java.connection;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

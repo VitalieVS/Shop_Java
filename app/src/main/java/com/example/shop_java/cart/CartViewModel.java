@@ -6,12 +6,11 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.shop_java.global_models.Product;
+import com.example.shop_java.models.Product;
 import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CartViewModel extends ViewModel {
 
@@ -24,26 +23,26 @@ public class CartViewModel extends ViewModel {
     private final static List<Product> productCart = new ArrayList<>();
     private final static List<Promotion> promotionCart = new ArrayList<>();
 
-    public void addToProductCart(Product product) {
+    public void addToProductCart(View view, Product product) {
 
         if (productExists(product)) {
-            increaseProductQuantity(product);
+            Toast.makeText(view.getContext(), "Product already in cart!",
+                    Toast.LENGTH_SHORT).show();
         } else {
             productCart.add(product);
             productMutableLiveData.setValue(productCart);
         }
-
     }
 
     public void addToPromotionsCart(View view, Promotion promotionModel) {
 
         if (promotionExists(promotionModel)) {
-            Toast.makeText(view.getContext(), "Can't add more than 1 promotional item",
+            Toast.makeText(view.getContext(), "Can't add more than 1 promotional item!",
                     Toast.LENGTH_SHORT).show();
-            return;
+        } else {
+            promotionCart.add(promotionModel);
+            promotionMutableLiveData.setValue(promotionCart);
         }
-        promotionCart.add(promotionModel);
-        promotionMutableLiveData.setValue(promotionCart);
     }
 
     private boolean promotionExists(Promotion promotionModel) {
@@ -57,11 +56,5 @@ public class CartViewModel extends ViewModel {
         return productCart.stream().anyMatch(item -> item.getId() == product.getId());
     }
 
-    private void increaseProductQuantity(Product product) {
-
-        Objects.requireNonNull(productCart.stream()
-                .filter(i -> i.getId() == product.getId())
-                .findFirst().orElse(null)).setQuantity(product.getQuantity() + 1);
-    }
 }
 

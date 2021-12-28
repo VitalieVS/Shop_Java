@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.shop_java.category.model.CategoryModel" />
+            type="com.example.shop_java.category.model.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

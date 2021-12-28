@@ -1,7 +1,7 @@
 package com.example.shop_java.category.data;
 
 
-import com.example.shop_java.category.model.CategoryModel;
+import com.example.shop_java.category.model.Category;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CategoryClient {
 
-    private static final String BASE_URL = "http://10.0.2.2:4546";  //
+    private static final String BASE_URL = "http://10.0.2.2:4546";  // This URL is used by emulator to work with API
     private static CategoryClient INSTANCE;
-    private CategoryInterface categoryInterface;
+    private final CategoryInterface categoryInterface;
 
     public CategoryClient() {
 
@@ -32,7 +32,7 @@ public class CategoryClient {
         return INSTANCE;
     }
 
-    public Call<List<CategoryModel>> getCategories() {
+    public Call<List<Category>> getCategories() {
 
         return categoryInterface.getCategories();
     }

@@ -1,10 +1,11 @@
-package com.example.shop_java.global_models;
+package com.example.shop_java.models;
 
 import java.io.Serializable;
 
 public class Ingredient implements Serializable {
 
     private int id;
+
     private String name;
 
     public int getId() {

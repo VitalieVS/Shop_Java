@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shop_java.R;
 import com.example.shop_java.category.ui.CategoriesAdapter;
 import com.example.shop_java.category.ui.CategoryViewModel;
-import com.example.shop_java.connection_fragments.NoInternetFragment;
+import com.example.shop_java.connection.NoInternetFragment;
 
 public class SearchFragment extends Fragment {
 
@@ -33,13 +33,12 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
         CategoryViewModel categoryViewModel =
                 ViewModelProviders.of(this).get(CategoryViewModel.class);
 
         categoryViewModel.getCategories();
 
-        final RecyclerView recyclerView = requireView().findViewById(R.id.personListRecyclerView);
+        final RecyclerView recyclerView = requireView().findViewById(R.id.productListRecyclerView);
         final CategoriesAdapter adapter = new CategoriesAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -74,6 +73,5 @@ public class SearchFragment extends Fragment {
                     }
                 });
     }
-
 
 }

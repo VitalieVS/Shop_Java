@@ -1,6 +1,6 @@
 package com.example.shop_java.category.data;
 
-import com.example.shop_java.category.model.CategoryModel;
+import com.example.shop_java.category.model.Category;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface CategoryInterface {
 
     @GET("categories")
-    Call<List<CategoryModel>> getCategories();
+    Call<List<Category>> getCategories();
 }

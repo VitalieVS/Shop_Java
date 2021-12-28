@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.shop_java.promotion.model.Promotion" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -21,7 +24,8 @@
                 android:layout_width="400dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:background="@{viewModel.image}" />
+                android:background="@{viewModel.image}"
+                android:contentDescription="@string/image_for_promotion" />
 
             <RelativeLayout
                 android:layout_width="400dp"
@@ -54,6 +58,7 @@
                     android:layout_height="16dp"
                     android:layout_below="@id/ht"
                     android:layout_marginTop="8dp"
+                    android:contentDescription="@string/stars_for_promotion"
                     android:src="@drawable/rating_orange_small" />
 
                 <TextView

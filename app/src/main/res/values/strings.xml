@@ -5,4 +5,17 @@
     <string name="stars">stars</string>
     <string name="only_fresh_products">Only fresh products</string>
     <string name="image">image</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="we_use_the_most_marvelous_and_fresh_ingredients">We use the most marvelous and fresh ingredients!</string>
+    <string name="close_icon">Close icon</string>
+    <string name="decrease_quantity_icon">Decrease quantity icon</string>
+    <string name="increase_quantity">Increase quantity</string>
+    <string name="back_icon">Back Icon</string>
+    <string name="error_occured">Error occurred!</string>
+    <string name="no_internet_connection_or_unknown_error_occured">No internet connection or unknown error occurred!</string>
+    <string name="no_internet_image">No internet image</string>
+    <string name="search">Search</string>
+    <string name="arrow_for_item">Arrow for item</string>
+    <string name="image_for_promotion">Image for Promotion</string>
+    <string name="stars_for_promotion">Stars for promotion</string>
 </resources>

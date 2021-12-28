@@ -3,16 +3,15 @@ package com.example.shop_java.promotion.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.databinding.PromotionItemBinding;
+import com.example.shop_java.promotion.PromotionItemActivity;
 import com.example.shop_java.promotion.model.Promotion;
 import com.example.shop_java.promotion.ui.adapter_interface.SelectedPromotion;
-import com.example.shop_java.promotion_activity.PromotionItemActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +41,12 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.Pr
 
         final Promotion promotion = promotionList.get(position);
         holder.promotionItemBinding.setViewModel(promotion);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedPromotion(promotion);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> selectedPromotion(promotion));
     }
 
     @Override
     public int getItemCount() {
+
         return promotionList.size();
     }
 

@@ -1,8 +1,7 @@
-package com.example.shop_java.global_models;
+package com.example.shop_java.models;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -23,12 +22,21 @@ import java.util.List;
 public class Product extends BaseObservable implements Serializable {
 
     private int id;
+
     private String title;
+
     private int price;
+
     private int priceCopy;
+
     private String imageURL;
+
     private List<Ingredient> ingredients;
+
+    private int weight;
+
     private int quantity = 1;
+
     private boolean vegetarian;
 
     public int getId() {
@@ -58,7 +66,6 @@ public class Product extends BaseObservable implements Serializable {
         if (quantity + 1 < 100) {
             this.quantity = this.quantity + 1;
             this.price = this.priceCopy * this.quantity;
-            Log.d("DEBUG", "my price:" + this.price + "price copy:" + this.priceCopy);
             notifyPropertyChanged(BR.quantity);
             notifyPropertyChanged(BR.price);
         }
@@ -76,8 +83,8 @@ public class Product extends BaseObservable implements Serializable {
         if (quantity - 1 > 0) {
             this.quantity = this.quantity - 1;
             this.price = this.priceCopy * this.quantity;
-            Log.d("DEBUG", "my price:" + this.price + "price copy:" + this.priceCopy);
             notifyPropertyChanged(BR.quantity);
+            notifyPropertyChanged(BR.price);
         }
 
     }
@@ -106,7 +113,7 @@ public class Product extends BaseObservable implements Serializable {
     }
 
     public String isVegetarian() {
-        return (this.vegetarian) ? "VEGETARIAN FOOD" : "NON VEGETARIAN FOOD" ;
+        return (this.vegetarian) ? "VEGETARIAN FOOD" : "NON VEGETARIAN FOOD";
     }
 
     public void setPriceCopy(int priceCopy) {
@@ -117,4 +124,11 @@ public class Product extends BaseObservable implements Serializable {
         return this.priceCopy;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
 }

@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="product"
-            type="com.example.shop_java.global_models.Product" />
+            type="com.example.shop_java.models.Product" />
 
         <variable
             name="cartViewModel"
@@ -67,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/button"
-                android:onClick="@{() -> cartViewModel.addToProductCart(product)}"
+                android:onClick="@{(view) -> cartViewModel.addToProductCart(view, product)}"
                 android:text="@{product.price + `MDL`}"
                 android:textColor="#fff"
                 android:textSize="11sp"

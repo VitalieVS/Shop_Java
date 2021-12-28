@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.shop_java.R;
 
+
 public class CartFragment extends Fragment {
 
     //CartViewModel cartViewModel;
@@ -26,26 +27,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
 
-        // cartViewModel.getPromotions();
-
-//        RecyclerView recyclerView = requireView().findViewById(R.id.recycler);
-//        final PromotionsAdapter adapter = new PromotionsAdapter();
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setAdapter(adapter);
-//
-//        PromotionViewModel.promotionMutableLiveData.observe(requireActivity(), new Observer<List<PromotionModel>>() {
-//            @Override
-//            public void onChanged(List<PromotionModel> promotionModels) {
-//                adapter.setList(promotionModels);
-//                if (promotionModels.isEmpty() && isAdded()) {
-//                    requireActivity().getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .replace(R.id.fragment_container, new NoInternetFragment()).commit();
-//
-//                }
-//            }
-//        });
     }
+
 }

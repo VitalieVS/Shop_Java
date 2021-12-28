@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="true">
         <activity android:name=".ProductActivity" />
-        <activity android:name=".promotion_activity.PromotionItemActivity" />
+        <activity android:name=".promotion.PromotionItemActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
