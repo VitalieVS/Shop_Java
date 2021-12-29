@@ -72,6 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     R.layout.bottom_sheet_item,
                     null,
                     false);
+
             product.setPriceCopy(product.getPrice());
 
             bindingSheet.setProduct(product);

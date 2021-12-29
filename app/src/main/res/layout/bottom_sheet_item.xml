@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="product"
             type="com.example.shop_java.models.Product" />
@@ -55,7 +54,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/regular"
             android:text="@{product.isVegetarian()}"
-            android:textColor="#FF6813"
+            android:textColor="@color/bottom_orange"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Vegetarian Food" />
@@ -80,7 +79,7 @@
             android:fontFamily="@font/semibold"
             android:text="@{String.valueOf(product.weight) + `g`}"
             android:layout_marginEnd="16dp"
-            android:textColor="#FF6813"
+            android:textColor="@color/bottom_orange"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/ingredientRelativeLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,14 +157,14 @@
             android:fontFamily="@font/semibold"
             app:layout_constraintBottom_toBottomOf="@+id/increaseQuantity"
             android:text="@{String.valueOf(product.price) + ` MDL`}"
-            android:textColor="#FF6813"
+            android:textColor="@color/bottom_orange"
             android:textSize="24sp"
             app:layout_constraintTop_toTopOf="@+id/increaseQuantity"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="25 MDL" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/addToCart"
             android:layout_width="0dp"
             android:layout_height="65dp"
             android:layout_marginTop="50dp"
@@ -173,6 +172,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantityField"
+            android:contentDescription="@string/add_to_cart"
             app:srcCompat="@drawable/ic_group_1675" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
