@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -22,22 +23,22 @@
             android:id="@+id/productImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:background="@{product.imageURL}"
             android:contentDescription="@string/image" />
 
         <RelativeLayout
-            android:layout_width="316dp"
+            android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_gravity="center"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/ht"
+                android:id="@+id/productTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="@{product.title}"
                 android:textColor="#fff"
                 android:textSize="20sp"
@@ -45,29 +46,74 @@
                 tools:text="Test text" />
 
             <TextView
+                android:id="@+id/isVegetarian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/regular"
+                android:text="@{product.isVegetarian()}"
+                android:textColor="@color/bottom_orange"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Vegetarian Food" />
+
+            <ImageView
+                android:id="@+id/decreaseQuantity"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="55dp"
+                android:contentDescription="@string/decrease_quantity_icon"
+                android:onClick="@{() -> product.decreaseQuantity()}"
+                android:textColor="@color/colorBlack"
+                app:srcCompat="@drawable/ic_group_400" />
+
+            <TextView
                 android:id="@+id/productQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="63dp"
-                android:text="@{`Quantity:` + String.valueOf(product.quantity)}"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="60dp"
+                android:text="@{String.valueOf(product.quantity)}"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="Quantity: 8" />
+                tools:text="8" />
 
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="35dp"
+            <ImageView
+                android:id="@+id/increaseQuantity"
+                android:layout_width="43dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="55dp"
+                android:contentDescription="@string/increase_quantity"
+                android:onClick="@{() -> product.increaseQuantity()}"
+                android:textColor="@color/colorBlack"
+                app:srcCompat="@drawable/ic_group_401" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:background="@drawable/button"
+                android:layout_marginEnd="20dp"
                 android:text="@{product.price + `MDL`}"
-                android:textColor="#fff"
-                android:textSize="11sp"
+                android:textColor="@color/bottom_orange"
+                android:textSize="20sp"
+                tools:text="25 MDL"
                 android:textStyle="bold"
                 tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/productGram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/semibold"
+                android:text="@{String.valueOf(product.weight) + `g`}"
+                android:textColor="@color/bottom_orange"
+                android:textSize="15sp"
+                tools:text="200g" />
 
         </RelativeLayout>
 
