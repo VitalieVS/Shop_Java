@@ -1,4 +1,4 @@
-package com.example.shop_java.menu_fragments;
+package com.example.shop_java.menu;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,8 +15,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.category.ui.CategoriesAdapter;
-import com.example.shop_java.category.ui.CategoryViewModel;
+import com.example.shop_java.category.ui.adapter.CategoriesAdapter;
+import com.example.shop_java.category.ui.viewmodel.CategoryViewModel;
 import com.example.shop_java.connection.NoInternetFragment;
 
 public class SearchFragment extends Fragment {
@@ -38,7 +38,7 @@ public class SearchFragment extends Fragment {
 
         categoryViewModel.getCategories();
 
-        final RecyclerView recyclerView = requireView().findViewById(R.id.productListRecyclerView);
+        final RecyclerView recyclerView = requireView().findViewById(R.id.categoryListRecyclerView);
         final CategoriesAdapter adapter = new CategoriesAdapter();
         recyclerView.setAdapter(adapter);
 

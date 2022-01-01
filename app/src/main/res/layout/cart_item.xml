@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="product"
             type="com.example.shop_java.models.Product" />
@@ -18,6 +19,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/productImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
@@ -32,32 +34,27 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/productTitle"
+                android:id="@+id/ht"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@{product.title}"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="120dp"
-                android:layout_height="18dp"
-                android:layout_below="@id/productTitle"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/stars"
-                android:src="@drawable/rating_orange_small" />
+                android:textStyle="bold"
+                tools:text="Test text" />
 
             <TextView
+                android:id="@+id/productQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/productImage"
-                android:layout_marginTop="5dp"
-                android:text="@string/only_fresh_products"
-                android:textColor="#C3C3C3"
-                android:textSize="14sp" />
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="63dp"
+                android:text="@{`Quantity:` + String.valueOf(product.quantity)}"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Quantity: 8" />
 
             <Button
                 android:layout_width="75dp"
@@ -66,7 +63,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/button"
-                android:onClick="@{(view) -> cartViewModel.productExists(product) ? product.increaseQuantity() : cartViewModel.addToProductCart(view, product)}"
                 android:text="@{product.price + `MDL`}"
                 android:textColor="#fff"
                 android:textSize="11sp"

@@ -1,4 +1,4 @@
-package com.example.shop_java.category.ui.adapter_interface;
+package com.example.shop_java.category.ui.adapter;
 
 import com.example.shop_java.category.model.Category;
 

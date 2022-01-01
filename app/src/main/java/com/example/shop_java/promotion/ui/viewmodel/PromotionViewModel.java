@@ -1,4 +1,4 @@
-package com.example.shop_java.promotion.ui;
+package com.example.shop_java.promotion.ui.viewmodel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;

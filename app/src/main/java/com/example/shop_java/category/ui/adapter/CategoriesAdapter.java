@@ -1,4 +1,4 @@
-package com.example.shop_java.category.ui;
+package com.example.shop_java.category.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.ProductActivity;
 import com.example.shop_java.category.model.Category;
-import com.example.shop_java.category.ui.adapter_interface.SelectedCategory;
 import com.example.shop_java.databinding.CategoryItemBinding;
 
 import java.util.ArrayList;
@@ -90,6 +89,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             }
 
             @Override
+            @SuppressWarnings("unchecked")
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
                 filteredCategoryList = (List<Category>) results.values;

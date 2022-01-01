@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.shop_java.category.model.Category;
 import com.example.shop_java.databinding.ActivityProductBinding;
-import com.example.shop_java.product.ui.ProductAdapter;
+import com.example.shop_java.models.Product;
+import com.example.shop_java.product.ui.adapter.ProductAdapter;
 
 import java.util.Objects;
 
@@ -32,10 +33,13 @@ public class ProductActivity extends AppCompatActivity {
         Category categoryModel =
                 (Category) getIntent().getSerializableExtra("CategoryData");
 
+        for (Product product : categoryModel.getProductList())
+            product.setPriceCopy(product.getPrice());
+
+
         activityProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         activityProductBinding.productListRecycler.setLayoutManager(new LinearLayoutManager(this));
         activityProductBinding.productListRecycler.setHasFixedSize(true);
-        assert categoryModel != null;
         productAdapter = new ProductAdapter(categoryModel.getProductList());
         activityProductBinding.productListRecycler.setAdapter(productAdapter);
 

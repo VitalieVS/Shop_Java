@@ -168,7 +168,7 @@
             android:layout_width="0dp"
             android:layout_height="65dp"
             android:layout_marginTop="50dp"
-            android:onClick="@{(view) -> cartViewModel.addToProductCart(view, product)}"
+            android:onClick="@{(view) -> cartViewModel.productExists(product) ? product.increaseQuantity() : cartViewModel.addToProductCart(view, product)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantityField"

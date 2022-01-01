@@ -1,4 +1,4 @@
-package com.example.shop_java.product.ui;
+package com.example.shop_java.product.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,7 +32,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ProductAdapter(List<Product> productList) {
 
         this.productList = productList;
-
         notifyDataSetChanged();
     }
 
@@ -72,8 +71,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     R.layout.bottom_sheet_item,
                     null,
                     false);
-
-            product.setPriceCopy(product.getPrice());
 
             bindingSheet.setProduct(product);
             bindingSheet.setCartViewModel(cartViewModel);

@@ -1,4 +1,4 @@
-package com.example.shop_java.promotion.ui;
+package com.example.shop_java.promotion.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shop_java.databinding.PromotionItemBinding;
 import com.example.shop_java.promotion.PromotionItemActivity;
 import com.example.shop_java.promotion.model.Promotion;
-import com.example.shop_java.promotion.ui.adapter_interface.SelectedPromotion;
 
 import java.util.ArrayList;
 import java.util.List;

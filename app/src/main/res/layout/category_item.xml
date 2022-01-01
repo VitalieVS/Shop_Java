@@ -2,6 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.shop_java.category.model.Category" />

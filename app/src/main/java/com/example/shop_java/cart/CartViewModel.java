@@ -25,13 +25,8 @@ public class CartViewModel extends ViewModel {
 
     public void addToProductCart(View view, Product product) {
 
-        if (productExists(product)) {
-            Toast.makeText(view.getContext(), "Product already in cart!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             productCart.add(product);
             productMutableLiveData.setValue(productCart);
-        }
     }
 
     public void addToPromotionsCart(View view, Promotion promotionModel) {
@@ -51,10 +46,11 @@ public class CartViewModel extends ViewModel {
                 item -> item.getPromotionId() == promotionModel.getPromotionId());
     }
 
-    private boolean productExists(Product product) {
+    public boolean productExists(Product product) {
 
         return productCart.stream().anyMatch(item -> item.getId() == product.getId());
     }
+
 
 }
 

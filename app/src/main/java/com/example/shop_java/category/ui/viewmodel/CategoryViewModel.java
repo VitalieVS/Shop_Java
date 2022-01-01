@@ -1,4 +1,4 @@
-package com.example.shop_java.category.ui;
+package com.example.shop_java.category.ui.viewmodel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -15,6 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryViewModel extends ViewModel {
+
     private static final ArrayList<Category> EMPTY_LIST = new ArrayList<>();
     public static MutableLiveData<List<Category>> categoriesMutableLiveData =
             new MutableLiveData<>();

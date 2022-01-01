@@ -8,11 +8,11 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.shop_java.menu_fragments.CartFragment;
-import com.example.shop_java.menu_fragments.HomeFragment;
-import com.example.shop_java.menu_fragments.LoginFragment;
-import com.example.shop_java.menu_fragments.ReviewsFragment;
-import com.example.shop_java.menu_fragments.SearchFragment;
+import com.example.shop_java.menu.CartFragment;
+import com.example.shop_java.menu.HomeFragment;
+import com.example.shop_java.menu.LoginFragment;
+import com.example.shop_java.menu.ReviewsFragment;
+import com.example.shop_java.menu.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;

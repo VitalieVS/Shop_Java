@@ -13,7 +13,7 @@ import com.example.shop_java.R;
 import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
 import com.example.shop_java.promotion.model.Promotion;
-import com.example.shop_java.promotion.ui.PromotionViewModel;
+import com.example.shop_java.promotion.ui.viewmodel.PromotionViewModel;
 
 import java.util.Objects;
 
