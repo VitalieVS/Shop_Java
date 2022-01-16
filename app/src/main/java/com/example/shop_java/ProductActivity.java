@@ -10,16 +10,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.shop_java.category.model.Category;
-import com.example.shop_java.databinding.ActivityProductBinding;
 import com.example.shop_java.models.Product;
 import com.example.shop_java.product.ui.adapter.ProductAdapter;
 
 import java.util.Objects;
 
 public class ProductActivity extends AppCompatActivity {
-
-    private ActivityProductBinding activityProductBinding;
-    private ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +33,10 @@ public class ProductActivity extends AppCompatActivity {
             product.setPriceCopy(product.getPrice());
 
 
-        activityProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_product);
+        com.example.shop_java.databinding.ActivityProductBinding activityProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         activityProductBinding.productListRecycler.setLayoutManager(new LinearLayoutManager(this));
         activityProductBinding.productListRecycler.setHasFixedSize(true);
-        productAdapter = new ProductAdapter(categoryModel.getProductList());
+        ProductAdapter productAdapter = new ProductAdapter(categoryModel.getProductList());
         activityProductBinding.productListRecycler.setAdapter(productAdapter);
 
         ImageView backView = findViewById(R.id.backButton);

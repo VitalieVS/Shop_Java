@@ -19,7 +19,6 @@ import java.util.Objects;
 
 public class PromotionItemActivity extends AppCompatActivity {
 
-    private PromotionViewModel promotionViewModel;
     private static final String TAG = "PromotionItemActivity";
     private CartViewModel cartViewModel;
 
@@ -32,8 +31,7 @@ public class PromotionItemActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        promotionViewModel =
-                ViewModelProviders.of(this).get(PromotionViewModel.class);
+        PromotionViewModel promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel.class);
 
         cartViewModel =
                 ViewModelProviders.of(this).get(CartViewModel.class);

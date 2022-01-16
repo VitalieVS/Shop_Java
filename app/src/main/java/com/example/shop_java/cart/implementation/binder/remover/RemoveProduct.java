@@ -1,4 +1,4 @@
-package com.example.shop_java.cart.implementation.binder;
+package com.example.shop_java.cart.implementation.binder.remover;
 
 import com.example.shop_java.models.Product;
 

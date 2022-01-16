@@ -76,6 +76,20 @@ public class CartViewModel extends ViewModel {
 
     }
 
+    public void removePromotionFromCart(Promotion promotion) {
+
+        promotionCart.removeIf(item -> item.getPromotionId() == promotion.getPromotionId());
+
+        if (promotionCart.isEmpty()) {
+            stateMutableLiveData.postValue(State.EMPTY_CART);
+        } else {
+            stateMutableLiveData.postValue(State.CART_ITEMS);
+        }
+
+        promotionMutableLiveData.setValue(promotionCart);
+
+    }
+
     private boolean promotionExists(Promotion promotionModel) {
 
         return promotionCart.stream().anyMatch(

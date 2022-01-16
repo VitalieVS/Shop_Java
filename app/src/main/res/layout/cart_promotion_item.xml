@@ -6,16 +6,13 @@
     <data>
 
         <variable
-            name="product"
-            type="com.example.shop_java.models.Product" />
-
-        <variable
-            name="cartViewModel"
-            type="com.example.shop_java.cart.CartViewModel" />
+            name="promotion"
+            type="com.example.shop_java.promotion.model.Promotion" />
 
         <variable
             name="removeInterface"
-            type="com.example.shop_java.cart.implementation.binder.remover.RemoveProduct" />
+            type="com.example.shop_java.promotion.remover.RemovePromotion" />
+
     </data>
 
     <LinearLayout
@@ -29,7 +26,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:background="@{product.imageURL}"
+            android:background="@{promotion.image}"
             android:contentDescription="@string/image" />
 
         <RelativeLayout
@@ -39,11 +36,11 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/productTitle"
+                android:id="@+id/promotionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@{product.title}"
+                android:text="@{promotion.title}"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -55,57 +52,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/regular"
-                android:text="@{product.isVegetarian()}"
+                android:text="@string/promotional_item"
                 android:textColor="@color/bottom_orange"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="Vegetarian Food" />
+                tools:text="Promotional item" />
 
-            <ImageView
-                android:id="@+id/decreaseQuantity"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="55dp"
-                android:contentDescription="@string/decrease_quantity_icon"
-                android:onClick="@{() -> product.decreaseQuantity()}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_group_400" />
-
-            <TextView
-                android:id="@+id/productQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="60dp"
-                android:text="@{String.valueOf(product.quantity)}"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="8" />
-
-            <ImageView
-                android:id="@+id/increaseQuantity"
-                android:layout_width="43dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="55dp"
-                android:contentDescription="@string/increase_quantity"
-                android:onClick="@{() -> product.increaseQuantity()}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_group_401" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
-                android:text="@{product.price + `MDL`}"
+                android:text="@{promotion.price + ` MDL`}"
                 android:textColor="@color/bottom_orange"
                 android:textSize="20sp"
-                tools:text="25 MDL"
                 android:textStyle="bold"
-                tools:ignore="SmallSp" />
+                tools:ignore="SmallSp"
+                tools:text="25 MDL" />
 
             <ImageView
                 android:id="@+id/removeCart"
@@ -115,7 +79,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/increase_quantity"
-                android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
+                android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
                 android:textColor="@color/colorWhite"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
 

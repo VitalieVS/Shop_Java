@@ -13,6 +13,7 @@ import com.example.shop_java.R;
 import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.cart.binder.DataBindAdapter;
 import com.example.shop_java.cart.binder.DataBinder;
+import com.example.shop_java.cart.implementation.binder.remover.RemoveProduct;
 import com.example.shop_java.databinding.CartItemBinding;
 import com.example.shop_java.models.Product;
 
