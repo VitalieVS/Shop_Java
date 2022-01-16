@@ -22,7 +22,7 @@ import java.util.List;
 
 public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> implements RemovePromotion {
 
-    private final List<Promotion> promotionList = new ArrayList<>();
+    private List<Promotion> promotionList = new ArrayList<>();
     private CartViewModel cartViewModel;
     private int position;
 
@@ -58,7 +58,7 @@ public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> impl
 
     public void addAll(List<Promotion> dataSet) {
 
-        promotionList.addAll(dataSet);
+        this.promotionList = dataSet;
         notifyBinderDataSetChanged();
     }
 

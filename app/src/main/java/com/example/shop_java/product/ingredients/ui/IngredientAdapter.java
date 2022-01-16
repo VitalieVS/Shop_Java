@@ -21,7 +21,6 @@ public class IngredientAdapter extends
     public IngredientAdapter(List<Ingredient> ingredients) {
 
         this.ingredientList = ingredients;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -52,7 +51,6 @@ public class IngredientAdapter extends
     public void setList(List<Ingredient> ingredients) {
 
         this.ingredientList = ingredients;
-        notifyDataSetChanged();
     }
 
     public static class IngredientViewHolder extends RecyclerView.ViewHolder {
