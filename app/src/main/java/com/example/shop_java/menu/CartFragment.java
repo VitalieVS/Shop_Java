@@ -15,35 +15,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shop_java.R;
 import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.cart.container.EmptyCartFragment;
-import com.example.shop_java.cart.sample.adapter.SampleListAdapter;
+import com.example.shop_java.cart.implementation.adapter.SampleListAdapter;
 import com.example.shop_java.models.Product;
+import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class CartFragment extends Fragment {
 
-    CartViewModel cartViewModel;
-    LayoutInflater inflater;
-    ViewGroup container;
+    private CartViewModel cartViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        this.inflater = inflater;
-        this.container = container;
+
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        List<Product> productList = new ArrayList<>();
-        List<Promotion> promotionList = new ArrayList<>();
 
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
 
@@ -52,26 +46,18 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        CartViewModel.productMutableLiveData.observe(requireActivity(), productModels -> {
+        showFragment(cartViewModel.getProductCart(), cartViewModel.getPromotionCart());
 
-            productList.addAll(productModels);
-            adapter.setProductDataSet(productModels);
-            if (isAdded()) {
-                showFragment(productList, promotionList);
-            }
+        CartViewModel.stateMutableLiveData.observe(requireActivity(), state -> {
+            if (state.equals(State.EMPTY_CART) && isAdded())
+                showFragment(cartViewModel.getProductCart(), cartViewModel.getPromotionCart());
+
         });
 
+        CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);
 
-        CartViewModel.promotionMutableLiveData.observe(requireActivity(), promotionModels -> {
+        CartViewModel.promotionMutableLiveData.observe(requireActivity(), adapter::setPromotionDataSet);
 
-            promotionList.addAll(promotionModels);
-            adapter.setPromotionDataSet(promotionModels);
-            if (isAdded()) {
-                showFragment(productList, promotionList);
-            }
-        });
-
-        showFragment(productList, promotionList);
     }
 
     private void showFragment(List<Product> productList, List<Promotion> promotionList) {

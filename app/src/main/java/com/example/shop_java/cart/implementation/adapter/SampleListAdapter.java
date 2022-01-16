@@ -1,9 +1,9 @@
-package com.example.shop_java.cart.sample.adapter;
+package com.example.shop_java.cart.implementation.adapter;
 
 
 import com.example.shop_java.cart.binder.ListBindAdapter;
-import com.example.shop_java.cart.sample.binder.ProductBinder;
-import com.example.shop_java.cart.sample.binder.PromotionBinder;
+import com.example.shop_java.cart.implementation.binder.ProductBinder;
+import com.example.shop_java.cart.implementation.binder.PromotionBinder;
 import com.example.shop_java.models.Product;
 import com.example.shop_java.promotion.model.Promotion;
 

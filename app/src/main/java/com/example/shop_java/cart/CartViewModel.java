@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.shop_java.models.Product;
+import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class CartViewModel extends ViewModel {
 
     private final static List<Product> productCart = new ArrayList<>();
     private final static List<Promotion> promotionCart = new ArrayList<>();
+
+    public static final MutableLiveData<State> stateMutableLiveData = new MutableLiveData<>();
 
     public void addToProductCart(View view, Product product) {
 
@@ -63,6 +66,12 @@ public class CartViewModel extends ViewModel {
 
         productCart.removeIf(item -> item.getId() == product.getId());
 
+        if (productCart.isEmpty()) {
+            stateMutableLiveData.postValue(State.EMPTY_CART);
+        } else {
+            stateMutableLiveData.postValue(State.CART_ITEMS);
+        }
+
         productMutableLiveData.setValue(productCart);
 
     }
@@ -76,6 +85,14 @@ public class CartViewModel extends ViewModel {
     public boolean productExists(Product product) {
 
         return productCart.stream().anyMatch(item -> item.getId() == product.getId());
+    }
+
+    public List<Product> getProductCart() {
+        return productCart;
+    }
+
+    public List<Promotion> getPromotionCart() {
+        return promotionCart;
     }
 
 

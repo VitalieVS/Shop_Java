@@ -15,7 +15,7 @@
 
         <variable
             name="removeInterface"
-            type="com.example.shop_java.cart.sample.binder.RemoveProduct" />
+            type="com.example.shop_java.cart.implementation.binder.RemoveProduct" />
     </data>
 
     <LinearLayout

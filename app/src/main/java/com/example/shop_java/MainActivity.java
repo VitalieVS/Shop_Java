@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.home);
 
+
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.fragment_container, new HomeFragment()).commit();
 
@@ -53,13 +54,20 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new LoginFragment();
                     break;
                 case R.id.cart:
+                    if (savedInstanceState == null) {
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .add(R.id.fragment_container, CartFragment.class, null)
+                                .commit();
+                    }
                     selectedFragment = new CartFragment();
                     break;
                 default:
                     throw new UnknownError("Unknown value");
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true).replace(R.id.fragment_container,
                     selectedFragment).commit();
 
             return true;
