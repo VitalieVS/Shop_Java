@@ -11,6 +11,7 @@ import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CartViewModel extends ViewModel {
 
@@ -25,16 +26,34 @@ public class CartViewModel extends ViewModel {
 
     public void addToProductCart(View view, Product product) {
 
-            productCart.add(product);
-            productMutableLiveData.setValue(productCart);
+        productCart.add(product);
+        productMutableLiveData.setValue(productCart);
+    }
+
+    public void increaseProductQuantity(Product product) {
+
+        product.increaseQuantity();
+
+        Optional<Product> searchProduct =
+                productCart.stream().filter(item -> item.getId() == product.getId()).findFirst();
+
+        searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
+
+        productCart.removeIf(item -> item.getId() == product.getId());
+
+        productCart.add(product);
+        productMutableLiveData.setValue(productCart);
+
     }
 
     public void addToPromotionsCart(View view, Promotion promotionModel) {
 
         if (promotionExists(promotionModel)) {
+
             Toast.makeText(view.getContext(), "Can't add more than 1 promotional item!",
                     Toast.LENGTH_SHORT).show();
         } else {
+
             promotionCart.add(promotionModel);
             promotionMutableLiveData.setValue(promotionCart);
         }
