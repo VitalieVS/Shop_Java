@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_list_alt_24.xml" value="0.4197916666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_remove_shopping_cart_24.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_group_1675.xml" value="0.24635416666666668" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/layout/activity_product.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_promotion_item.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/bottom_sheet_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/cart_empty.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cart_item.xml" value="0.3491847826086957" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.23072916666666668" />

@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> {
+public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implements RemoveProduct {
 
-    private final List<Product> productList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
     private CartViewModel cartViewModel;
+
+    private int position;
 
     public ProductBinder(DataBindAdapter dataBindAdapter) {
         super(dataBindAdapter);
@@ -45,17 +47,21 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> {
     @Override
     public void bindViewHolder(ViewHolder holder, int position) {
 
+        this.position = position;
+
         Product product = productList.get(position);
 
         holder.cartItemBinding.setProduct(product);
 
         holder.cartItemBinding.setCartViewModel(cartViewModel);
+
+        holder.cartItemBinding.setRemoveInterface(this);
     }
 
     public void addAll(List<Product> dataSet) {
 
-        productList.addAll(dataSet);
-        notifyDataSetChanged();
+        this.productList = dataSet;
+        notifyBinderDataSetChanged();
     }
 
     @Override
@@ -64,6 +70,12 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> {
         return this.productList.size();
     }
 
+    @Override
+    public void removeProductFromCart(Product product) {
+
+        cartViewModel.removeProductFromCart(product);
+        notifyBinderItemRemoved(this.position);
+    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 

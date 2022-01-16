@@ -23,7 +23,7 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private Context context;
-    private List<Product> productList;
+    private final List<Product> productList;
     private BottomSheetItemBinding bindingSheet;
     private BottomSheetDialog bottomSheetDialog;
     private CartViewModel cartViewModel;
@@ -91,12 +91,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public int getItemCount() {
         return productList.size();
-    }
-
-    public void setList(List<Product> productList) {
-
-        this.productList = productList;
-        notifyDataSetChanged();
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {

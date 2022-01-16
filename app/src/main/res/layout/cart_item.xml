@@ -12,6 +12,10 @@
         <variable
             name="cartViewModel"
             type="com.example.shop_java.cart.CartViewModel" />
+
+        <variable
+            name="removeInterface"
+            type="com.example.shop_java.cart.sample.binder.RemoveProduct" />
     </data>
 
     <LinearLayout
@@ -103,18 +107,17 @@
                 android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
-            <TextView
-                android:id="@+id/productGram"
+            <ImageView
+                android:id="@+id/removeCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/semibold"
-                android:text="@{String.valueOf(product.weight) + `g`}"
-                android:textColor="@color/bottom_orange"
-                android:textSize="15sp"
-                tools:text="200g" />
+                android:contentDescription="@string/increase_quantity"
+                android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
+                android:textColor="@color/colorWhite"
+                app:srcCompat="@drawable/ic_baseline_close_24" />
 
         </RelativeLayout>
 

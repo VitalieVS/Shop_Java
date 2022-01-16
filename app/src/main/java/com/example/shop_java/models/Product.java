@@ -75,7 +75,6 @@ public class Product extends BaseObservable implements Serializable {
     public void setQuantity(int quantity) {
 
         if (quantity + 1 < 100) {
-            System.out.println("SET QUANTITY UPDATED");
             this.quantity = quantity;
         }
     }
