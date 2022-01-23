@@ -7,20 +7,20 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.shop_java.R;
-import com.example.shop_java.cart.CartViewModel;
+import com.example.shop_java.cart.service.CartService;
+import com.example.shop_java.cart.viewmodel.CartViewModel;
 import com.example.shop_java.databinding.ActivityPromotionItemBinding;
 import com.example.shop_java.promotion.model.Promotion;
-import com.example.shop_java.promotion.ui.viewmodel.PromotionViewModel;
 
 import java.util.Objects;
 
 public class PromotionItemActivity extends AppCompatActivity {
 
-    private static final String TAG = "PromotionItemActivity";
     private CartViewModel cartViewModel;
+    private CartService cartService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +31,8 @@ public class PromotionItemActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        PromotionViewModel promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel.class);
 
-        cartViewModel =
-                ViewModelProviders.of(this).get(CartViewModel.class);
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
 
         Promotion promotionModel =
                 (Promotion) getIntent().getSerializableExtra("SelectedPromotion");
@@ -43,7 +41,10 @@ public class PromotionItemActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(this, R.layout.activity_promotion_item);
 
         binding.setPromotionModel(promotionModel);
-        binding.setCartViewModel(cartViewModel);
+        cartService = CartService.getInstance();
+        cartService.setContext(this);
+        binding.setCartService(cartService);
+
 
         ImageView backView = findViewById(R.id.backButton);
 

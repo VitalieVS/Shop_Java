@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.cart.container.EmptyCartFragment;
 import com.example.shop_java.cart.implementation.adapter.SampleListAdapter;
+import com.example.shop_java.cart.service.CartService;
+import com.example.shop_java.cart.viewmodel.CartViewModel;
 import com.example.shop_java.models.Product;
 import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
@@ -25,7 +25,6 @@ import java.util.List;
 
 public class CartFragment extends Fragment {
 
-    private CartViewModel cartViewModel;
 
     @Nullable
     @Override
@@ -39,19 +38,18 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        CartService cartService = CartService.getInstance();
 
         RecyclerView recyclerView = requireView().findViewById(R.id.cartItemsRecyclerView);
         SampleListAdapter adapter = new SampleListAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        showFragment(cartViewModel.getProductCart(), cartViewModel.getPromotionCart());
+        showFragment(cartService.getProductList(), cartService.getPromotionList());
 
         CartViewModel.stateMutableLiveData.observe(requireActivity(), state -> {
             if (state.equals(State.EMPTY_CART) && isAdded())
-                showFragment(cartViewModel.getProductCart(), cartViewModel.getPromotionCart());
-
+                showFragment(cartService.getProductList(), cartService.getPromotionList());
         });
 
         CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);

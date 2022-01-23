@@ -5,14 +5,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.cart.binder.DataBindAdapter;
 import com.example.shop_java.cart.binder.DataBinder;
+import com.example.shop_java.cart.service.CartService;
 import com.example.shop_java.databinding.CartPromotionItemBinding;
 import com.example.shop_java.promotion.model.Promotion;
 import com.example.shop_java.promotion.remover.RemovePromotion;
@@ -23,19 +21,18 @@ import java.util.List;
 public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> implements RemovePromotion {
 
     private List<Promotion> promotionList = new ArrayList<>();
-    private CartViewModel cartViewModel;
     private int position;
+    private CartService cartService;
 
     public PromotionBinder(DataBindAdapter dataBindAdapter) {
-
         super(dataBindAdapter);
     }
 
     @Override
     public PromotionBinder.ViewHolder newViewHolder(ViewGroup parent) {
 
-        cartViewModel =
-                new ViewModelProvider((FragmentActivity) parent.getContext()).get(CartViewModel.class);
+        cartService = CartService.getInstance();
+        cartService.setContext(parent.getContext());
 
         CartPromotionItemBinding cartItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
@@ -72,7 +69,7 @@ public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> impl
     @Override
     public void removePromotionFromCart(Promotion promotion) {
 
-        cartViewModel.removePromotionFromCart(promotion);
+        cartService.removePromotionFromCart(promotion);
         notifyBinderItemRemoved(this.position);
 
     }

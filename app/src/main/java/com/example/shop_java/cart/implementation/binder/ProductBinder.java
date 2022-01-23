@@ -5,15 +5,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.cart.CartViewModel;
 import com.example.shop_java.cart.binder.DataBindAdapter;
 import com.example.shop_java.cart.binder.DataBinder;
 import com.example.shop_java.cart.implementation.binder.remover.RemoveProduct;
+import com.example.shop_java.cart.service.CartService;
 import com.example.shop_java.databinding.CartItemBinding;
 import com.example.shop_java.models.Product;
 
@@ -24,7 +22,8 @@ import java.util.List;
 public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implements RemoveProduct {
 
     private List<Product> productList = new ArrayList<>();
-    private CartViewModel cartViewModel;
+
+    private CartService cartService;
 
     private int position;
 
@@ -35,8 +34,9 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implemen
     @Override
     public ViewHolder newViewHolder(ViewGroup parent) {
 
-        cartViewModel =
-                new ViewModelProvider((FragmentActivity) parent.getContext()).get(CartViewModel.class);
+        cartService = CartService.getInstance();
+
+        cartService.setContext(parent.getContext());
 
         CartItemBinding cartItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
@@ -54,7 +54,7 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implemen
 
         holder.cartItemBinding.setProduct(product);
 
-        holder.cartItemBinding.setCartViewModel(cartViewModel);
+        holder.cartItemBinding.setCartService(cartService);
 
         holder.cartItemBinding.setRemoveInterface(this);
     }
@@ -74,7 +74,7 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implemen
     @Override
     public void removeProductFromCart(Product product) {
 
-        cartViewModel.removeProductFromCart(product);
+        cartService.removeProductFromCart(product);
         notifyBinderItemRemoved(this.position);
     }
 

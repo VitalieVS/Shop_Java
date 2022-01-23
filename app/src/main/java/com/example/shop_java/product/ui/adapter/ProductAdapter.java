@@ -6,12 +6,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
-import com.example.shop_java.cart.CartViewModel;
+import com.example.shop_java.cart.service.CartService;
 import com.example.shop_java.databinding.BottomSheetItemBinding;
 import com.example.shop_java.databinding.ProductItemBinding;
 import com.example.shop_java.models.Product;
@@ -26,13 +24,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private final List<Product> productList;
     private BottomSheetItemBinding bindingSheet;
     private BottomSheetDialog bottomSheetDialog;
-    private CartViewModel cartViewModel;
     private IngredientAdapter ingredientAdapter;
+    private CartService cartService;
 
     public ProductAdapter(List<Product> productList) {
 
         this.productList = productList;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -42,8 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         context = parent.getContext();
 
-        cartViewModel =
-                ViewModelProviders.of((FragmentActivity) parent.getContext()).get(CartViewModel.class);
+        cartService = CartService.getInstance();
+        cartService.setContext(parent.getContext());
 
         ProductItemBinding productItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
@@ -62,7 +59,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.productItemBinding.setProduct(product);
 
-        holder.productItemBinding.setCartViewModel(cartViewModel);
+        holder.productItemBinding.setCartService(cartService);
 
         holder.itemView.setOnClickListener(v -> {
 
@@ -73,7 +70,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     false);
 
             bindingSheet.setProduct(product);
-            bindingSheet.setCartViewModel(cartViewModel);
+            bindingSheet.setCartService(cartService);
 
             bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
 

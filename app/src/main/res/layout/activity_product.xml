@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/mainColor"
+        android:background="@drawable/main_background"
         tools:context=".ProductActivity">
 
         <ImageView
@@ -18,7 +18,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productListRecycler"
             android:layout_marginTop="50dp"

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="product"
             type="com.example.shop_java.models.Product" />
 
         <variable
-            name="cartViewModel"
-            type="com.example.shop_java.cart.CartViewModel" />
+            name="cartService"
+            type="com.example.shop_java.cart.service.CartService" />
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomSheetProductContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bottom_sheet_background"
+        android:background="@drawable/main_background"
         android:orientation="vertical">
+
 
         <ImageView
             android:id="@+id/closeView"
@@ -27,19 +29,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/close_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/close_icon"
             app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/productImage"
-            android:layout_height="220dp"
             android:layout_width="250dp"
+            android:layout_height="220dp"
             android:layout_marginTop="15dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:background="@{product.imageURL}"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,26 +51,26 @@
             android:id="@+id/isVegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/productImage"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/regular"
             android:text="@{product.isVegetarian()}"
-            android:textColor="@color/bottom_orange"
+            android:textColor="@color/colorBLue"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productImage"
             tools:text="Vegetarian Food" />
 
         <TextView
             android:id="@+id/productTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/isVegetarian"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/semibold"
             android:text="@{product.title}"
             android:textColor="@color/colorWhite"
             android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/isVegetarian"
             app:layout_constraintTop_toBottomOf="@+id/isVegetarian"
             tools:text="Chicken burger" />
 
@@ -76,10 +78,10 @@
             android:id="@+id/productGram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/semibold"
             android:text="@{String.valueOf(product.weight) + `g`}"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/bottom_orange"
+            android:textColor="@color/colorBLue"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/ingredientRelativeLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,10 +117,10 @@
             android:layout_height="40dp"
             android:layout_marginStart="21dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/decrease_quantity_icon"
             android:onClick="@{() -> product.decreaseQuantity()}"
             android:textColor="@color/colorBlack"
             app:layout_constraintStart_toStartOf="parent"
-            android:contentDescription="@string/decrease_quantity_icon"
             app:layout_constraintTop_toBottomOf="@+id/ingredientRelativeLayout"
             app:srcCompat="@drawable/ic_group_400" />
 
@@ -128,10 +130,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/semibold"
-            app:layout_constraintBottom_toBottomOf="@+id/decreaseQuantity"
             android:text="@{String.valueOf(product.quantity)}"
             android:textColor="@color/colorWhite"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/decreaseQuantity"
             app:layout_constraintStart_toEndOf="@+id/decreaseQuantity"
             app:layout_constraintTop_toTopOf="@+id/decreaseQuantity"
             tools:text="0" />
@@ -141,12 +143,12 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="4dp"
+            android:contentDescription="@string/increase_quantity"
             android:onClick="@{() -> product.increaseQuantity()}"
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="@+id/quantityField"
             app:layout_constraintStart_toEndOf="@+id/quantityField"
             app:layout_constraintTop_toTopOf="@+id/quantityField"
-            android:contentDescription="@string/increase_quantity"
             app:srcCompat="@drawable/ic_group_401" />
 
         <TextView
@@ -155,25 +157,28 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/semibold"
-            app:layout_constraintBottom_toBottomOf="@+id/increaseQuantity"
             android:text="@{String.valueOf(product.price) + ` MDL`}"
-            android:textColor="@color/bottom_orange"
+            android:textColor="@color/colorBLue"
             android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="@+id/increaseQuantity"
+            app:layout_constraintBottom_toBottomOf="@+id/increaseQuantity"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/increaseQuantity"
             tools:text="25 MDL" />
 
-        <ImageView
+        <Button
             android:id="@+id/addToCart"
-            android:layout_width="0dp"
+            android:layout_width="320dp"
             android:layout_height="65dp"
             android:layout_marginTop="50dp"
-            android:onClick="@{(view) -> cartViewModel.productExists(product) ? cartViewModel.increaseProductQuantity(product) : cartViewModel.addToProductCart(view, product)}"
+            android:background="@drawable/buttonshape"
+            android:contentDescription="@string/add_to_cart"
+            android:onClick="@{() -> cartService.productExists(product) ? cartService.increaseProductQuantity(product) : cartService.addToProductCart(product)}"
+            android:text="@string/add_to_cart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quantityField"
-            android:contentDescription="@string/add_to_cart"
-            app:srcCompat="@drawable/ic_group_1675" />
+            app:layout_constraintTop_toBottomOf="@+id/quantityField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

@@ -10,8 +10,8 @@
             type="com.example.shop_java.models.Product" />
 
         <variable
-            name="cartViewModel"
-            type="com.example.shop_java.cart.CartViewModel" />
+            name="cartService"
+            type="com.example.shop_java.cart.service.CartService" />
 
         <variable
             name="removeInterface"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/regular"
                 android:text="@{product.isVegetarian()}"
-                android:textColor="@color/bottom_orange"
+                android:textColor="@color/colorBLue"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Vegetarian Food" />
@@ -95,29 +95,30 @@
                 android:textColor="@color/colorBlack"
                 app:srcCompat="@drawable/ic_group_401" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="@{product.price + `MDL`}"
-                android:textColor="@color/bottom_orange"
-                android:textSize="20sp"
-                tools:text="25 MDL"
-                android:textStyle="bold"
-                tools:ignore="SmallSp" />
-
             <ImageView
                 android:id="@+id/removeCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/increase_quantity"
                 android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
                 android:textColor="@color/colorWhite"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:text="@{product.price + `MDL`}"
+                android:textColor="@color/colorBLue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="SmallSp"
+                tools:text="25 MDL" />
 
         </RelativeLayout>
 

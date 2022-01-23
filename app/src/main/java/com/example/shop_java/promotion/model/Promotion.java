@@ -16,10 +16,6 @@ public class Promotion implements Serializable {
 
     private String foodType;
 
-    public void setPromotionId(int promotionId) {
-        this.promotionId = promotionId;
-    }
-
     public void setImage(String image) {
         this.image = image;
     }

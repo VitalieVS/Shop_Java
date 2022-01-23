@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Category implements Serializable {
 
-    private int categoryId;
 
     private String name;
 
@@ -15,10 +14,6 @@ public class Category implements Serializable {
 
     public List<Product> getProductList() {
         return productList;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
     }
 
     public String getName() {

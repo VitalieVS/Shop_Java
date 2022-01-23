@@ -53,35 +53,35 @@
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/regular"
                 android:text="@string/promotional_item"
-                android:textColor="@color/bottom_orange"
+                android:textColor="@color/colorBLue"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Promotional item" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="@{promotion.price + ` MDL`}"
-                android:textColor="@color/bottom_orange"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp"
-                tools:text="25 MDL" />
 
             <ImageView
                 android:id="@+id/removeCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/increase_quantity"
                 android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
                 android:textColor="@color/colorWhite"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:text="@{promotion.price + ` MDL`}"
+                android:textColor="@color/colorBLue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="SmallSp"
+                tools:text="25 MDL" />
 
         </RelativeLayout>
 
