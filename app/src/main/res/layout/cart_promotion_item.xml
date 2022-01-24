@@ -13,6 +13,9 @@
             name="removeInterface"
             type="com.example.shop_java.promotion.remover.RemovePromotion" />
 
+        <variable
+            name="cartService"
+            type="com.example.shop_java.cart.service.CartService" />
     </data>
 
     <LinearLayout
@@ -41,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@{promotion.title}"
-                android:textColor="#fff"
+                android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Test text" />
@@ -67,7 +70,7 @@
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/increase_quantity"
                 android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
 
             <TextView

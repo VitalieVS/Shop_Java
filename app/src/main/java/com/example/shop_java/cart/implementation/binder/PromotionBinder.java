@@ -50,7 +50,10 @@ public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> impl
         Promotion promotion = promotionList.get(position);
 
         holder.promotionItemBinding.setPromotion(promotion);
+
         holder.promotionItemBinding.setRemoveInterface(this);
+
+        holder.promotionItemBinding.setCartService(cartService);
     }
 
     public void addAll(List<Promotion> dataSet) {
@@ -69,7 +72,7 @@ public class PromotionBinder extends DataBinder<PromotionBinder.ViewHolder> impl
     @Override
     public void removePromotionFromCart(Promotion promotion) {
 
-        cartService.removePromotionFromCart(promotion);
+        cartService.removeFromCart(promotion);
         notifyBinderItemRemoved(this.position);
 
     }

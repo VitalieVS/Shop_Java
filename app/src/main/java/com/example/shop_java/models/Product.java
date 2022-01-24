@@ -63,31 +63,27 @@ public class Product extends BaseObservable implements Serializable {
 
     public void increaseQuantity() {
 
-        if (quantity + 1 < 100) {
-
-            this.quantity += 1;
-            this.price = this.priceCopy * this.quantity;
-            notifyPropertyChanged(BR.quantity);
-            notifyPropertyChanged(BR.price);
-        }
+        notifyPropertyChanged(BR.quantity);
+        notifyPropertyChanged(BR.price);
     }
 
     public void setQuantity(int quantity) {
 
         if (quantity + 1 < 100) {
+
             this.quantity = quantity;
         }
     }
 
+    public void setPrice(int price) {
+
+        this.price = price;
+    }
+
     public void decreaseQuantity() {
 
-        if (quantity - 1 > 0) {
-            this.quantity = this.quantity - 1;
-            this.price = this.priceCopy * this.quantity;
-            notifyPropertyChanged(BR.quantity);
-            notifyPropertyChanged(BR.price);
-        }
-
+        notifyPropertyChanged(BR.quantity);
+        notifyPropertyChanged(BR.price);
     }
 
     public List<Ingredient> getIngredients() {

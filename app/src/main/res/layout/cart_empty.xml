@@ -2,17 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background">
+    android:background="@color/colorWhite">
 
 
-        <ImageView
-            android:id="@+id/errorImage"
-            android:layout_width="600dp"
-            android:layout_height="400dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:contentDescription="@string/no_internet_image"
-            android:src="@drawable/empty_cart" />
+    <ImageView
+        android:id="@+id/errorImage"
+        android:layout_width="600dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/no_internet_image"
+        android:src="@drawable/empty_cart" />
 
         <TextView
             android:id="@+id/errorText"
@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="@string/your_cart_is_empty"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="35sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/looks_like_you_haven_t_added_anything_to_your_cart_yet"
             android:textAlignment="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
 

@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@{product.title}"
-                android:textColor="#fff"
+                android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Test text" />
@@ -79,7 +79,7 @@
                 android:layout_marginStart="55dp"
                 android:layout_marginTop="60dp"
                 android:text="@{String.valueOf(product.quantity)}"
-                android:textColor="#fff"
+                android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="8" />
@@ -103,7 +103,7 @@
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/increase_quantity"
                 android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
 
 

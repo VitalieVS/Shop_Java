@@ -18,7 +18,7 @@
 
 
     <LinearLayout
-        android:background="@drawable/main_background"
+        android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -40,7 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/promotion_item"
-            android:textColor="@color/colorBLue"
+            android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
         <RelativeLayout
@@ -58,7 +58,7 @@
                 android:text="@{promotionModel.title}"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
             android:layout_marginBottom="10dp"
             android:text="@{promotionModel.foodType}"
             android:textAlignment="center"
-            android:textColor="@color/colorBLue"
+            android:textColor="@color/colorBlack"
             android:textSize="15sp" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="80dp"
             android:text="@{promotionModel.body}"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorBlack" />
 
         <Button
             android:layout_width="300dp"

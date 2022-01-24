@@ -41,17 +41,44 @@ public class CartService {
 
     public void increaseProductQuantity(Product product) {
 
-        product.increaseQuantity();
+        if (product.getQuantity() + 1 < 100) {
 
-        Optional<Product> searchProduct =
-                productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
+            product.setQuantity(product.getQuantity() + 1);
+            product.setPrice(product.getPriceCopy() * product.getQuantity());
 
-        searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
+            product.increaseQuantity();
 
-        productList.removeIf(item -> item.getId() == product.getId());
+            Optional<Product> searchProduct =
+                    productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
 
-        productList.add(product);
-        cartViewModel.setProductLiveDataValue(productList);
+            searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
+
+            productList.removeIf(item -> item.getId() == product.getId());
+
+            productList.add(product);
+            cartViewModel.setProductLiveDataValue(productList);
+        }
+    }
+
+    public void decreaseProductQuantity(Product product) {
+
+        if (product.getQuantity() - 1 > 0) {
+
+            product.setQuantity(product.getQuantity() - 1);
+            product.setPrice(product.getPriceCopy() * product.getQuantity());
+
+            product.decreaseQuantity();
+
+            Optional<Product> searchProduct =
+                    productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
+
+            searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
+
+            productList.removeIf(item -> item.getId() == product.getId());
+
+            productList.add(product);
+            cartViewModel.setProductLiveDataValue(productList);
+        }
     }
 
     public void addToPromotionsCart(View view, Promotion promotionModel) {
@@ -67,30 +94,25 @@ public class CartService {
         }
     }
 
-    public void removeProductFromCart(Product product) {
+    public <T> void removeFromCart(T item) {
 
-        productList.removeIf(item -> item.getId() == product.getId());
-
-        if (productList.isEmpty()) {
-            cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
+        if (item instanceof Promotion) {
+            promotionList.removeIf(x -> x.getPromotionId() == ((Promotion) item).getPromotionId());
         } else {
-            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
+            productList.removeIf(x -> x.getId() == ((Product) item).getId());
         }
+
+        cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
+
+        cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
+
+        if (!promotionList.isEmpty())
+            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
+
+        if (!productList.isEmpty())
+            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
 
         cartViewModel.setProductLiveDataValue(productList);
-
-    }
-
-    public void removePromotionFromCart(Promotion promotion) {
-
-        promotionList.removeIf(item -> item.getPromotionId() == promotion.getPromotionId());
-
-        if (promotionList.isEmpty()) {
-            cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
-        } else {
-            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
-        }
-
         cartViewModel.setPromotionLiveDataValue(promotionList);
     }
 

@@ -42,9 +42,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         cartService = CartService.getInstance();
         cartService.setContext(parent.getContext());
 
-        ProductItemBinding productItemBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.getContext()),
-                R.layout.product_item, parent, false);
+         com.example.shop_java.databinding.ProductItemBinding productItemBinding = DataBindingUtil.inflate(
+                 LayoutInflater.from(parent.getContext()),
+                 R.layout.product_item, parent, false);
 
         bottomSheetDialog =
                 new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
@@ -62,6 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productItemBinding.setCartService(cartService);
 
         holder.itemView.setOnClickListener(v -> {
+
 
             bindingSheet = DataBindingUtil.inflate(
                     LayoutInflater.from(context),

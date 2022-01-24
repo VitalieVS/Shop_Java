@@ -54,9 +54,10 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implemen
 
         holder.cartItemBinding.setProduct(product);
 
+        holder.cartItemBinding.setRemoveInterface(this);
+
         holder.cartItemBinding.setCartService(cartService);
 
-        holder.cartItemBinding.setRemoveInterface(this);
     }
 
     public void addAll(List<Product> dataSet) {
@@ -74,7 +75,7 @@ public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implemen
     @Override
     public void removeProductFromCart(Product product) {
 
-        cartService.removeProductFromCart(product);
+        cartService.removeFromCart(product);
         notifyBinderItemRemoved(this.position);
     }
 
