@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class LoginViewModel extends ViewModel {
 
-    public static final MutableLiveData<Boolean> LOGIN_STATUS =
+    public static final MutableLiveData<AuthorisationStatus> LOGIN_STATUS =
             new MutableLiveData<>();
 
     public static final MutableLiveData<String> TOKEN = new MutableLiveData<>();
@@ -37,19 +37,19 @@ public class LoginViewModel extends ViewModel {
 
                             TOKEN.setValue(response.body().getToken());
                             LOGIN.setValue(response.body().getLogin());
-                            LOGIN_STATUS.setValue(Boolean.TRUE);
+                            LOGIN_STATUS.setValue(AuthorisationStatus.SUCCESS);
                         }
 
                         if (response.errorBody() != null) {
 
-                            LOGIN_STATUS.setValue(Boolean.FALSE);
+                            LOGIN_STATUS.setValue(AuthorisationStatus.FAILED);
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        LOGIN_STATUS.setValue(Boolean.FALSE);
+                        LOGIN_STATUS.setValue(AuthorisationStatus.LOGOUT);
                     }
 
                 });

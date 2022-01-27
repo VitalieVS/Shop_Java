@@ -16,6 +16,7 @@ import com.example.shop_java.R;
 import com.example.shop_java.databinding.FragmentLoginBinding;
 import com.example.shop_java.login.model.LoginRequest;
 import com.example.shop_java.login.service.UserService;
+import com.example.shop_java.login.viewmodel.AuthorisationStatus;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
 
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class LoginFragment extends Fragment {
 
         LoginViewModel.LOGIN_STATUS.observe(requireActivity(), status -> {
 
-            if (status && isAdded()) {
+            if (status.equals(AuthorisationStatus.SUCCESS) && isAdded()) {
 
                 userService.setAuthorised(true, LoginViewModel.TOKEN.getValue(),
                         LoginViewModel.LOGIN.getValue());
@@ -40,7 +41,7 @@ public class LoginFragment extends Fragment {
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new UserFragment()).commit();
-            } else if (isAdded()) {
+            } else if (isAdded() && status.equals(AuthorisationStatus.FAILED)) {
                 Toast.makeText(requireActivity(), "Wrong credentials!", Toast.LENGTH_SHORT).show();
             }
         });

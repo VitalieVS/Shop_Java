@@ -42,12 +42,16 @@ public class UserFragment extends Fragment {
 
         UserService userService = UserService.getInstance();
         userService.setContext(Objects.requireNonNull(container).getContext());
+        userService.setFragmentActivity(requireActivity());
 
-        binding.setUserViewModel(loginViewModel);
+        binding.setLoginViewModel(loginViewModel);
+
+        binding.setUserService(userService);
 
         loginViewModel.getUser(userService.getToken(), userService.getLogin());
 
         LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(requireActivity(), binding::setUser);
+
 
         return view;
     }

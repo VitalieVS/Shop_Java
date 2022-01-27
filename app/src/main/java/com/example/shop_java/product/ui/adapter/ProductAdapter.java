@@ -81,8 +81,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             bottomSheetDialog.show();
 
-            bindingSheet.bottomSheetProductContainer.findViewById(R.id.closeView)
-                    .setOnClickListener(view -> bottomSheetDialog.dismiss());
         });
     }
 
