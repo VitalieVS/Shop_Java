@@ -55,4 +55,5 @@ dependencies {
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 }

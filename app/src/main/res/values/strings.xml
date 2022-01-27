@@ -22,4 +22,9 @@
     <string name="looks_like_you_haven_t_added_anything_to_your_cart_yet">Looks like you haven\'t added anything to your cart yet</string>
     <string name="your_cart_is_empty">Your Cart is Empty</string>
     <string name="promotional_item">This item is Promotional</string>
+    <string name="remember_me">Remember me</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="not_registered_yet">Not registered yet?</string>
+    <string name="register_now">Register now</string>
+    <string name="password">Password</string>
 </resources>

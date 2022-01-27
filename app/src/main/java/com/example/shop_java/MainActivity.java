@@ -8,16 +8,22 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.shop_java.login.service.UserService;
 import com.example.shop_java.menu.CartFragment;
 import com.example.shop_java.menu.HomeFragment;
 import com.example.shop_java.menu.LoginFragment;
 import com.example.shop_java.menu.ReviewsFragment;
 import com.example.shop_java.menu.SearchFragment;
+import com.example.shop_java.menu.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
+    private UserService userService;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.fragment_container, new HomeFragment()).commit();
 
+        userService = UserService.getInstance();
+        userService.setContext(this);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             Fragment selectedFragment;
@@ -51,7 +60,17 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new ReviewsFragment();
                     break;
                 case R.id.login:
-                    selectedFragment = new LoginFragment();
+//                    userService.setAuthorised(false, "", "");
+//                    userService.setRememberMe(false, 2);
+
+                    if (userService.isAuthorised() && userService.getRememberMe()) {
+
+                        selectedFragment = new UserFragment();
+                    } else {
+
+                        selectedFragment = new LoginFragment();
+                    }
+
                     break;
                 case R.id.cart:
                     if (savedInstanceState == null) {

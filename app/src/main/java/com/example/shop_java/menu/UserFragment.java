@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,37 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.shop_java.R;
-import com.example.shop_java.databinding.FragmentLoginBinding;
-import com.example.shop_java.login.model.LoginRequest;
+import com.example.shop_java.databinding.FragmentUserMenuBinding;
 import com.example.shop_java.login.service.UserService;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
 
 import java.util.Objects;
 
-public class LoginFragment extends Fragment {
+public class UserFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        UserService userService = UserService.getInstance();
-        userService.setContext(requireActivity());
-
-        LoginViewModel.LOGIN_STATUS.observe(requireActivity(), status -> {
-
-            if (status && isAdded()) {
-
-                userService.setAuthorised(true, LoginViewModel.TOKEN.getValue(),
-                        LoginViewModel.LOGIN.getValue());
-
-                requireActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new UserFragment()).commit();
-            } else if (isAdded()) {
-                Toast.makeText(requireActivity(), "Wrong credentials!", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Nullable
@@ -54,16 +35,19 @@ public class LoginFragment extends Fragment {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-        FragmentLoginBinding binding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_login, container, false);
+        FragmentUserMenuBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_user_menu, container, false);
 
         View view = binding.getRoot();
+
         UserService userService = UserService.getInstance();
         userService.setContext(Objects.requireNonNull(container).getContext());
 
-        binding.setLoginRequest(new LoginRequest());
-        binding.setLoginViewModel(loginViewModel);
-        binding.setUserService(userService);
+        binding.setUserViewModel(loginViewModel);
+
+        loginViewModel.getUser(userService.getToken(), userService.getLogin());
+
+        LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(requireActivity(), binding::setUser);
 
         return view;
     }
