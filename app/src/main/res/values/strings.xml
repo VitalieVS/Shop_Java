@@ -27,4 +27,6 @@
     <string name="not_registered_yet">Not registered yet?</string>
     <string name="register_now">Register now</string>
     <string name="password">Password</string>
+    <string name="your_orders">Your orders</string>
+    <string name="looks_like_you_have_no_orders_yet">Looks like you have no orders yet!</string>
 </resources>

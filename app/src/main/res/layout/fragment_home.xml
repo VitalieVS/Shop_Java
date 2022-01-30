@@ -7,8 +7,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
+        android:id="@+id/promotionRecycler"
+        android:layout_width="380dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

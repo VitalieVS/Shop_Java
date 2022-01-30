@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
 
         promotionViewModel.getPromotions();
 
-        RecyclerView recyclerView = requireView().findViewById(R.id.recycler);
+        RecyclerView recyclerView = requireView().findViewById(R.id.promotionRecycler);
         final PromotionsAdapter adapter = new PromotionsAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

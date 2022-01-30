@@ -21,106 +21,124 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/productImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@{product.imageURL}"
-            android:contentDescription="@string/image" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_gravity="center"
-            android:padding="10dp">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
-            <TextView
-                android:id="@+id/productTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@{product.title}"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="Test text" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="80dp"
+                app:cardCornerRadius="20dp">
 
-            <TextView
-                android:id="@+id/isVegetarian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:fontFamily="@font/regular"
-                android:text="@{product.isVegetarian()}"
-                android:textColor="@color/colorBLue"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Vegetarian Food" />
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@{product.imageURL}"
+                    android:contentDescription="@string/image" />
 
-            <ImageView
-                android:id="@+id/decreaseQuantity"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="55dp"
-                android:contentDescription="@string/decrease_quantity_icon"
-                android:onClick="@{() -> product.decreaseQuantity()}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_group_400" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="70dp"
+                    android:padding="10dp">
 
-            <TextView
-                android:id="@+id/productQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="60dp"
-                android:text="@{String.valueOf(product.quantity)}"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="8" />
+                    <TextView
+                        android:id="@+id/productTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@{product.title}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Test text" />
 
-            <ImageView
-                android:id="@+id/increaseQuantity"
-                android:layout_width="43dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="55dp"
-                android:contentDescription="@string/increase_quantity"
-                android:onClick="@{() -> product.increaseQuantity()}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_group_401" />
+                    <TextView
+                        android:id="@+id/isVegetarian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/regular"
+                        android:text="@{product.isVegetarian()}"
+                        android:textColor="@color/blueViolet"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Vegetarian Food" />
 
-            <ImageView
-                android:id="@+id/removeCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/increase_quantity"
-                android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_baseline_close_24" />
+                    <ImageView
+                        android:id="@+id/decreaseQuantity"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="55dp"
+                        android:contentDescription="@string/decrease_quantity_icon"
+                        android:onClick="@{() -> product.decreaseQuantity()}"
+                        android:textColor="@color/colorBlack"
+                        app:srcCompat="@drawable/ic_group_400" />
+
+                    <TextView
+                        android:id="@+id/productQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="55dp"
+                        android:layout_marginTop="60dp"
+                        android:text="@{String.valueOf(product.quantity)}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="8" />
+
+                    <ImageView
+                        android:id="@+id/increaseQuantity"
+                        android:layout_width="43dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="55dp"
+                        android:contentDescription="@string/increase_quantity"
+                        android:onClick="@{() -> product.increaseQuantity()}"
+                        android:textColor="@color/colorBlack"
+                        app:srcCompat="@drawable/ic_group_401" />
+
+                    <ImageView
+                        android:id="@+id/removeCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="28dp"
+                        android:contentDescription="@string/increase_quantity"
+                        android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
+                        android:textColor="@color/colorBlack"
+                        app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="16dp"
-                android:text="@{product.price + `MDL`}"
-                android:textColor="@color/colorBLue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp"
-                tools:text="25 MDL" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="28dp"
+                        android:text="@{product.price + `MDL`}"
+                        android:textColor="@color/blueViolet"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:ignore="SmallSp"
+                        tools:text="25 MDL" />
 
-        </RelativeLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

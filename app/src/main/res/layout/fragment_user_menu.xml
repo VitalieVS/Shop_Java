@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="loginViewModel"
             type="com.example.shop_java.login.viewmodel.LoginViewModel" />
@@ -47,7 +49,7 @@
                 android:fontFamily="sans-serif-black"
                 android:paddingStart="40dp"
                 android:paddingTop="10dp"
-                android:text="$3,729.00"
+                android:text="@{String.valueOf(user.totalSpentMoney) + ` MDL`}"
                 android:textColor="#fff"
                 android:textSize="35dp"
                 android:textStyle="bold" />
@@ -64,7 +66,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@color/colorBLue"
+                app:cardBackgroundColor="@color/blueViolet"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
 
@@ -97,7 +99,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="30dp"
-                app:cardBackgroundColor="@color/colorBLue"
+                app:cardBackgroundColor="@color/blueViolet"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
 
@@ -165,16 +167,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="15dp">
+            android:paddingStart="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:letterSpacing="0.02"
-                android:text="Your orders"
+                android:text="@string/your_orders"
                 android:textColor="@color/colorBlack"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
 
@@ -187,7 +189,30 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/userOrders"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="@{user.orders.size() > 0 ? View.VISIBLE : View.GONE}" />
+
+            <ImageView
+                android:id="@+id/errorImage"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/no_internet_image"
+                android:src="@drawable/empty_cart"
+                android:visibility="@{user.orders.size() > 0 ? View.GONE : View.VISIBLE}" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errorImage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="40dp"
+                android:text="@string/looks_like_you_have_no_orders_yet"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:visibility="@{user.orders.size() > 0 ? View.GONE : View.VISIBLE}" />
 
         </RelativeLayout>
 

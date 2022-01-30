@@ -56,7 +56,7 @@
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/regular"
                 android:text="@string/promotional_item"
-                android:textColor="@color/colorBLue"
+                android:textColor="@color/blueViolet"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Promotional item" />
@@ -71,7 +71,7 @@
                 android:contentDescription="@string/increase_quantity"
                 android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
                 android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_baseline_close_24" />
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:text="@{promotion.price + ` MDL`}"
-                android:textColor="@color/colorBLue"
+                android:textColor="@color/blueViolet"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="SmallSp"

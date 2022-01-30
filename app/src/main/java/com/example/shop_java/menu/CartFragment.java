@@ -19,6 +19,7 @@ import com.example.shop_java.cart.viewmodel.CartViewModel;
 import com.example.shop_java.models.Product;
 import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation);
+
         CartService cartService = CartService.getInstance();
 
         RecyclerView recyclerView = requireView().findViewById(R.id.cartItemsRecyclerView);
@@ -48,12 +51,20 @@ public class CartFragment extends Fragment {
         showFragment(cartService.getProductList(), cartService.getPromotionList());
 
         CartViewModel.stateMutableLiveData.observe(requireActivity(), state -> {
-            if (state.equals(State.EMPTY_CART) && isAdded())
+            if (state.equals(State.EMPTY_CART) && isAdded()) {
                 showFragment(cartService.getProductList(), cartService.getPromotionList());
+            } else {
+                bottomNavigationView.setVisibility(View.VISIBLE);
+            }
         });
+
 
         CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);
 
+        if (cartService.getProductList().size() > 0 || cartService.getPromotionList().size() > 0) {
+
+            bottomNavigationView.setVisibility(View.GONE);
+        }
         CartViewModel.promotionMutableLiveData.observe(requireActivity(), adapter::setPromotionDataSet);
 
     }

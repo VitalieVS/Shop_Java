@@ -1,5 +1,7 @@
 package com.example.shop_java.login.model;
 
+import java.util.List;
+
 public class User {
 
     private String surname;
@@ -32,5 +34,23 @@ public class User {
         this.address = address;
     }
 
+    private List<Order> orders;
+    private float totalSpentMoney;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public float getTotalSpentMoney() {
+        return totalSpentMoney;
+    }
+
+    public void setTotalSpentMoney(float totalSpentMoney) {
+        this.totalSpentMoney = totalSpentMoney;
+    }
 
 }
