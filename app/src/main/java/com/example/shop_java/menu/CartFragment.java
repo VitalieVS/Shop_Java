@@ -39,7 +39,8 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView =
+                requireActivity().findViewById(R.id.bottom_navigation);
 
         CartService cartService = CartService.getInstance();
 

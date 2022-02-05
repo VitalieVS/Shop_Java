@@ -79,6 +79,7 @@ public class CartService {
             productList.add(product);
             cartViewModel.setProductLiveDataValue(productList);
         }
+
     }
 
     public void addToPromotionsCart(View view, Promotion promotionModel) {
@@ -115,6 +116,7 @@ public class CartService {
         cartViewModel.setProductLiveDataValue(productList);
         cartViewModel.setPromotionLiveDataValue(promotionList);
     }
+
 
     private boolean promotionExists(Promotion promotionModel) {
 

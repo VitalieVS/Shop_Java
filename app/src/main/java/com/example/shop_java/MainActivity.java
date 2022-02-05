@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new ReviewsFragment();
                     break;
                 case R.id.login:
-//                    userService.setAuthorised(false, "", "");
-//                    userService.setRememberMe(false, 2);
 
                     if (userService.isAuthorised() && userService.getRememberMe()) {
 

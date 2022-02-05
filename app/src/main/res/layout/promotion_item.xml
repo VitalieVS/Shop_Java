@@ -45,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
                     android:text="@{viewModel.foodType}"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp" />
@@ -55,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/st"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
                     android:text="@{viewModel.title}"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
@@ -64,6 +66,7 @@
                     android:layout_height="16dp"
                     android:layout_below="@id/ht"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="10dp"
                     android:contentDescription="@string/stars_for_promotion"
                     android:src="@drawable/rating_orange_small" />
 

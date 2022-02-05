@@ -29,4 +29,6 @@
     <string name="password">Password</string>
     <string name="your_orders">Your orders</string>
     <string name="looks_like_you_have_no_orders_yet">Looks like you have no orders yet!</string>
+    <string name="order_items">Order items</string>
+    <string name="arrow_back">Arrow back</string>
 </resources>

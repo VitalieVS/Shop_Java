@@ -18,22 +18,21 @@
             type="com.example.shop_java.cart.implementation.binder.remover.RemoveProduct" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:elevation="80dp"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:ignore="UselessParent">
+            android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="80dp"
-                app:cardCornerRadius="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/productImage"
@@ -44,22 +43,22 @@
                     android:background="@{product.imageURL}"
                     android:contentDescription="@string/image" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="70dp"
-                    android:padding="10dp">
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/productTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="@{product.title}"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/productTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{product.title}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                         tools:text="Test text" />
 
                     <TextView
@@ -74,71 +73,77 @@
                         app:layout_constraintStart_toStartOf="parent"
                         tools:text="Vegetarian Food" />
 
-                    <ImageView
-                        android:id="@+id/decreaseQuantity"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="55dp"
-                        android:contentDescription="@string/decrease_quantity_icon"
-                        android:onClick="@{() -> product.decreaseQuantity()}"
-                        android:textColor="@color/colorBlack"
-                        app:srcCompat="@drawable/ic_group_400" />
 
-                    <TextView
-                        android:id="@+id/productQuantity"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/increaseAndDecrease"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:shadowRadius="20"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="55dp"
-                        android:layout_marginTop="60dp"
-                        android:text="@{String.valueOf(product.quantity)}"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="8" />
+                        android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/increaseQuantity"
-                        android:layout_width="43dp"
-                        android:layout_height="34dp"
-                        android:layout_marginStart="80dp"
-                        android:layout_marginTop="55dp"
-                        android:contentDescription="@string/increase_quantity"
-                        android:onClick="@{() -> product.increaseQuantity()}"
-                        android:textColor="@color/colorBlack"
-                        app:srcCompat="@drawable/ic_group_401" />
+                        <ImageView
+                            android:id="@+id/decreaseQuantity"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="5dp"
+                            android:contentDescription="@string/decrease_quantity_icon"
+                            android:onClick="@{() -> (product.quantity == 1) ? cartService.removeFromCart(product) : cartService.decreaseProductQuantity(product) }"
+                            android:textColor="@color/colorBlack"
+                            app:srcCompat="@{(product.quantity == 1) ? @drawable/ic_group_402 : @drawable/ic_group_400}" />
 
-                    <ImageView
-                        android:id="@+id/removeCart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="28dp"
-                        android:contentDescription="@string/increase_quantity"
-                        android:onClick="@{() -> removeInterface.removeProductFromCart(product)}"
-                        android:textColor="@color/colorBlack"
-                        app:srcCompat="@drawable/ic_baseline_delete_24" />
+                        <TextView
+                            android:id="@+id/productQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{String.valueOf(product.quantity)}"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="8" />
+
+                        <ImageView
+                            android:id="@+id/increaseQuantity"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="5dp"
+                            android:contentDescription="@string/increase_quantity"
+                            android:onClick="@{() -> cartService.increaseProductQuantity(product)}"
+                            android:textColor="@color/colorBlack"
+                            app:srcCompat="@drawable/ic_group_401" />
 
 
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginEnd="28dp"
+                        android:layout_marginEnd="15dp"
                         android:text="@{product.price + `MDL`}"
-                        android:textColor="@color/blueViolet"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        tools:ignore="SmallSp"
+                        tools:ignore="RelativeOverlap,SmallSp"
                         tools:text="25 MDL" />
 
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
 
         </LinearLayout>
 
-    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 </layout>

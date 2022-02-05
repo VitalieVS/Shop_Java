@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@BindingMethods({
+        @BindingMethod(type = android.widget.ImageView.class,
+                attribute = "app:srcCompat",
+                method = "setImageDrawable")})
 public class ProductBinder extends DataBinder<ProductBinder.ViewHolder> implements RemoveProduct {
 
     private List<Product> productList = new ArrayList<>();
