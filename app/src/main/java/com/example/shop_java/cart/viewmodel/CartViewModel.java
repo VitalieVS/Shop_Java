@@ -20,6 +20,7 @@ public class CartViewModel extends ViewModel {
     public static final MutableLiveData<State> stateMutableLiveData = new MutableLiveData<>();
 
     public void setProductLiveDataValue(List<Product> value) {
+
         productMutableLiveData.setValue(value);
     }
 
@@ -29,6 +30,7 @@ public class CartViewModel extends ViewModel {
     }
 
     public void setStateMutableLiveData(State value) {
+
         stateMutableLiveData.setValue(value);
     }
 

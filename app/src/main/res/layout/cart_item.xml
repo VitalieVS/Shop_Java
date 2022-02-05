@@ -94,7 +94,7 @@
                             android:layout_height="40dp"
                             android:layout_marginEnd="5dp"
                             android:contentDescription="@string/decrease_quantity_icon"
-                            android:onClick="@{() -> (product.quantity == 1) ? cartService.removeFromCart(product) : cartService.decreaseProductQuantity(product) }"
+                            android:onClick="@{() -> (product.quantity == 1) ? removeInterface.removeProductFromCart(product) : cartService.decreaseProductQuantity(product) }"
                             android:textColor="@color/colorBlack"
                             app:srcCompat="@{(product.quantity == 1) ? @drawable/ic_group_402 : @drawable/ic_group_400}" />
 

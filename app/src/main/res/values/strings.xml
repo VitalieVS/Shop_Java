@@ -31,4 +31,5 @@
     <string name="looks_like_you_have_no_orders_yet">Looks like you have no orders yet!</string>
     <string name="order_items">Order items</string>
     <string name="arrow_back">Arrow back</string>
+    <string name="my_delicious_cart">My Delicious Cart</string>
 </resources>

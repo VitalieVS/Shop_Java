@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,16 +18,18 @@ import com.example.shop_java.cart.container.EmptyCartFragment;
 import com.example.shop_java.cart.implementation.adapter.SampleListAdapter;
 import com.example.shop_java.cart.service.CartService;
 import com.example.shop_java.cart.viewmodel.CartViewModel;
+import com.example.shop_java.databinding.FragmentCartBinding;
 import com.example.shop_java.models.Product;
 import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class CartFragment extends Fragment {
-
+    CartViewModel cartViewModel;
 
     @Nullable
     @Override
@@ -33,7 +37,19 @@ public class CartFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        FragmentCartBinding fragmentCartBinding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_cart, container, false
+        );
+
+        CartService cartService = CartService.getInstance();
+
+        cartService.setContext(Objects.requireNonNull(container).getContext());
+
+        fragmentCartBinding.setCartService(cartService);
+
+        cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
+
+        return (View) fragmentCartBinding.getRoot();
     }
 
     @Override
@@ -49,28 +65,28 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        showFragment(cartService.getProductList(), cartService.getPromotionList());
+        showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());
+
+        CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);
+
+        CartViewModel.promotionMutableLiveData.observe(requireActivity(), adapter::setPromotionDataSet);
 
         CartViewModel.stateMutableLiveData.observe(requireActivity(), state -> {
+
             if (state.equals(State.EMPTY_CART) && isAdded()) {
-                showFragment(cartService.getProductList(), cartService.getPromotionList());
-            } else {
+
+                showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());
                 bottomNavigationView.setVisibility(View.VISIBLE);
+            } else if (isAdded()) {
+
+                bottomNavigationView.setVisibility(View.GONE);
             }
         });
 
 
-        CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);
-
-        if (cartService.getProductList().size() > 0 || cartService.getPromotionList().size() > 0) {
-
-            bottomNavigationView.setVisibility(View.GONE);
-        }
-        CartViewModel.promotionMutableLiveData.observe(requireActivity(), adapter::setPromotionDataSet);
-
     }
 
-    private void showFragment(List<Product> productList, List<Promotion> promotionList) {
+    private void showFragmentEmptyCartFragment(List<Product> productList, List<Promotion> promotionList) {
 
         if (productList.size() == 0 && promotionList.size() == 0) {
             requireActivity().getSupportFragmentManager()

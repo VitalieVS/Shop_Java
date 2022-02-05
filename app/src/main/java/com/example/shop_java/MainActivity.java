@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case R.id.cart:
-                    if (savedInstanceState == null) {
-                        getSupportFragmentManager().beginTransaction()
+
+                    getSupportFragmentManager().beginTransaction()
                                 .setReorderingAllowed(true)
                                 .add(R.id.fragment_container, CartFragment.class, null)
                                 .commit();
-                    }
+
                     selectedFragment = new CartFragment();
                     break;
                 default:

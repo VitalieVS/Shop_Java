@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,15 +16,20 @@ import com.example.shop_java.models.State;
 import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CartService {
+public class CartService extends BaseObservable {
 
     private static CartService cartService;
     private final List<Product> productList = new ArrayList<>();
     private final List<Promotion> promotionList = new ArrayList<>();
     private CartViewModel cartViewModel;
+
+    private int totalCartPrice;
 
     public static CartService getInstance() {
 
@@ -37,6 +45,7 @@ public class CartService {
         productList.add(product);
 
         cartViewModel.setProductLiveDataValue(productList);
+        cartViewModel.setStateMutableLiveData(State.PRODUCT_ITEMS);
     }
 
     public void increaseProductQuantity(Product product) {
@@ -57,7 +66,10 @@ public class CartService {
 
             productList.add(product);
             cartViewModel.setProductLiveDataValue(productList);
+            notifyPropertyChanged(BR.totalCartPrice);
         }
+
+
     }
 
     public void decreaseProductQuantity(Product product) {
@@ -78,6 +90,7 @@ public class CartService {
 
             productList.add(product);
             cartViewModel.setProductLiveDataValue(productList);
+            notifyPropertyChanged(BR.totalCartPrice);
         }
 
     }
@@ -92,6 +105,7 @@ public class CartService {
 
             promotionList.add(promotionModel);
             cartViewModel.setPromotionLiveDataValue(promotionList);
+            cartViewModel.setStateMutableLiveData(State.PROMOTION_ITEMS);
         }
     }
 
@@ -103,18 +117,17 @@ public class CartService {
             productList.removeIf(x -> x.getId() == ((Product) item).getId());
         }
 
-        cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
+        Map<Boolean, Runnable> map = new HashMap<>();
+        map.put(!promotionList.isEmpty(), () -> cartViewModel.setStateMutableLiveData(State.PROMOTION_ITEMS));
+        map.put(!productList.isEmpty(), () -> cartViewModel.setStateMutableLiveData(State.PRODUCT_ITEMS));
+        Runnable defaultAction = () -> cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
 
-        cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
-
-        if (!promotionList.isEmpty())
-            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
-
-        if (!productList.isEmpty())
-            cartViewModel.setStateMutableLiveData(State.CART_ITEMS);
+        Objects.requireNonNull(map.getOrDefault(true,
+                defaultAction)).run();
 
         cartViewModel.setProductLiveDataValue(productList);
         cartViewModel.setPromotionLiveDataValue(promotionList);
+        notifyPropertyChanged(BR.totalCartPrice);
     }
 
 
@@ -141,5 +154,21 @@ public class CartService {
 
     public List<Promotion> getPromotionList() {
         return this.promotionList;
+    }
+
+
+    @Bindable
+    public int getTotalCartPrice() {
+
+
+        return promotionList.stream().reduce(0,
+                (x, y) -> x + y.getPrice(),
+                Integer::sum) + productList.stream().reduce(0,
+                (x, y) -> x + y.getPrice(),
+                Integer::sum);
+    }
+
+    public void setTotalCartPrice(int totalCartPrice) {
+        this.totalCartPrice = totalCartPrice;
     }
 }
