@@ -35,12 +35,13 @@ public class UserFragment extends Fragment {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
+        UserService userService = UserService.getInstance();
+
         FragmentUserMenuBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_user_menu, container, false);
 
         View view = binding.getRoot();
 
-        UserService userService = UserService.getInstance();
         userService.setContext(Objects.requireNonNull(container).getContext());
         userService.setFragmentActivity(requireActivity());
 
@@ -50,7 +51,19 @@ public class UserFragment extends Fragment {
 
         loginViewModel.getUser(userService.getToken(), userService.getLogin());
 
-        LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(requireActivity(), binding::setUser);
+        LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(getViewLifecycleOwner(), user -> {
+
+            if (user == null && isAdded()) {
+
+                userService.logout();
+            }
+
+            if (user != null && isAdded()) {
+
+                binding.setUser(user);
+            }
+
+        });
 
 
         return view;

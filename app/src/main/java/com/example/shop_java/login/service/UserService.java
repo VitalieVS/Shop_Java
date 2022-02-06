@@ -78,7 +78,7 @@ public class UserService {
 
         editor.apply();
 
-        LoginViewModel.LOGIN_STATUS.setValue(AuthorisationStatus.LOGOUT);
+        LoginViewModel.LOGIN_STATUS.setValue(AuthorisationStatus.FAILED);
 
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()

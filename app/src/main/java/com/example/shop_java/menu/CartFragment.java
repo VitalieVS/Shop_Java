@@ -82,7 +82,6 @@ public class CartFragment extends Fragment {
 
         CartViewModel.stateMutableLiveData.observe(getViewLifecycleOwner(), state -> {
 
-            System.out.println("CALLED");
             if (state.equals(State.EMPTY_CART) && isAdded()) {
 
                 showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());

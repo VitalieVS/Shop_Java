@@ -41,15 +41,19 @@ public class LoginViewModel extends ViewModel {
                         }
 
                         if (response.errorBody() != null) {
-
+                            LOGIN.setValue(null);
                             LOGIN_STATUS.setValue(AuthorisationStatus.FAILED);
+                            TOKEN.setValue("");
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                        LOGIN.setValue(null);
                         LOGIN_STATUS.setValue(AuthorisationStatus.LOGOUT);
+                        TOKEN.setValue("");
                     }
 
                 });
@@ -63,8 +67,18 @@ public class LoginViewModel extends ViewModel {
                     @Override
                     public void onResponse(@NonNull Call<User> call,
                                            @NonNull Response<User> response) {
+                        if (response.body() != null) {
 
-                        USER_MUTABLE_LIVE_DATA.setValue(response.body());
+
+                            USER_MUTABLE_LIVE_DATA.setValue(response.body());
+                            LOGIN_STATUS.setValue(AuthorisationStatus.SUCCESS);
+
+                        } else {
+
+                            USER_MUTABLE_LIVE_DATA.setValue(null);
+                            LOGIN_STATUS.setValue(AuthorisationStatus.LOGOUT);
+                        }
+
                     }
 
                     @Override

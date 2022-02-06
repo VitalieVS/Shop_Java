@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment {
         UserService userService = UserService.getInstance();
         userService.setContext(requireActivity());
 
-        LoginViewModel.LOGIN_STATUS.observe(requireActivity(), status -> {
+        LoginViewModel.LOGIN_STATUS.observe(getViewLifecycleOwner(), status -> {
 
             if (status.equals(AuthorisationStatus.SUCCESS) && isAdded()) {
 
@@ -41,8 +41,18 @@ public class LoginFragment extends Fragment {
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new UserFragment()).commit();
-            } else if (isAdded() && status.equals(AuthorisationStatus.FAILED)) {
-                Toast.makeText(requireActivity(), "Wrong credentials!", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            if (isAdded() && status.equals(AuthorisationStatus.FAILED)) {
+                Toast.makeText(requireActivity(),
+                        "Wrong credentials!", Toast.LENGTH_SHORT).show();
+            }
+
+            if (isAdded() && status.equals(AuthorisationStatus.LOGOUT)) {
+                Toast.makeText(requireActivity(),
+                        "Session expired!", Toast.LENGTH_SHORT).show();
             }
         });
     }
