@@ -47,8 +47,6 @@ public class CartFragment extends Fragment {
 
         fragmentCartBinding.setCartService(cartService);
 
-        cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
-
         return (View) fragmentCartBinding.getRoot();
     }
 
@@ -57,6 +55,8 @@ public class CartFragment extends Fragment {
 
         BottomNavigationView bottomNavigationView =
                 requireActivity().findViewById(R.id.bottom_navigation);
+
+        cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
 
         CartService cartService = CartService.getInstance();
 
@@ -76,12 +76,13 @@ public class CartFragment extends Fragment {
 
         showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());
 
-        CartViewModel.productMutableLiveData.observe(requireActivity(), adapter::setProductDataSet);
+        CartViewModel.productMutableLiveData.observe(getViewLifecycleOwner(), adapter::setProductDataSet);
 
-        CartViewModel.promotionMutableLiveData.observe(requireActivity(), adapter::setPromotionDataSet);
+        CartViewModel.promotionMutableLiveData.observe(getViewLifecycleOwner(), adapter::setPromotionDataSet);
 
-        CartViewModel.stateMutableLiveData.observe(requireActivity(), state -> {
+        CartViewModel.stateMutableLiveData.observe(getViewLifecycleOwner(), state -> {
 
+            System.out.println("CALLED");
             if (state.equals(State.EMPTY_CART) && isAdded()) {
 
                 showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());

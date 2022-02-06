@@ -18,74 +18,89 @@
             type="com.example.shop_java.cart.service.CartService" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginBottom="20dp"
+        android:elevation="80dp"
+        app:cardCornerRadius="20dp">
 
-        <ImageView
-            android:id="@+id/productImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@{promotion.image}"
-            android:contentDescription="@string/image" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_gravity="center"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/promotionTitle"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@{promotion.title}"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp"
-                tools:text="Test text" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/isVegetarian"
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@{promotion.image}"
+                    android:contentDescription="@string/image" />
+
+            </LinearLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:fontFamily="@font/regular"
-                android:text="@string/promotional_item"
-                android:textColor="@color/blueViolet"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Promotional item" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/productTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{promotion.title}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    tools:text="Test text" />
+
+                <TextView
+                    android:id="@+id/isVegetarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@{promotion.foodType}"
+                    android:textColor="@color/blueViolet"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Vegetarian Food" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
+                    android:src="@drawable/ic_baseline_close_24" />
 
 
-            <ImageView
-                android:id="@+id/removeCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/increase_quantity"
-                android:onClick="@{() -> removeInterface.removePromotionFromCart(promotion)}"
-                android:textColor="@color/colorBlack"
-                app:srcCompat="@drawable/ic_baseline_close_24" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@{promotion.price + ` mdl`}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap,SmallSp"
+                    tools:text="25 MDL" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="16dp"
-                android:text="@{promotion.price + ` MDL`}"
-                android:textColor="@color/blueViolet"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp"
-                tools:text="25 MDL" />
+            </RelativeLayout>
 
-        </RelativeLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
 </layout>

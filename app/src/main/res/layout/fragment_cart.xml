@@ -18,7 +18,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="350dp"
-            android:layout_height="550dp"
+            android:layout_height="650dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             app:cardBackgroundColor="#F6F7F8"
@@ -82,7 +82,7 @@
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@{cartService.totalCartPrice +` MDL`}"
+                            android:text="@{cartService.totalCartPrice +` mdl`}"
                             android:textColor="@color/colorWhite"
                             android:textSize="20sp" />
 

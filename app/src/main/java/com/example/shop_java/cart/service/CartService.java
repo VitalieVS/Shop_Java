@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
@@ -43,12 +44,12 @@ public class CartService extends BaseObservable {
     public void bottomSheetAddToProductCart(Product product) {
 
         if (productExists(product)) {
-            int currQuantity = product.getQuantity();
 
             Optional<Product> productInCart =
                     productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
 
-            Objects.requireNonNull(productInCart.orElse(null)).setQuantity(currQuantity);
+            Objects.requireNonNull(productInCart.orElse(null))
+                    .setQuantity(product.getQuantity());
 
         } else {
             addToProductCart(null, product);
@@ -72,7 +73,7 @@ public class CartService extends BaseObservable {
 
     }
 
-    public void increaseProductQuantity(Product product) {
+    public void increaseProductQuantity(@NonNull Product product) {
 
         if (product.getQuantity() + 1 < 100) {
 
@@ -80,15 +81,12 @@ public class CartService extends BaseObservable {
 
             product.increaseQuantity();
 
-            cartViewModel.setProductLiveDataValue(productList);
             notifyPropertyChanged(BR.totalCartPrice);
 
         }
-
-
     }
 
-    public void decreaseProductQuantity(Product product) {
+    public void decreaseProductQuantity(@NonNull Product product) {
 
         if (product.getQuantity() - 1 > 0) {
 
@@ -96,7 +94,6 @@ public class CartService extends BaseObservable {
 
             product.decreaseQuantity();
 
-            cartViewModel.setProductLiveDataValue(productList);
             notifyPropertyChanged(BR.totalCartPrice);
         }
 
@@ -176,7 +173,7 @@ public class CartService extends BaseObservable {
         return promotionList.stream().reduce(0,
                 (x, y) -> x + y.getPrice(),
                 Integer::sum) + productList.stream().reduce(0,
-                (x, y) -> x + y.getPrice(),
+                (x, y) -> x + y.getPrice() * y.getQuantity(),
                 Integer::sum);
     }
 
