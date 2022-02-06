@@ -31,6 +31,8 @@ public class Product extends BaseObservable implements Serializable {
 
     private String imageURL;
 
+    private int itemPrice;
+
     private List<Ingredient> ingredients;
 
     private int weight;
@@ -49,7 +51,14 @@ public class Product extends BaseObservable implements Serializable {
 
     @Bindable
     public int getPrice() {
-        return price;
+
+        return this.price;
+    }
+
+    @Bindable
+    public int getItemPrice() {
+
+        return this.priceCopy * this.quantity;
     }
 
     public String getImageURL() {
@@ -64,7 +73,7 @@ public class Product extends BaseObservable implements Serializable {
     public void increaseQuantity() {
 
         notifyPropertyChanged(BR.quantity);
-        notifyPropertyChanged(BR.price);
+        notifyPropertyChanged(BR.itemPrice);
     }
 
     public void setQuantity(int quantity) {
@@ -72,6 +81,7 @@ public class Product extends BaseObservable implements Serializable {
         if (quantity + 1 < 100) {
 
             this.quantity = quantity;
+            notifyPropertyChanged(BR.quantity);
         }
     }
 
@@ -83,7 +93,7 @@ public class Product extends BaseObservable implements Serializable {
     public void decreaseQuantity() {
 
         notifyPropertyChanged(BR.quantity);
-        notifyPropertyChanged(BR.price);
+        notifyPropertyChanged(BR.itemPrice);
     }
 
     public List<Ingredient> getIngredients() {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +39,7 @@ public class CartFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         FragmentCartBinding fragmentCartBinding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_cart, container, false
-        );
+                inflater, R.layout.fragment_cart, container, false);
 
         CartService cartService = CartService.getInstance();
 
@@ -64,6 +64,15 @@ public class CartFragment extends Fragment {
         SampleListAdapter adapter = new SampleListAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        ImageView imageView = requireView().findViewById(R.id.exitCartButton);
+        imageView.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new HomeFragment()).commit();
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.setSelectedItemId(R.id.home);
+        });
 
         showFragmentEmptyCartFragment(cartService.getProductList(), cartService.getPromotionList());
 

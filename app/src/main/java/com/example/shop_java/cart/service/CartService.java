@@ -40,12 +40,36 @@ public class CartService extends BaseObservable {
         return cartService;
     }
 
-    public void addToProductCart(Product product) {
+    public void bottomSheetAddToProductCart(Product product) {
 
-        productList.add(product);
+        if (productExists(product)) {
+            int currQuantity = product.getQuantity();
 
-        cartViewModel.setProductLiveDataValue(productList);
-        cartViewModel.setStateMutableLiveData(State.PRODUCT_ITEMS);
+            Optional<Product> productInCart =
+                    productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
+
+            Objects.requireNonNull(productInCart.orElse(null)).setQuantity(currQuantity);
+
+        } else {
+            addToProductCart(null, product);
+        }
+
+    }
+
+    public void addToProductCart(View view, Product product) {
+
+        if (productExists(product)) {
+
+            Toast.makeText(view.getContext(), "Product already in cart, please change quantity!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+
+            productList.add(product);
+
+            cartViewModel.setProductLiveDataValue(productList);
+            cartViewModel.setStateMutableLiveData(State.PRODUCT_ITEMS);
+        }
+
     }
 
     public void increaseProductQuantity(Product product) {
@@ -53,20 +77,12 @@ public class CartService extends BaseObservable {
         if (product.getQuantity() + 1 < 100) {
 
             product.setQuantity(product.getQuantity() + 1);
-            product.setPrice(product.getPriceCopy() * product.getQuantity());
 
             product.increaseQuantity();
 
-            Optional<Product> searchProduct =
-                    productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
-
-            searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
-
-            productList.removeIf(item -> item.getId() == product.getId());
-
-            productList.add(product);
             cartViewModel.setProductLiveDataValue(productList);
             notifyPropertyChanged(BR.totalCartPrice);
+
         }
 
 
@@ -77,18 +93,9 @@ public class CartService extends BaseObservable {
         if (product.getQuantity() - 1 > 0) {
 
             product.setQuantity(product.getQuantity() - 1);
-            product.setPrice(product.getPriceCopy() * product.getQuantity());
 
             product.decreaseQuantity();
 
-            Optional<Product> searchProduct =
-                    productList.stream().filter(item -> item.getId() == product.getId()).findFirst();
-
-            searchProduct.ifPresent(value -> value.setQuantity(product.getQuantity()));
-
-            productList.removeIf(item -> item.getId() == product.getId());
-
-            productList.add(product);
             cartViewModel.setProductLiveDataValue(productList);
             notifyPropertyChanged(BR.totalCartPrice);
         }
@@ -142,6 +149,12 @@ public class CartService extends BaseObservable {
         return productList.stream().anyMatch(item -> item.getId() == product.getId());
     }
 
+    public Product getProductInCart(Product product) {
+
+        return productList.stream().filter(
+                item -> item.getId() == product.getId()).findFirst().orElse(null);
+    }
+
     public void setContext(Context context) {
 
         this.cartViewModel =
@@ -159,7 +172,6 @@ public class CartService extends BaseObservable {
 
     @Bindable
     public int getTotalCartPrice() {
-
 
         return promotionList.stream().reduce(0,
                 (x, y) -> x + y.getPrice(),

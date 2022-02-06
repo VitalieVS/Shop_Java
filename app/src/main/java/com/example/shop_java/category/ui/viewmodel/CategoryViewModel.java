@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.shop_java.category.data.CategoryClient;
 import com.example.shop_java.category.model.Category;
+import com.example.shop_java.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +28,12 @@ public class CategoryViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<List<Category>> call,
                                    @NonNull Response<List<Category>> response) {
+
+                for (Category category : Objects.requireNonNull(response.body())) {
+                    for (Product product : category.getProductList()) {
+                        product.setPriceCopy(product.getPrice());
+                    }
+                }
 
                 categoriesMutableLiveData.setValue(response.body());
             }

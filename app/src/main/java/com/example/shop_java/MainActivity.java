@@ -73,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.cart:
 
                     getSupportFragmentManager().beginTransaction()
-                                .setReorderingAllowed(true)
-                                .add(R.id.fragment_container, CartFragment.class, null)
-                                .commit();
+                            .setReorderingAllowed(true)
+                            .add(R.id.fragment_container, CartFragment.class, null).commit();
 
                     selectedFragment = new CartFragment();
                     break;

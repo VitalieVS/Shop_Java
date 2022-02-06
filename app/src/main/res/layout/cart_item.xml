@@ -76,10 +76,10 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/increaseAndDecrease"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="5dp"
                     android:shadowRadius="20"
                     app:cardCornerRadius="20dp">
@@ -130,7 +130,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginEnd="15dp"
-                        android:text="@{product.price + `MDL`}"
+                        android:text="@{product.itemPrice + ` mdl`}"
                         android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold"
