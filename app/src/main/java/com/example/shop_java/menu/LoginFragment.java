@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,23 +14,76 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.shop_java.R;
+import com.example.shop_java.connection.NoInternetFragment;
+import com.example.shop_java.databinding.BottomSheetForgotPasswordBinding;
 import com.example.shop_java.databinding.FragmentLoginBinding;
 import com.example.shop_java.login.model.LoginRequest;
 import com.example.shop_java.login.service.UserService;
 import com.example.shop_java.login.viewmodel.AuthorisationStatus;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
+import com.example.shop_java.security.reset.model.PasswordRequest;
+import com.example.shop_java.security.reset.viewmodel.ResetPasswordViewModel;
+import com.example.shop_java.security.service.SecurityService;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
-    private LoginViewModel loginViewModel;
+    private BottomSheetDialog bottomSheetDialog;
+
+    private BottomSheetForgotPasswordBinding bindingSheet;
+
+    private ResetPasswordViewModel resetPasswordViewModel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         UserService userService = UserService.getInstance();
         userService.setContext(requireActivity());
+
+        TextView forgotPassword = requireActivity().findViewById(R.id.forgotPassword);
+
+        bottomSheetDialog =
+                new BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme);
+
+        SecurityService securityService = SecurityService.getInstance();
+
+        forgotPassword.setOnClickListener(l -> {
+
+            bindingSheet = DataBindingUtil.inflate(
+                    LayoutInflater.from(requireActivity()),
+                    R.layout.bottom_sheet_forgot_password,
+                    null,
+                    false);
+
+            bindingSheet.setSecurityService(securityService);
+
+            bindingSheet.setPasswordRequest(new PasswordRequest());
+
+            bindingSheet.setResetPasswordViewModel(resetPasswordViewModel);
+
+            ResetPasswordViewModel.RESET_RESPONSE.observe(getViewLifecycleOwner(),
+                    resetResponse -> {
+
+                        if (resetResponse.getError().contains("Succe") && isAdded()) {
+
+
+                        } else {
+
+                            requireActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_container, new NoInternetFragment()).commit();
+
+                            bottomSheetDialog.cancel();
+
+                        }
+
+                    });
+            bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
+            bottomSheetDialog.show();
+        });
+
 
         LoginViewModel.LOGIN_STATUS.observe(getViewLifecycleOwner(), status -> {
 
@@ -41,8 +95,6 @@ public class LoginFragment extends Fragment {
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new UserFragment()).commit();
-
-
             }
 
             if (isAdded() && status.equals(AuthorisationStatus.FAILED)) {
@@ -63,7 +115,9 @@ public class LoginFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        LoginViewModel loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        resetPasswordViewModel = new ViewModelProvider(this).get(ResetPasswordViewModel.class);
 
         FragmentLoginBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_login, container, false);

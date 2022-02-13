@@ -15,6 +15,7 @@ public class LoginRequest {
     }
 
     public void afterLoginChanged(CharSequence s) {
+
         this.login = s.toString();
     }
 
