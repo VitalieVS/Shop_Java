@@ -14,7 +14,7 @@ import retrofit2.Response;
 public class ResetPasswordViewModel extends ViewModel {
 
 
-    public static final MutableLiveData<ResetResponse> RESET_RESPONSE = new MutableLiveData<>();
+    public static MutableLiveData<ResetResponse> RESET_RESPONSE = new MutableLiveData<>();
 
     public void resetPassword(String email) {
 
@@ -28,18 +28,19 @@ public class ResetPasswordViewModel extends ViewModel {
                         if (response.body() != null) {
 
                             RESET_RESPONSE.setValue(response.body());
-
                         }
-
-
                     }
 
                     @Override
                     public void onFailure(Call<ResetResponse> call, Throwable t) {
 
-
+                        RESET_RESPONSE.setValue(null);
                     }
 
                 });
+    }
+
+    public void setResetResponse() {
+        RESET_RESPONSE = new MutableLiveData<>();
     }
 }

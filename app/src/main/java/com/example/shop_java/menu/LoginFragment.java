@@ -48,6 +48,7 @@ public class LoginFragment extends Fragment {
 
         SecurityService securityService = SecurityService.getInstance();
 
+
         forgotPassword.setOnClickListener(listener -> {
 
             bindingSheet = DataBindingUtil.inflate(
@@ -62,12 +63,26 @@ public class LoginFragment extends Fragment {
 
             bindingSheet.setResetPasswordViewModel(resetPasswordViewModel);
 
+            bindingSheet.backButton.setOnClickListener(backButtonListener ->
+                    bottomSheetDialog.cancel());
+
+            bindingSheet.backText.setOnClickListener(backButtonListener ->
+                    bottomSheetDialog.cancel());
+
             ResetPasswordViewModel.RESET_RESPONSE.observe(getViewLifecycleOwner(),
                     resetResponse -> {
 
-                        Toast.makeText(requireActivity(),
-                                resetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if (resetResponse == null && isAdded()) {
 
+                            Toast.makeText(requireActivity(), "No internet!",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (isAdded()) {
+
+                            Toast.makeText(requireActivity(),
+                                    resetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        resetPasswordViewModel.setResetResponse();
                         bottomSheetDialog.cancel();
                     });
             bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
