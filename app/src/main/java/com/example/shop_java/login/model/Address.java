@@ -41,4 +41,24 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public void afterFirstAddressChanged(CharSequence s) {
+
+        this.firstAddress = s.toString();
+    }
+
+    public void afterSecondAddressChanged(CharSequence s) {
+
+        this.secondAddress = s.toString();
+    }
+
+    public void afterCityChanged(CharSequence s) {
+
+        this.city = s.toString();
+    }
+
+    public void afterCountryChanged(CharSequence s) {
+
+        this.country = s.toString();
+    }
 }

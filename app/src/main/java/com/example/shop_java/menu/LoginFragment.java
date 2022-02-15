@@ -43,11 +43,21 @@ public class LoginFragment extends Fragment {
 
         TextView forgotPassword = requireActivity().findViewById(R.id.forgotPassword);
 
+        TextView registerNow = requireActivity().findViewById(R.id.registerNow);
+
+        registerNow.setOnClickListener(listener -> {
+
+            Fragment registerFragment = new RegisterFragment();
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true).replace(R.id.fragment_container,
+                    registerFragment).commit();
+        });
+
         bottomSheetDialog =
                 new BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme);
 
         SecurityService securityService = SecurityService.getInstance();
-
 
         forgotPassword.setOnClickListener(listener -> {
 

@@ -47,7 +47,7 @@ public class CartFragment extends Fragment {
 
         fragmentCartBinding.setCartService(cartService);
 
-        return (View) fragmentCartBinding.getRoot();
+        return fragmentCartBinding.getRoot();
     }
 
     @Override
