@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.shop_java.R;
-import com.example.shop_java.connection.NoInternetFragment;
 import com.example.shop_java.databinding.BottomSheetForgotPasswordBinding;
 import com.example.shop_java.databinding.FragmentLoginBinding;
 import com.example.shop_java.login.model.LoginRequest;
@@ -49,7 +48,7 @@ public class LoginFragment extends Fragment {
 
         SecurityService securityService = SecurityService.getInstance();
 
-        forgotPassword.setOnClickListener(l -> {
+        forgotPassword.setOnClickListener(listener -> {
 
             bindingSheet = DataBindingUtil.inflate(
                     LayoutInflater.from(requireActivity()),
@@ -66,19 +65,10 @@ public class LoginFragment extends Fragment {
             ResetPasswordViewModel.RESET_RESPONSE.observe(getViewLifecycleOwner(),
                     resetResponse -> {
 
-                        if (resetResponse.getError().contains("Succe") && isAdded()) {
+                        Toast.makeText(requireActivity(),
+                                resetResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
-
-                        } else {
-
-                            requireActivity().getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.fragment_container, new NoInternetFragment()).commit();
-
-                            bottomSheetDialog.cancel();
-
-                        }
-
+                        bottomSheetDialog.cancel();
                     });
             bottomSheetDialog.setContentView(bindingSheet.bottomSheetProductContainer);
             bottomSheetDialog.show();
