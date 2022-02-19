@@ -5,6 +5,10 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4197916666666667" />
+        <entry key="app/src/main/res/drawable-v24/rect_back.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/selected_tab.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/tab_selector.xml" value="0.124" />
+        <entry key="app/src/main/res/drawable-v24/tab_text_color_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_try.xml" value="0.40520833333333334" />
         <entry key="app/src/main/res/drawable/bottom_sheet_background.xml" value="0.246875" />
         <entry key="app/src/main/res/drawable/box.xml" value="0.4197916666666667" />
@@ -50,14 +54,19 @@
         <entry key="app/src/main/res/layout/cart_empty.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cart_item.xml" value="0.2936279296875" />
         <entry key="app/src/main/res/layout/cart_promotion_item.xml" value="0.21190643310546886" />
-        <entry key="app/src/main/res/layout/category_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/category_item.xml" value="0.5009185791015626" />
+        <entry key="app/src/main/res/layout/custom_tab.xml" value="0.21920289855072464" />
+        <entry key="app/src/main/res/layout/first_register_details.xml" value="0.26447296142578125" />
+        <entry key="app/src/main/res/layout/first_register_general.xml" value="0.19630192502532928" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.30846557617187503" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3491847826086957" />
         <entry key="app/src/main/res/layout/fragment_in_cart.xml" value="0.3491847826086957" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="1.0" />
         <entry key="app/src/main/res/layout/fragment_no_internet.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_reviews.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/fragment_step_register.xml" value="0.19929250081380204" />
         <entry key="app/src/main/res/layout/fragment_user_menu.xml" value="0.19038543701171873" />
         <entry key="app/src/main/res/layout/fragmnt_register.xml" value="0.22613531047265986" />
         <entry key="app/src/main/res/layout/ingredient_item.xml" value="0.3491847826086957" />
@@ -68,6 +77,13 @@
         <entry key="app/src/main/res/layout/order_item.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/product_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/promotion_item.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/rect_back.xml" value="0.21920289855072464" />
+        <entry key="app/src/main/res/layout/registration_success.xml" value="0.19630192502532928" />
+        <entry key="app/src/main/res/layout/second_register_address.xml" value="0.19630192502532928" />
+        <entry key="app/src/main/res/layout/second_register_details.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/selected_tab.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/third_register_security.xml" value="0.19630192502532928" />
+        <entry key="app/src/main/res/layout/third_step_registration.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4197916666666667" />
       </map>

@@ -34,4 +34,6 @@
     <string name="my_delicious_cart">My Delicious Cart</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="reset_password">Reset password</string>
+    <string name="successfully_registered">Successfully registered!</string>
+    <string name="thank_you_that_you_re_with_us_now_you_can_proceed_to_order_from_our_delicious_shop">Thank you that you\'re with us, now you can proceed to order from our delicious shop</string>
 </resources>

@@ -16,6 +16,8 @@ public class RegisterRequest {
 
     private Address address;
 
+    private String secondPassword;
+
     public RegisterRequest() {
     }
 
@@ -102,6 +104,19 @@ public class RegisterRequest {
     public void afterPhoneChanged(CharSequence s) {
 
         this.phone = s.toString();
+    }
+
+    public void afterSecondPasswordChanged(CharSequence s) {
+
+        this.secondPassword = s.toString();
+    }
+
+    public String getSecondPassword() {
+        return secondPassword;
+    }
+
+    public void setSecondPassword(String secondPassword) {
+        this.secondPassword = secondPassword;
     }
 
 }

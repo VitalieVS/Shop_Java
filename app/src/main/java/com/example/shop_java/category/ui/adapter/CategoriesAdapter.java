@@ -43,7 +43,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                                  int position) {
 
         final Category category = filteredCategoryList.get(position);
-        holder.categoryItemBinding.setViewModel(category);
+        holder.categoryItemBinding.setCategory(category);
         holder.itemView.setOnClickListener(v -> selectedCategory(category));
     }
 
