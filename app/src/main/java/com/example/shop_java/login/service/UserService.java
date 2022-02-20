@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.shop_java.R;
-import com.example.shop_java.login.viewmodel.AuthorisationStatus;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
 import com.example.shop_java.menu.LoginFragment;
+import com.example.shop_java.security.reset.logged.fragment.LoggedResetPassword;
 
 
 public class UserService {
@@ -19,6 +19,7 @@ public class UserService {
     private FragmentActivity fragmentActivity;
 
     public void setFragmentActivity(FragmentActivity fragmentActivity) {
+
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -57,6 +58,15 @@ public class UserService {
         editor.apply();
     }
 
+    public void openResetPassword() {
+
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new LoggedResetPassword()).commit();
+
+    }
+
+
     public String getToken() {
 
         SharedPreferences settings = context.getSharedPreferences(Context.ACCOUNT_SERVICE, 0);
@@ -78,7 +88,7 @@ public class UserService {
 
         editor.apply();
 
-        LoginViewModel.LOGIN_STATUS.setValue(AuthorisationStatus.FAILED);
+        LoginViewModel.resetStatus();
 
         fragmentActivity.getSupportFragmentManager()
                 .beginTransaction()

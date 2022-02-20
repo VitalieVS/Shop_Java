@@ -1,4 +1,4 @@
-package com.example.shop_java.security.reset.model;
+package com.example.shop_java.security.reset.anonymous.model;
 
 public class ResetResponse {
 

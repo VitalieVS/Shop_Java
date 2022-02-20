@@ -1,6 +1,6 @@
-package com.example.shop_java.security.reset.data;
+package com.example.shop_java.security.reset.anonymous.data;
 
-import com.example.shop_java.security.reset.model.ResetResponse;
+import com.example.shop_java.security.reset.anonymous.model.ResetResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

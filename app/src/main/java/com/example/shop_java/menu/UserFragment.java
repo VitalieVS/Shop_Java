@@ -22,11 +22,6 @@ public class UserFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -20,8 +20,8 @@ import com.example.shop_java.login.model.LoginRequest;
 import com.example.shop_java.login.service.UserService;
 import com.example.shop_java.login.viewmodel.AuthorisationStatus;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
-import com.example.shop_java.security.reset.model.PasswordRequest;
-import com.example.shop_java.security.reset.viewmodel.ResetPasswordViewModel;
+import com.example.shop_java.security.reset.anonymous.model.PasswordRequest;
+import com.example.shop_java.security.reset.anonymous.viewmodel.ResetPasswordViewModel;
 import com.example.shop_java.security.service.SecurityService;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -113,11 +113,13 @@ public class LoginFragment extends Fragment {
             }
 
             if (isAdded() && status.equals(AuthorisationStatus.FAILED)) {
+
                 Toast.makeText(requireActivity(),
                         "Wrong credentials!", Toast.LENGTH_SHORT).show();
             }
 
             if (isAdded() && status.equals(AuthorisationStatus.LOGOUT)) {
+
                 Toast.makeText(requireActivity(),
                         "Session expired!", Toast.LENGTH_SHORT).show();
             }

@@ -30,6 +30,7 @@ public class RegisterClient {
     }
 
     public Call<Boolean> register(RegisterRequest registerRequest) {
+
         return registerInterface.register(registerRequest);
     }
 }

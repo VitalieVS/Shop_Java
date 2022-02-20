@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class LoginViewModel extends ViewModel {
 
-    public static final MutableLiveData<AuthorisationStatus> LOGIN_STATUS =
+    public static MutableLiveData<AuthorisationStatus> LOGIN_STATUS =
             new MutableLiveData<>();
 
     public static final MutableLiveData<String> TOKEN = new MutableLiveData<>();
@@ -89,6 +89,11 @@ public class LoginViewModel extends ViewModel {
 
                 });
 
+    }
+
+    public static void resetStatus() {
+
+        LOGIN_STATUS = new MutableLiveData<>();
     }
 
 }
