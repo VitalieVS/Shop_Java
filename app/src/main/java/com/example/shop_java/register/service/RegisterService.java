@@ -99,6 +99,8 @@ public class RegisterService {
 
         boolean validatedPassword = false;
 
+        boolean validatedAddress = false;
+
         if (
                 Stream.of(registerRequest.getName(),
                         registerRequest.getSurname(),
@@ -124,6 +126,11 @@ public class RegisterService {
 
             validatedMail = emailMatcher.matches();
 
+            validatedAddress = registerRequest.getAddress().getFirstAddress().length() > 2
+                    && registerRequest.getAddress().getSecondAddress().length() > 1
+                    && registerRequest.getAddress().getCity().length() > 3 &&
+                    registerRequest.getAddress().getCountry().length() > 3;
+
             validatedPhone = phoneMatcher.matches() && registerRequest.getPhone().length() == 8
                     || registerRequest.getPhone().length() == 7;
 
@@ -132,7 +139,11 @@ public class RegisterService {
                     && registerRequest.getPassword().length() > 5;
         }
 
-        return validatedNames && validatedMail && validatedPhone && validatedPassword;
+        return validatedNames &&
+                validatedMail &&
+                validatedPhone &&
+                validatedPassword &&
+                validatedAddress;
 
     }
 
