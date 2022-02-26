@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,6 +71,11 @@ public class LoggedResetPassword extends Fragment {
                     resetPasswordViewModel.setResetResponse();
                 });
 
+        ImageView backView = view.findViewById(R.id.backButton);
+
+        backView.setOnClickListener(v -> requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new UserFragment()).commit());
 
         return view;
     }
