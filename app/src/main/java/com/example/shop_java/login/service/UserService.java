@@ -6,6 +6,10 @@ import android.content.SharedPreferences;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.shop_java.R;
+import com.example.shop_java.address.LoggedAddress;
+import com.example.shop_java.address.viewmodel.AddressViewModel;
+import com.example.shop_java.login.model.Address;
+import com.example.shop_java.login.model.User;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
 import com.example.shop_java.menu.LoginFragment;
 import com.example.shop_java.security.reset.logged.fragment.LoggedResetPassword;
@@ -14,9 +18,12 @@ import com.example.shop_java.security.reset.logged.fragment.LoggedResetPassword;
 public class UserService {
 
     private static UserService INSTANCE;
+
     private Context context;
 
     private FragmentActivity fragmentActivity;
+
+    private AddressViewModel addressViewModel;
 
     public void setFragmentActivity(FragmentActivity fragmentActivity) {
 
@@ -66,6 +73,17 @@ public class UserService {
 
     }
 
+    public void openAddress(User user) {
+
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new LoggedAddress(user.getAddress())).commit();
+    }
+
+    public void changeAddress(Address address) {
+
+        addressViewModel.changeAddress(this.getToken(), address);
+    }
 
     public String getToken() {
 
@@ -112,5 +130,10 @@ public class UserService {
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public void setAddressViewModel(AddressViewModel addressViewModel) {
+
+        this.addressViewModel = addressViewModel;
     }
 }

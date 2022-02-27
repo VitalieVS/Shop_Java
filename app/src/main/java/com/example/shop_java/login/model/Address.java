@@ -2,6 +2,8 @@ package com.example.shop_java.login.model;
 
 public class Address {
 
+    private int id;
+
     private String firstAddress;
 
     private String secondAddress;
@@ -40,6 +42,14 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void afterFirstAddressChanged(CharSequence s) {
