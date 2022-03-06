@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface ResetPasswordInterface {
 
-    @POST("user/resetPassword")
+    @POST("/resetPassword")
     Call<ResetResponse> resetPassword(@Query("email") String email);
 }

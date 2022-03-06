@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
 import com.example.shop_java.cart.container.EmptyCartFragment;
-import com.example.shop_java.cart.implementation.adapter.SampleListAdapter;
+import com.example.shop_java.cart.implementation.adapter.ProductPromotionList;
 import com.example.shop_java.cart.service.CartService;
 import com.example.shop_java.cart.viewmodel.CartViewModel;
 import com.example.shop_java.databinding.FragmentCartBinding;
@@ -61,7 +61,7 @@ public class CartFragment extends Fragment {
         CartService cartService = CartService.getInstance();
 
         RecyclerView recyclerView = requireView().findViewById(R.id.cartItemsRecyclerView);
-        SampleListAdapter adapter = new SampleListAdapter();
+        ProductPromotionList adapter = new ProductPromotionList();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

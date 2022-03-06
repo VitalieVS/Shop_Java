@@ -34,15 +34,15 @@ public class User {
         this.address = address;
     }
 
-    private List<Order> orders;
+    private List<Order> ordersList;
     private float totalSpentMoney;
 
     public List<Order> getOrders() {
-        return orders;
+        return ordersList;
     }
 
     public void setOrders(List<Order> orders) {
-        this.orders = orders;
+        this.ordersList = orders;
     }
 
     public float getTotalSpentMoney() {

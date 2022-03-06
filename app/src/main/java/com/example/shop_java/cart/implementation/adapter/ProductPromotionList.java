@@ -9,9 +9,9 @@ import com.example.shop_java.promotion.model.Promotion;
 
 import java.util.List;
 
-public class SampleListAdapter extends ListBindAdapter {
+public class ProductPromotionList extends ListBindAdapter {
 
-    public SampleListAdapter() {
+    public ProductPromotionList() {
 
         addAllBinder(new ProductBinder(this),
                 new PromotionBinder(this));

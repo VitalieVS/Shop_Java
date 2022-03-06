@@ -10,11 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop_java.R;
 import com.example.shop_java.databinding.FragmentUserMenuBinding;
 import com.example.shop_java.login.service.UserService;
 import com.example.shop_java.login.viewmodel.LoginViewModel;
+import com.example.shop_java.orders.adapter.OrderAdapter;
 
 import java.util.Objects;
 
@@ -46,6 +49,10 @@ public class UserFragment extends Fragment {
 
         loginViewModel.getUser(userService.getToken(), userService.getLogin());
 
+        RecyclerView recyclerView = view.findViewById(R.id.userOrders);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(getViewLifecycleOwner(), user -> {
 
             if (user == null && isAdded()) {
@@ -54,7 +61,8 @@ public class UserFragment extends Fragment {
             }
 
             if (user != null && isAdded()) {
-
+                OrderAdapter orderAdapter = new OrderAdapter(user.getOrders());
+                recyclerView.setAdapter(orderAdapter);
                 binding.setUser(user);
             }
 

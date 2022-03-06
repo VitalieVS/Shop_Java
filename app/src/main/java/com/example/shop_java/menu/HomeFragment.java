@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
+
         PromotionViewModel.promotionMutableLiveData.observe(requireActivity(), promotionModels -> {
             adapter.setList(promotionModels);
             if (promotionModels.isEmpty() && isAdded()) {
