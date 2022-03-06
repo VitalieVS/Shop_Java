@@ -30,6 +30,7 @@ public class CartService extends BaseObservable {
     private final List<Promotion> promotionList = new ArrayList<>();
     private CartViewModel cartViewModel;
 
+    private FragmentActivity fragmentActivity;
     private int totalCartPrice;
 
     public static CartService getInstance() {
@@ -178,6 +179,13 @@ public class CartService extends BaseObservable {
     }
 
     public void setTotalCartPrice(int totalCartPrice) {
+
         this.totalCartPrice = totalCartPrice;
     }
+
+    public void setFragmentActivity(FragmentActivity fragmentActivity) {
+
+        this.fragmentActivity = fragmentActivity;
+    }
+
 }
