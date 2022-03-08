@@ -7,15 +7,15 @@
 
         <variable
             name="product"
-            type="com.example.shop_java.models.Product" />
+            type="com.example.shopjava.models.Product" />
 
         <variable
             name="cartService"
-            type="com.example.shop_java.cart.service.CartService" />
+            type="com.example.shopjava.cart.service.CartService" />
 
         <variable
             name="removeInterface"
-            type="com.example.shop_java.cart.implementation.binder.remover.RemoveProduct" />
+            type="com.example.shopjava.cart.implementation.binder.remover.RemoveProduct" />
     </data>
 
 

@@ -6,7 +6,7 @@
 
         <variable
             name="category"
-            type="com.example.shop_java.category.model.Category" />
+            type="com.example.shopjava.category.model.Category" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

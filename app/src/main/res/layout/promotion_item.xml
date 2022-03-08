@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.shop_java.promotion.model.Promotion" />
+            type="com.example.shopjava.promotion.model.Promotion" />
     </data>
 
 

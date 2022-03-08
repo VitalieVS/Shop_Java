@@ -6,7 +6,7 @@
 
         <variable
             name="cartService"
-            type="com.example.shop_java.cart.service.CartService" />
+            type="com.example.shopjava.cart.service.CartService" />
     </data>
 
 

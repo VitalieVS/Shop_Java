@@ -7,7 +7,11 @@
 
         <variable
             name="cartService"
-            type="com.example.shop_java.cart.service.CartService" />
+            type="com.example.shopjava.cart.service.CartService" />
+
+        <variable
+            name="paymentService"
+            type="com.example.shopjava.payment.service.PaymentService" />
 
     </data>
 
@@ -62,57 +66,79 @@
                 android:id="@+id/radio_cash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
+                android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked)}"
                 android:text="Pay in cash" />
 
             <RadioButton
                 android:id="@+id/radio_card_courier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked)}"
                 android:text="Pay with card to courier" />
 
-            <RadioButton
-                android:id="@+id/radio_paypal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pay with PayPal" />
         </RadioGroup>
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/blueViolet"
-                android:elevation="0dp"
-                android:src="@drawable/round_arrow_forward_24"
-                android:tint="@android:color/white"
-                app:elevation="0dp"
-                app:fabCustomSize="80dp"
-                tools:ignore="RelativeOverlap" />
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/blueViolet"
+                    android:elevation="0dp"
+                    android:onClick="@{() -> paymentService.pay()}"
+                    android:src="@drawable/round_arrow_forward_24"
+                    android:tint="@android:color/white"
+                    app:elevation="0dp"
+                    app:fabCustomSize="80dp"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="30dp"
+                    android:padding="15dp"
+                    android:text="Place your order"
+                    android:textColor="#191919"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="30dp"
-                android:padding="15dp"
-                android:text="Place your order"
-                android:textColor="#191919"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Or Pay by"
+                android:textColor="@color/colorBlack"
+                android:textSize="23sp" />
 
-        </RelativeLayout>
+            <com.paypal.checkout.paymentbutton.PayPalButton
+                android:id="@+id/payPalButton"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                app:paypal_color="gold" />
+        </LinearLayout>
 
 
     </LinearLayout>

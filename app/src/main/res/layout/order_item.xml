@@ -6,7 +6,7 @@
 
         <variable
             name="order"
-            type="com.example.shop_java.login.model.Order" />
+            type="com.example.shopjava.login.model.Order" />
 
     </data>
 

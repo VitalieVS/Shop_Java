@@ -8,11 +8,11 @@
 
         <variable
             name="registerRequest"
-            type="com.example.shop_java.register.model.RegisterRequest" />
+            type="com.example.shopjava.register.model.RegisterRequest" />
 
         <variable
             name="registerService"
-            type="com.example.shop_java.register.service.RegisterService" />
+            type="com.example.shopjava.register.service.RegisterService" />
     </data>
 
     <RelativeLayout
