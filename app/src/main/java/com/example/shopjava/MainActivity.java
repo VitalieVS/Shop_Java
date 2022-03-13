@@ -12,7 +12,6 @@ import com.example.shopjava.login.service.UserService;
 import com.example.shopjava.menu.CartFragment;
 import com.example.shopjava.menu.HomeFragment;
 import com.example.shopjava.menu.LoginFragment;
-import com.example.shopjava.menu.ReviewsFragment;
 import com.example.shopjava.menu.SearchFragment;
 import com.example.shopjava.menu.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.search:
                     selectedFragment = new SearchFragment();
-                    break;
-                case R.id.reviews:
-                    selectedFragment = new ReviewsFragment();
                     break;
                 case R.id.login:
 

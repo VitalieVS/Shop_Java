@@ -160,7 +160,8 @@ public class CartFragment extends Fragment {
                 bindingSheet.backButton.setOnClickListener(backButtonListener ->
                         bottomSheetDialog.cancel());
 
-                paymentService.setupPayPal(bindingSheet.payPalButton, bottomSheetDialog);
+                paymentService.setupPayPal(bindingSheet.payPalButton, bottomSheetDialog,
+                        orderRequest);
 
                 bottomSheetDialog.setContentView(bindingSheet.mainContainer);
                 bottomSheetDialog.show();

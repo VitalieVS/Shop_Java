@@ -16,10 +16,6 @@
         android:title="" />
 
     <item
-        android:id="@+id/reviews"
-        android:icon="@drawable/ic_baseline_list_alt_24"
-        android:title="" />
-    <item
         android:id="@+id/login"
         android:icon="@drawable/ic_baseline_account_box_24"
         android:title="" />

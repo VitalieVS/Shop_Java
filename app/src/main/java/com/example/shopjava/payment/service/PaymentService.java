@@ -45,7 +45,6 @@ public class PaymentService {
 
     private String token;
 
-
     public static PaymentService getInstance() {
 
         if (INSTANCE == null) {
@@ -88,10 +87,12 @@ public class PaymentService {
             if ((totalPrice * 0.30) >= userService.getCashback()) {
 
                 orderRequest.setCashBackApplied(userService.getCashback());
+                totalPrice -= userService.getCashback();
             } else {
 
                 double orderCashBackMax = totalPrice * 0.30 + totalPrice;
                 orderRequest.setCashBackApplied((float) (orderCashBackMax - totalPrice));
+                totalPrice -= (float) (orderCashBackMax - totalPrice);
             }
         } else {
 
@@ -118,7 +119,8 @@ public class PaymentService {
         this.totalPrice = totalPrice;
     }
 
-    public void setupPayPal(PayPalButton payPalButton, BottomSheetDialog bottomSheetDialog) {
+    public void setupPayPal(PayPalButton payPalButton, BottomSheetDialog bottomSheetDialog,
+                            OrderRequest orderRequest) {
 
         CheckoutConfig checkoutConfig =
                 new CheckoutConfig(
@@ -157,6 +159,8 @@ public class PaymentService {
                 },
                 approval -> approval.getOrderActions().capture(result -> {
 
+                    orderRequest.setPaymentMethod("PayPal");
+                    orderViewModel.createOrder(token, orderRequest);
                     bottomSheetDialog.cancel();
                 }));
 
