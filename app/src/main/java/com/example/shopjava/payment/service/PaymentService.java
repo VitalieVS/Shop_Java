@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.shopjava.login.service.UserService;
 import com.example.shopjava.order.request.OrderRequest;
 import com.example.shopjava.order.ui.OrderViewModel;
 import com.example.shopjava.payment.paypal.Config;
@@ -72,6 +73,29 @@ public class PaymentService {
             paymentMethod = (String) buttonView.getText();
 
             orderRequest.setPaymentMethod(paymentMethod);
+        }
+    }
+
+    public void applyCashback(CompoundButton buttonView, boolean isChecked,
+                              OrderRequest orderRequest) {
+
+        if (isChecked) {
+
+            UserService userService = UserService.getInstance();
+
+            userService.setContext(buttonView.getContext());
+
+            if ((totalPrice * 0.30) >= userService.getCashback()) {
+
+                orderRequest.setCashBackApplied(userService.getCashback());
+            } else {
+
+                double orderCashBackMax = totalPrice * 0.30 + totalPrice;
+                orderRequest.setCashBackApplied((float) (orderCashBackMax - totalPrice));
+            }
+        } else {
+
+            orderRequest.setCashBackApplied(0);
         }
     }
 

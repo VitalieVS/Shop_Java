@@ -63,6 +63,7 @@ public class UserFragment extends Fragment {
 
                 OrderAdapter orderAdapter = new OrderAdapter(user.getOrders());
                 userService.setAddress(user.getAddress());
+                userService.setCashBack(user.getTotalCashBack());
                 recyclerView.setAdapter(orderAdapter);
                 binding.setUser(user);
             }

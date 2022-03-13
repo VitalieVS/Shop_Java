@@ -53,28 +53,63 @@
             android:textColor="@color/colorBlack"
             android:textSize="15sp" />
 
-
-        <RadioGroup
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/radio_cash"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radio_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked, orderRequest)}"
+                        android:text="Pay in cash" />
+
+                    <RadioButton
+                        android:id="@+id/radio_card_courier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked, orderRequest)}"
+                        android:text="Pay with card to courier" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked, orderRequest)}"
-                android:text="Pay in cash" />
+                android:layout_margin="20dp"
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/radio_card_courier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onCheckedChanged="@{(compound, isChecked) -> paymentService.paymentChanged(compound, isChecked, orderRequest)}"
-                android:text="Pay with card to courier" />
+                <CheckBox
+                    android:id="@+id/apply_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apply discount" />
 
-        </RadioGroup>
+                <CheckBox
+                    android:id="@+id/apply_cashback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{(compound, isChecked) -> paymentService.applyCashback(compound, isChecked, orderRequest)}"
+                    android:text="Apply cashback" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -122,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="@{cartService.totalCartPrice +` mdl`}"
+                    android:text="@{orderRequest.cashBackApplied +` mdl`}"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp"
                     tools:text="25 mdl" />

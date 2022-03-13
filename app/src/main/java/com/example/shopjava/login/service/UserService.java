@@ -67,6 +67,22 @@ public class UserService {
         editor.apply();
     }
 
+    public void setCashBack(float cashback) {
+
+        SharedPreferences settings = context.getSharedPreferences(Context.ACCOUNT_SERVICE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("cashback", cashback);
+
+        editor.apply();
+    }
+
+    public float getCashback() {
+
+        SharedPreferences settings = context.getSharedPreferences(Context.ACCOUNT_SERVICE, 0);
+
+        return settings.getFloat("cashback", 0);
+    }
+
     public void openResetPassword() {
 
         fragmentActivity.getSupportFragmentManager()
