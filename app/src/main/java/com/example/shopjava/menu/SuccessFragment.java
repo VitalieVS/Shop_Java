@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.shopjava.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SuccessFragment extends Fragment {
@@ -27,14 +28,24 @@ public class SuccessFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
+        BottomNavigationView bottomNavigationView =
+                requireActivity().findViewById(R.id.bottom_navigation);
+
+
         FloatingActionButton floatingActionButton =
                 requireView().findViewById(R.id.jumpToOrders);
 
-        floatingActionButton.setOnClickListener(l ->
+        floatingActionButton.setOnClickListener(l -> {
 
-                requireActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new UserFragment()).commit());
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new UserFragment()).commit();
+
+            bottomNavigationView.setSelectedItemId(R.id.login);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        });
+
 
     }
 }

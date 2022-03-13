@@ -52,7 +52,6 @@ public class UserFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.userOrders);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         LoginViewModel.USER_MUTABLE_LIVE_DATA.observe(getViewLifecycleOwner(), user -> {
 
             if (user == null && isAdded()) {

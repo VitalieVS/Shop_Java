@@ -10,6 +10,10 @@ public class User {
 
     private Address address;
 
+    private List<Order> ordersList;
+
+    private float totalCashBack;
+
     public String getSurname() {
         return surname;
     }
@@ -34,9 +38,6 @@ public class User {
         this.address = address;
     }
 
-    private List<Order> ordersList;
-    private float totalSpentMoney;
-
     public List<Order> getOrders() {
         return ordersList;
     }
@@ -45,12 +46,14 @@ public class User {
         this.ordersList = orders;
     }
 
-    public float getTotalSpentMoney() {
-        return totalSpentMoney;
+    public float getTotalCashBack() {
+
+        return totalCashBack;
     }
 
-    public void setTotalSpentMoney(float totalSpentMoney) {
-        this.totalSpentMoney = totalSpentMoney;
+    public void setTotalCashBack(float totalCashBack) {
+
+        this.totalCashBack = totalCashBack;
     }
 
 }

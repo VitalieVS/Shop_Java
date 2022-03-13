@@ -189,4 +189,12 @@ public class CartService extends BaseObservable {
         this.fragmentActivity = fragmentActivity;
     }
 
+    public void resetCart() {
+
+        this.productList.clear();
+        this.promotionList.clear();
+        this.totalCartPrice = 0;
+        cartViewModel.setStateMutableLiveData(State.EMPTY_CART);
+    }
+
 }

@@ -68,6 +68,7 @@ public class LoginViewModel extends ViewModel {
                     @Override
                     public void onResponse(@NonNull Call<User> call,
                                            @NonNull Response<User> response) {
+
                         if (response.body() != null) {
 
                             USER_MUTABLE_LIVE_DATA.setValue(response.body());

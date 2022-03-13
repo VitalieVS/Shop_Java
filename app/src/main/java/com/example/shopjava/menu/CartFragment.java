@@ -29,6 +29,7 @@ import com.example.shopjava.databinding.FragmentCartBinding;
 import com.example.shopjava.login.service.UserService;
 import com.example.shopjava.models.Product;
 import com.example.shopjava.models.State;
+import com.example.shopjava.order.request.OrderRequest;
 import com.example.shopjava.order.ui.OrderViewModel;
 import com.example.shopjava.payment.service.PaymentService;
 import com.example.shopjava.promotion.model.Promotion;
@@ -46,6 +47,7 @@ public class CartFragment extends Fragment {
     private BottomSheetOrderBinding bindingSheet;
 
     private UserService userService;
+
 
     @Nullable
     @Override
@@ -76,6 +78,9 @@ public class CartFragment extends Fragment {
 
         BottomNavigationView bottomNavigationView =
                 requireActivity().findViewById(R.id.bottom_navigation);
+
+        OrderViewModel orderViewModel =
+                new ViewModelProvider(this).get(OrderViewModel.class);
 
         bottomSheetDialog =
                 new BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme);
@@ -136,8 +141,6 @@ public class CartFragment extends Fragment {
                         null,
                         false);
 
-                OrderViewModel orderViewModel =
-                        new ViewModelProvider(this).get(OrderViewModel.class);
 
                 paymentService.setOrderViewModel(orderViewModel);
 
@@ -146,6 +149,11 @@ public class CartFragment extends Fragment {
                 paymentService.setTotalPrice(cartService.getTotalCartPrice());
 
                 paymentService.setToken(token);
+
+                OrderRequest orderRequest = new OrderRequest(cartService.getProductList(),
+                        cartService.getPromotionList());
+
+                bindingSheet.setOrderRequest(orderRequest);
 
                 bindingSheet.setPaymentService(paymentService);
 
@@ -170,9 +178,13 @@ public class CartFragment extends Fragment {
             if (response.isCreated() && isAdded()) {
 
                 bottomSheetDialog.cancel();
+                cartService.resetCart();
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new SuccessFragment()).commit();
+
+                orderViewModel.resetOrderResponse();
+
 
             } else if (isAdded()) {
 

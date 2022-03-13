@@ -37,11 +37,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="40dp"
+                android:paddingStart="10dp"
                 android:paddingTop="50dp"
-                android:text="Total orders balance"
+                android:text="Total cashback available"
                 android:textColor="#fff"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                 android:fontFamily="sans-serif-black"
                 android:paddingStart="40dp"
                 android:paddingTop="10dp"
-                android:text="@{String.valueOf(user.totalSpentMoney) + ` MDL`}"
+                android:text="@{String.valueOf(user.totalCashBack) + ` MDL`}"
                 android:textColor="#fff"
                 android:textSize="35dp"
                 android:textStyle="bold" />

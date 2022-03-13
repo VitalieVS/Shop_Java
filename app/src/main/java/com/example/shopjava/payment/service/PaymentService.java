@@ -1,11 +1,12 @@
 package com.example.shopjava.payment.service;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.shopjava.cart.service.CartService;
 import com.example.shopjava.order.request.OrderRequest;
 import com.example.shopjava.order.ui.OrderViewModel;
 import com.example.shopjava.payment.paypal.Config;
@@ -63,25 +64,30 @@ public class PaymentService {
         this.fragmentActivity = fragmentActivity;
     }
 
-    public void paymentChanged(CompoundButton buttonView, boolean isChecked) {
+    public void paymentChanged(CompoundButton buttonView, boolean isChecked,
+                               OrderRequest orderRequest) {
 
         if (isChecked) {
 
             paymentMethod = (String) buttonView.getText();
+
+            orderRequest.setPaymentMethod(paymentMethod);
         }
     }
 
-    public void pay() {
+    public void pay(View view, OrderRequest orderRequest) {
 
-        CartService cartService = CartService.getInstance();
+        if (paymentMethod == null) {
 
-        OrderRequest orderRequest = new OrderRequest(cartService.getProductList(),
-                cartService.getPromotionList());
+            Toast.makeText(view.getContext(), "Please select a payment method!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
 
-        orderViewModel.createOrder(token, orderRequest);
+            orderViewModel.createOrder(token, orderRequest);
+
+        }
 
     }
-
 
     public void setTotalPrice(int totalPrice) {
 

@@ -2,7 +2,6 @@ package com.example.shopjava.login.model;
 
 public class LoginResponse {
 
-
     private String login;
     private String token;
 

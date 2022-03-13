@@ -8,7 +8,11 @@ import java.util.List;
 public class OrderRequest {
 
     private final String orderStatus = "CREATED";
+
     private List<Product> productList;
+
+    private String paymentMethod;
+
     private List<Promotion> promotionList;
 
     public OrderRequest(List<Product> productList,
@@ -36,5 +40,15 @@ public class OrderRequest {
     public void setPromotionList(List<Promotion> promotionList) {
 
         this.promotionList = promotionList;
+    }
+
+    public String getPaymentMethod() {
+
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+
+        this.paymentMethod = paymentMethod;
     }
 }
