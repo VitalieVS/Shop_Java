@@ -40,4 +40,7 @@
     <string name="confirm_new_password">Confirm new password</string>
     <string name="your_current_password">Your current password</string>
     <string name="edit_current_address">Edit current address</string>
+    <string name="thank_you_for_your_purchase">Thank you for your purchase!</string>
+    <string name="your_order_will_be_delivered_soon">Your order will be delivered soon!</string>
+    <string name="button_for">Button for</string>
 </resources>

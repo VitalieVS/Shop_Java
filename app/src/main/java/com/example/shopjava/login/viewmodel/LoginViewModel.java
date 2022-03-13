@@ -41,6 +41,7 @@ public class LoginViewModel extends ViewModel {
                         }
 
                         if (response.errorBody() != null) {
+
                             LOGIN.setValue(null);
                             LOGIN_STATUS.setValue(AuthorisationStatus.FAILED);
                             TOKEN.setValue("");

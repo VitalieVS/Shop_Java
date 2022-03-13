@@ -6,7 +6,6 @@ import android.widget.CompoundButton;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.shopjava.cart.service.CartService;
-import com.example.shopjava.login.service.UserService;
 import com.example.shopjava.order.request.OrderRequest;
 import com.example.shopjava.order.ui.OrderViewModel;
 import com.example.shopjava.payment.paypal.Config;
@@ -76,10 +75,8 @@ public class PaymentService {
 
         CartService cartService = CartService.getInstance();
 
-        UserService userService = UserService.getInstance();
-
-        OrderRequest orderRequest = new OrderRequest(userService.getAddress(),
-                cartService.getProductList(), cartService.getPromotionList());
+        OrderRequest orderRequest = new OrderRequest(cartService.getProductList(),
+                cartService.getPromotionList());
 
         orderViewModel.createOrder(token, orderRequest);
 

@@ -23,6 +23,7 @@ import com.example.shopjava.cart.container.EmptyCartFragment;
 import com.example.shopjava.cart.implementation.adapter.ProductPromotionList;
 import com.example.shopjava.cart.service.CartService;
 import com.example.shopjava.cart.viewmodel.CartViewModel;
+import com.example.shopjava.connection.NoInternetFragment;
 import com.example.shopjava.databinding.BottomSheetOrderBinding;
 import com.example.shopjava.databinding.FragmentCartBinding;
 import com.example.shopjava.login.service.UserService;
@@ -68,6 +69,10 @@ public class CartFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        SharedPreferences settings = requireContext().getSharedPreferences(Context.ACCOUNT_SERVICE, 0);
+
+        String token = "Bearer_" + settings.getString("token", "");
 
         BottomNavigationView bottomNavigationView =
                 requireActivity().findViewById(R.id.bottom_navigation);
@@ -140,9 +145,7 @@ public class CartFragment extends Fragment {
 
                 paymentService.setTotalPrice(cartService.getTotalCartPrice());
 
-                SharedPreferences settings = requireContext().getSharedPreferences(Context.ACCOUNT_SERVICE, 0);
-
-                paymentService.setToken("Bearer_" + settings.getString("token", ""));
+                paymentService.setToken(token);
 
                 bindingSheet.setPaymentService(paymentService);
 
@@ -166,13 +169,16 @@ public class CartFragment extends Fragment {
 
             if (response.isCreated() && isAdded()) {
 
-                Toast.makeText(view.getContext(), "tipa tat ok ",
-                        Toast.LENGTH_SHORT).show();
                 bottomSheetDialog.cancel();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new SuccessFragment()).commit();
+
             } else if (isAdded()) {
 
-                Toast.makeText(view.getContext(), "tipa tat dea pula ",
-                        Toast.LENGTH_SHORT).show();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new NoInternetFragment()).commit();
             }
         });
     }

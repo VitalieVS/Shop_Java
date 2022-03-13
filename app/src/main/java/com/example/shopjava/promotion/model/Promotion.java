@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Promotion implements Serializable {
 
-    private int promotionId;
+    private int id;
 
     private String title;
 
@@ -33,7 +33,7 @@ public class Promotion implements Serializable {
     }
 
     public int getPromotionId() {
-        return promotionId;
+        return id;
     }
 
     public String getTitle() {
