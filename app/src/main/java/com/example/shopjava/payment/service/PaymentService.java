@@ -164,7 +164,6 @@ public class PaymentService {
                     bottomSheetDialog.cancel();
                 }));
 
-
         PayPalCheckout.setConfig(checkoutConfig);
 
     }
